@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UslugiIndexRouteImport } from './routes/uslugi.index'
+import { Route as UslugiSlugRouteImport } from './routes/uslugi.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const UslugiIndexRoute = UslugiIndexRouteImport.update({
   path: '/uslugi/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiSlugRoute = UslugiSlugRouteImport.update({
+  id: '/uslugi/$slug',
+  path: '/uslugi/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/uslugi/$slug': typeof UslugiSlugRoute
   '/uslugi/': typeof UslugiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/uslugi/$slug': typeof UslugiSlugRoute
   '/uslugi': typeof UslugiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/uslugi/$slug': typeof UslugiSlugRoute
   '/uslugi/': typeof UslugiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/uslugi/'
+  fullPaths: '/' | '/uslugi/$slug' | '/uslugi/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/uslugi'
-  id: '__root__' | '/' | '/uslugi/'
+  to: '/' | '/uslugi/$slug' | '/uslugi'
+  id: '__root__' | '/' | '/uslugi/$slug' | '/uslugi/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  UslugiSlugRoute: typeof UslugiSlugRoute
   UslugiIndexRoute: typeof UslugiIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UslugiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/$slug': {
+      id: '/uslugi/$slug'
+      path: '/uslugi/$slug'
+      fullPath: '/uslugi/$slug'
+      preLoaderRoute: typeof UslugiSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  UslugiSlugRoute: UslugiSlugRoute,
   UslugiIndexRoute: UslugiIndexRoute,
 }
 export const routeTree = rootRouteImport

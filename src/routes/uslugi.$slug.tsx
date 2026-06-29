@@ -60,7 +60,7 @@ function ServicePage() {
               Co dokładnie wchodzi w usługę
             </h2>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-              {service.scope.map((it) => (
+              {service.scope.map((it: string) => (
                 <li key={it} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 text-sm text-navy-deep">
                   <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold/20 text-gold">
                     <Check className="h-3.5 w-3.5" />
@@ -74,7 +74,7 @@ function ServicePage() {
               <SectionLabel>Dlaczego my</SectionLabel>
             </div>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {service.benefits.map((b) => (
+              {service.benefits.map((b: string) => (
                 <li key={b} className="flex items-start gap-3 text-sm text-navy-deep">
                   <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-gold" />
                   {b}
