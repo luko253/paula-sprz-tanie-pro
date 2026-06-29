@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RealizacjeRouteImport } from './routes/realizacje'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UslugiIndexRouteImport } from './routes/uslugi.index'
 import { Route as UslugiSlugRouteImport } from './routes/uslugi.$slug'
 
+const RealizacjeRoute = RealizacjeRouteImport.update({
+  id: '/realizacje',
+  path: '/realizacje',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,36 +37,47 @@ const UslugiSlugRoute = UslugiSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/realizacje': typeof RealizacjeRoute
   '/uslugi/$slug': typeof UslugiSlugRoute
   '/uslugi/': typeof UslugiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/realizacje': typeof RealizacjeRoute
   '/uslugi/$slug': typeof UslugiSlugRoute
   '/uslugi': typeof UslugiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/realizacje': typeof RealizacjeRoute
   '/uslugi/$slug': typeof UslugiSlugRoute
   '/uslugi/': typeof UslugiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/uslugi/$slug' | '/uslugi/'
+  fullPaths: '/' | '/realizacje' | '/uslugi/$slug' | '/uslugi/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/uslugi/$slug' | '/uslugi'
-  id: '__root__' | '/' | '/uslugi/$slug' | '/uslugi/'
+  to: '/' | '/realizacje' | '/uslugi/$slug' | '/uslugi'
+  id: '__root__' | '/' | '/realizacje' | '/uslugi/$slug' | '/uslugi/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  RealizacjeRoute: typeof RealizacjeRoute
   UslugiSlugRoute: typeof UslugiSlugRoute
   UslugiIndexRoute: typeof UslugiIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/realizacje': {
+      id: '/realizacje'
+      path: '/realizacje'
+      fullPath: '/realizacje'
+      preLoaderRoute: typeof RealizacjeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  RealizacjeRoute: RealizacjeRoute,
   UslugiSlugRoute: UslugiSlugRoute,
   UslugiIndexRoute: UslugiIndexRoute,
 }
