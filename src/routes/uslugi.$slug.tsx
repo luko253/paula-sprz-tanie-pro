@@ -23,6 +23,38 @@ export const Route = createFileRoute("/uslugi/$slug")({
         { property: "og:url", content: `/uslugi/${s?.slug ?? ""}` },
       ],
       links: [{ rel: "canonical", href: `/uslugi/${s?.slug ?? ""}` }],
+      scripts: s
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "Service",
+                    name: s.title,
+                    description: s.intro,
+                    provider: {
+                      "@type": "LocalBusiness",
+                      name: "Paula Sprzątanie",
+                      url: "https://paulasprzatanie.pl",
+                    },
+                    areaServed: { "@type": "City", name: "Kraków" },
+                    serviceType: "CleaningService",
+                  },
+                  {
+                    "@type": "BreadcrumbList",
+                    itemListElement: [
+                      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://paulasprzatanie.pl/" },
+                      { "@type": "ListItem", position: 2, name: "Usługi", item: "https://paulasprzatanie.pl/uslugi" },
+                      { "@type": "ListItem", position: 3, name: s.title, item: `https://paulasprzatanie.pl/uslugi/${s.slug}` },
+                    ],
+                  },
+                ],
+              }),
+            },
+          ]
+        : [],
     };
   },
   notFoundComponent: () => (

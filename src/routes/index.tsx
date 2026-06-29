@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { SiteLayout, SectionLabel } from "@/components/site/Layout";
 import { ContactForm } from "@/components/site/ContactForm";
-import { BLOG_POSTS, FAQ, SERVICES, SITE, STEPS, TESTIMONIALS } from "@/lib/site-data";
+import { BLOG_POSTS, FAQ, GEO_FAQ, LOCATIONS, SERVICES, SITE, STEPS, TESTIMONIALS } from "@/lib/site-data";
 import {
   Accordion,
   AccordionContent,
@@ -44,22 +44,49 @@ import g6 from "@/assets/gallery-6.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Paula Sprzątanie — profesjonalne sprzątanie w Krakowie" },
+      { title: "Paula Sprzątanie — profesjonalne sprzątanie w Krakowie | Firma sprzątająca" },
       {
         name: "description",
         content:
-          "Profesjonalne usługi sprzątające w Krakowie: mieszkania, domy, biura, wspólnoty, sprzątanie po remoncie, mycie okien. Bezpłatna wycena.",
+          "Profesjonalna firma sprzątająca w Krakowie ✓ Sprzątanie mieszkań, domów, biur, wspólnot ✓ Sprzątanie po remoncie ✓ Mycie okien ✓ Balkony po gołębiach ✓ Bezpłatna wycena ✓ 10+ lat doświadczenia ✓ Ubezpieczenie OC do 1 mln zł",
       },
-      { property: "og:title", content: "Paula Sprzątanie — Kraków" },
+      { property: "og:title", content: "Paula Sprzątanie — profesjonalna firma sprzątająca w Krakowie" },
       {
         property: "og:description",
         content:
-          "Profesjonalne sprzątanie mieszkań, domów, biur i wspólnot w Krakowie. Działamy dokładnie i terminowo.",
+          "Profesjonalne sprzątanie mieszkań, domów, biur i wspólnot w Krakowie. 10+ lat doświadczenia, 1000+ zleceń, bezpłatna wycena.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://paulasprzatanie.pl/" },
       { property: "og:image", content: heroImg },
+      { name: "twitter:title", content: "Paula Sprzątanie — profesjonalna firma sprzątająca w Krakowie" },
+      { name: "twitter:description", content: "Sprzątanie mieszkań, domów, biur i wspólnot w Krakowie. Bezpłatna wycena." },
+      { name: "twitter:image", content: heroImg },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://paulasprzatanie.pl/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "FAQPage",
+              mainEntity: [...FAQ, ...GEO_FAQ].map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://paulasprzatanie.pl/" },
+              ],
+            },
+          ],
+        }),
+      },
+    ],
   }),
   component: Index,
 });
@@ -93,8 +120,10 @@ function Index() {
       <Process />
       <Testimonials />
       <BlogPreview />
+      <LocalSeo />
       <Coverage />
       <FaqSection />
+      <GeoFaqSection />
       <Cta />
       <Contact />
     </SiteLayout>
@@ -518,6 +547,36 @@ function BlogPreview() {
   );
 }
 
+function LocalSeo() {
+  return (
+    <section className="container-x py-20 md:py-28">
+      <div className="text-center">
+        <SectionLabel>Dzielnice Krakowa</SectionLabel>
+        <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
+          Sprzątanie w Twojej dzielnicy
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+          Obsługujemy wszystkie dzielnice Krakowa. Sprawdź ofertę w swojej okolicy — dojeżdżamy szybko, a wycena jest bezpłatna.
+        </p>
+      </div>
+      <div className="mt-12 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        {LOCATIONS.map((loc) => (
+          <Link
+            key={loc.slug}
+            to="/lokalizacje/$slug"
+            params={{ slug: loc.slug }}
+            className="flex items-center gap-2 rounded-2xl border border-border bg-card p-4 text-sm font-semibold text-navy-deep transition-all hover:border-gold hover:shadow-sm"
+          >
+            <MapPin className="h-4 w-4 shrink-0 text-gold" />
+            {loc.name}
+            <ArrowRight className="ml-auto h-3.5 w-3.5 text-muted-foreground" />
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Coverage() {
   return (
     <section className="container-x py-20 md:py-28">
@@ -584,6 +643,40 @@ function FaqSection() {
             ))}
           </Accordion>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function GeoFaqSection() {
+  return (
+    <section className="container-x py-20 md:py-28">
+      <div className="mx-auto max-w-3xl text-center">
+        <SectionLabel>O firmie — dla wyszukiwarek AI</SectionLabel>
+        <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
+          Wszystko, co warto wiedzieć o Paula Sprzątanie
+        </h2>
+        <p className="mt-4 text-muted-foreground">
+          Odpowiadamy na pytania, które najczęściej zadają klienci — i wyszukiwarki.
+        </p>
+      </div>
+      <div className="mx-auto mt-12 max-w-3xl">
+        <Accordion type="single" collapsible className="space-y-3">
+          {GEO_FAQ.map((f, i) => (
+            <AccordionItem
+              key={i}
+              value={"gf" + i}
+              className="rounded-2xl border border-border bg-card px-5"
+            >
+              <AccordionTrigger className="text-left text-base font-semibold text-navy-deep hover:no-underline">
+                {f.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                {f.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   );

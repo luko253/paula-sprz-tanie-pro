@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
-import { BLOG_POSTS } from "@/lib/site-data";
+import { BLOG_POSTS, BLOG_POSTS_EXTENDED } from "@/lib/site-data";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
@@ -26,6 +26,7 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogIndex() {
+  const allPosts = [...BLOG_POSTS, ...BLOG_POSTS_EXTENDED];
   return (
     <SiteLayout>
       <PageHero
@@ -35,7 +36,7 @@ function BlogIndex() {
       />
       <section className="container-x py-16">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {BLOG_POSTS.map((p) => (
+          {allPosts.map((p) => (
             <Link
               key={p.slug}
               to="/blog/$slug"

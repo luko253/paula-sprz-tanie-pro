@@ -14,8 +14,10 @@ import { Route as RealizacjeRouteImport } from './routes/realizacje'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UslugiIndexRouteImport } from './routes/uslugi.index'
+import { Route as LokalizacjeIndexRouteImport } from './routes/lokalizacje.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as UslugiSlugRouteImport } from './routes/uslugi.$slug'
+import { Route as LokalizacjeSlugRouteImport } from './routes/lokalizacje.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -43,6 +45,11 @@ const UslugiIndexRoute = UslugiIndexRouteImport.update({
   path: '/uslugi/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LokalizacjeIndexRoute = LokalizacjeIndexRouteImport.update({
+  id: '/lokalizacje/',
+  path: '/lokalizacje/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -51,6 +58,11 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
 const UslugiSlugRoute = UslugiSlugRouteImport.update({
   id: '/uslugi/$slug',
   path: '/uslugi/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LokalizacjeSlugRoute = LokalizacjeSlugRouteImport.update({
+  id: '/lokalizacje/$slug',
+  path: '/lokalizacje/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -65,8 +77,10 @@ export interface FileRoutesByFullPath {
   '/realizacje': typeof RealizacjeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/lokalizacje/$slug': typeof LokalizacjeSlugRoute
   '/uslugi/$slug': typeof UslugiSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/lokalizacje/': typeof LokalizacjeIndexRoute
   '/uslugi/': typeof UslugiIndexRoute
 }
 export interface FileRoutesByTo {
@@ -75,8 +89,10 @@ export interface FileRoutesByTo {
   '/realizacje': typeof RealizacjeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/lokalizacje/$slug': typeof LokalizacjeSlugRoute
   '/uslugi/$slug': typeof UslugiSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/lokalizacje': typeof LokalizacjeIndexRoute
   '/uslugi': typeof UslugiIndexRoute
 }
 export interface FileRoutesById {
@@ -86,8 +102,10 @@ export interface FileRoutesById {
   '/realizacje': typeof RealizacjeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/lokalizacje/$slug': typeof LokalizacjeSlugRoute
   '/uslugi/$slug': typeof UslugiSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/lokalizacje/': typeof LokalizacjeIndexRoute
   '/uslugi/': typeof UslugiIndexRoute
 }
 export interface FileRouteTypes {
@@ -98,8 +116,10 @@ export interface FileRouteTypes {
     | '/realizacje'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/lokalizacje/$slug'
     | '/uslugi/$slug'
     | '/blog/'
+    | '/lokalizacje/'
     | '/uslugi/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -108,8 +128,10 @@ export interface FileRouteTypes {
     | '/realizacje'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/lokalizacje/$slug'
     | '/uslugi/$slug'
     | '/blog'
+    | '/lokalizacje'
     | '/uslugi'
   id:
     | '__root__'
@@ -118,8 +140,10 @@ export interface FileRouteTypes {
     | '/realizacje'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/lokalizacje/$slug'
     | '/uslugi/$slug'
     | '/blog/'
+    | '/lokalizacje/'
     | '/uslugi/'
   fileRoutesById: FileRoutesById
 }
@@ -129,8 +153,10 @@ export interface RootRouteChildren {
   RealizacjeRoute: typeof RealizacjeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  LokalizacjeSlugRoute: typeof LokalizacjeSlugRoute
   UslugiSlugRoute: typeof UslugiSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  LokalizacjeIndexRoute: typeof LokalizacjeIndexRoute
   UslugiIndexRoute: typeof UslugiIndexRoute
 }
 
@@ -171,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UslugiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lokalizacje/': {
+      id: '/lokalizacje/'
+      path: '/lokalizacje'
+      fullPath: '/lokalizacje/'
+      preLoaderRoute: typeof LokalizacjeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -183,6 +216,13 @@ declare module '@tanstack/react-router' {
       path: '/uslugi/$slug'
       fullPath: '/uslugi/$slug'
       preLoaderRoute: typeof UslugiSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lokalizacje/$slug': {
+      id: '/lokalizacje/$slug'
+      path: '/lokalizacje/$slug'
+      fullPath: '/lokalizacje/$slug'
+      preLoaderRoute: typeof LokalizacjeSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -201,8 +241,10 @@ const rootRouteChildren: RootRouteChildren = {
   RealizacjeRoute: RealizacjeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogSlugRoute: BlogSlugRoute,
+  LokalizacjeSlugRoute: LokalizacjeSlugRoute,
   UslugiSlugRoute: UslugiSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
+  LokalizacjeIndexRoute: LokalizacjeIndexRoute,
   UslugiIndexRoute: UslugiIndexRoute,
 }
 export const routeTree = rootRouteImport

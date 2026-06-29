@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
-import { SERVICES, SITE } from "@/lib/site-data";
+import { LOCATIONS, SERVICES, SITE } from "@/lib/site-data";
 
 export function Footer() {
   return (
@@ -40,9 +40,20 @@ export function Footer() {
           <h3 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-gold">Firma</h3>
           <ul className="mt-5 space-y-2 text-sm text-cream/80">
             <li><Link to="/uslugi" className="hover:text-gold">Wszystkie usługi</Link></li>
+            <li><Link to="/lokalizacje" className="hover:text-gold">Lokalizacje</Link></li>
             <li><Link to="/realizacje" className="hover:text-gold">Realizacje</Link></li>
             <li><Link to="/blog" className="hover:text-gold">Blog</Link></li>
             <li><Link to="/kontakt" className="hover:text-gold">Kontakt</Link></li>
+          </ul>
+          <h3 className="mt-6 font-display text-sm font-semibold uppercase tracking-[0.2em] text-gold">Dzielnice</h3>
+          <ul className="mt-3 space-y-1.5 text-sm text-cream/80">
+            {LOCATIONS.slice(0, 6).map((loc) => (
+              <li key={loc.slug}>
+                <Link to="/lokalizacje/$slug" params={{ slug: loc.slug }} className="hover:text-gold">
+                  {loc.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

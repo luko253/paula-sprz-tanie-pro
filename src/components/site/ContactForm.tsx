@@ -40,8 +40,9 @@ export function ContactForm() {
       </div>
       <Field label="E-mail" name="email" placeholder="ty@email.pl" required type="email" />
       <div className="grid gap-2">
-        <label className="text-sm font-semibold text-navy-deep">Rodzaj usługi</label>
+        <label htmlFor="contact-service" className="text-sm font-semibold text-navy-deep">Rodzaj usługi</label>
         <select
+          id="contact-service"
           name="service"
           className="h-12 rounded-xl border border-input bg-card px-4 text-sm text-navy-deep outline-none focus:border-gold"
           defaultValue=""
@@ -53,8 +54,9 @@ export function ContactForm() {
         </select>
       </div>
       <div className="grid gap-2">
-        <label className="text-sm font-semibold text-navy-deep">Treść wiadomości</label>
+        <label htmlFor="contact-message" className="text-sm font-semibold text-navy-deep">Treść wiadomości</label>
         <textarea
+          id="contact-message"
           name="message"
           rows={5}
           placeholder="Opisz krótko swoje potrzeby — metraż, zakres, oczekiwany termin…"
@@ -90,14 +92,17 @@ function Field({
   placeholder?: string;
   required?: boolean;
 }) {
+  const id = `contact-${name}`;
   return (
     <div className="grid gap-2">
-      <label className="text-sm font-semibold text-navy-deep">{label}</label>
+      <label htmlFor={id} className="text-sm font-semibold text-navy-deep">{label}</label>
       <input
+        id={id}
         name={name}
         type={type}
         placeholder={placeholder}
         required={required}
+        autoComplete={type === "email" ? "email" : type === "tel" ? "tel" : name === "name" ? "name" : undefined}
         className="h-12 rounded-xl border border-input bg-card px-4 text-sm text-navy-deep outline-none focus:border-gold"
       />
     </div>

@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import { BLOG_POSTS } from "@/lib/site-data";
+import { BLOG_POSTS, BLOG_POSTS_EXTENDED } from "@/lib/site-data";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
@@ -12,9 +12,11 @@ const COVERS: Record<string, string> = {
   "gallery-1": g1, "gallery-2": g2, "gallery-3": g3, "gallery-4": g4, "gallery-6": g6,
 };
 
+const ALL_POSTS = [...BLOG_POSTS, ...BLOG_POSTS_EXTENDED];
+
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
-    const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+    const post = ALL_POSTS.find((p) => p.slug === params.slug);
     if (!post) throw notFound();
     return { post };
   },
@@ -34,6 +36,35 @@ export const Route = createFileRoute("/blog/$slug")({
         ...(img ? [{ property: "og:image", content: img }] : []),
       ],
       links: [{ rel: "canonical", href: `/blog/${p?.slug ?? ""}` }],
+      scripts: p
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "Article",
+                    headline: p.title,
+                    description: p.excerpt,
+                    datePublished: p.date,
+                    author: { "@type": "Organization", name: "Paula Sprzątanie" },
+                    publisher: { "@type": "Organization", name: "Paula Sprzątanie", url: "https://paulasprzatanie.pl" },
+                    mainEntityOfPage: `https://paulasprzatanie.pl/blog/${p.slug}`,
+                  },
+                  {
+                    "@type": "BreadcrumbList",
+                    itemListElement: [
+                      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://paulasprzatanie.pl/" },
+                      { "@type": "ListItem", position: 2, name: "Blog", item: "https://paulasprzatanie.pl/blog" },
+                      { "@type": "ListItem", position: 3, name: p.title, item: `https://paulasprzatanie.pl/blog/${p.slug}` },
+                    ],
+                  },
+                ],
+              }),
+            },
+          ]
+        : [],
     };
   },
   notFoundComponent: () => (

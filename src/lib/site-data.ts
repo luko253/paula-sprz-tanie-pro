@@ -480,3 +480,411 @@ export const STEPS = [
     text: "Razem sprawdzamy efekt. Gwarancja satysfakcji — w razie uwag wracamy bezpłatnie.",
   },
 ];
+
+export type Location = {
+  slug: string;
+  name: string;
+  description: string;
+  intro: string;
+  areas: string[];
+  faq: { q: string; a: string }[];
+};
+
+export const LOCATIONS: Location[] = [
+  {
+    slug: "krakow",
+    name: "Kraków",
+    description: "Profesjonalne usługi sprzątające na terenie całego Krakowa. Mieszkania, biura, wspólnoty, sprzątanie po remoncie, mycie okien.",
+    intro: "Paula Sprzątanie to krakowska firma z ponad 10-letnim doświadczeniem. Obsługujemy klientów indywidualnych, biura, wspólnoty mieszkaniowe i deweloperów na terenie całego miasta. Działamy szybko, dokładnie i z pełnym ubezpieczeniem OC.",
+    areas: ["Stare Miasto", "Kazimierz", "Podgórze", "Krowodrza", "Bronowice", "Nowa Huta", "Dębniki", "Prądnik Biały", "Prądnik Czerwony", "Czyżyny", "Bieżanów-Prokocim", "Ruczaj", "Mistrzejowice", "Łagiewniki"],
+    faq: [
+      { q: "Ile kosztuje sprzątanie mieszkania w Krakowie?", a: "Sprzątanie standardowego mieszkania 50 m² w Krakowie kosztuje od 180 do 250 zł. Cena zależy od metrażu, zakresu prac i częstotliwości. Przy stałej współpracy stawki są niższe o 20–30%. Wycena jest zawsze bezpłatna." },
+      { q: "Jaka firma sprzątająca w Krakowie jest najlepsza?", a: "Paula Sprzątanie działa w Krakowie od ponad 10 lat i posiada ponad 1000 zrealizowanych zleceń z oceną 4.9/5. Oferujemy pełne ubezpieczenie OC, stałą ekipę, profesjonalny sprzęt i gwarancję satysfakcji." },
+      { q: "Czy firma sprzątająca przyjeżdża ze swoim sprzętem?", a: "Tak. Paula Sprzątanie zawsze przyjeżdża z własnym profesjonalnym sprzętem i sprawdzonymi środkami czystości. Na życzenie klienta stosujemy środki ekologiczne." },
+    ],
+  },
+  {
+    slug: "nowa-huta",
+    name: "Nowa Huta",
+    description: "Firma sprzątająca w Nowej Hucie — sprzątanie mieszkań, biur, wspólnot i terenów zielonych. Dojazd gratis.",
+    intro: "Nowa Huta to jedna z najczęściej obsługiwanych przez nas dzielnic Krakowa. Sprzątamy zarówno mieszkania w blokach na os. Centrum, Szkolnym czy Złotym Wieku, jak i domy jednorodzinne w okolicach Pleszowa i Branicach. Dojeżdżamy szybko — w większości przypadków w ciągu 1–2 dni roboczych.",
+    areas: ["os. Centrum", "os. Szkolne", "os. Złotego Wieku", "os. Stalowe", "Pleszów", "Branice", "Mogiła", "Mistrzejowice", "Bieńczyce"],
+    faq: [
+      { q: "Czy firma sprzątająca dojeżdża do Nowej Huty?", a: "Tak, Paula Sprzątanie regularnie obsługuje całą Nową Hutę — od os. Centrum po Pleszów. Dojazd jest wliczony w cenę usługi." },
+      { q: "Ile kosztuje sprzątanie mieszkania w Nowej Hucie?", a: "Ceny zaczynają się od 150 zł za mieszkanie do 40 m². Sprzątanie bloku na Nowej Hucie jest wyceniane indywidualnie — zależy od metrażu i zakresu prac." },
+    ],
+  },
+  {
+    slug: "podgorze",
+    name: "Podgórze",
+    description: "Sprzątanie mieszkań, domów i biur w Podgórzu (Kraków). Profesjonalna firma sprzątająca z dojazdem.",
+    intro: "Podgórze to dynamicznie rozwijająca się dzielnica Krakowa, w której obsługujemy zarówno nowoczesne apartamentowce nad Wisłą, jak i starsze kamienice. Sprzątamy mieszkania, biura w Zabłociu, wspólnoty mieszkaniowe i lokale usługowe.",
+    areas: ["Zabłocie", "Stare Podgórze", "Płaszów", "Rybitwy", "Przewóz", "Wola Duchacka", "Piaski Wielkie", "Kurdwanów"],
+    faq: [
+      { q: "Czy sprzątacie biura w Zabłociu?", a: "Tak, obsługujemy biura i coworkingi w Zabłociu oraz całym Podgórzu. Oferujemy sprzątanie poza godzinami pracy, w weekendy, z możliwością stałej umowy." },
+    ],
+  },
+  {
+    slug: "bronowice",
+    name: "Bronowice",
+    description: "Sprzątanie mieszkań i domów w Bronowicach (Kraków). Regularne i jednorazowe usługi sprzątające.",
+    intro: "Bronowice to spokojna, zielona dzielnica Krakowa z dużą liczbą domów jednorodzinnych i nowych osiedli. Obsługujemy tu sprzątanie domów, mieszkań w nowych inwestycjach oraz wspólnot mieszkaniowych. Docieramy również do Bronowic Małych i Wielkich.",
+    areas: ["Bronowice Małe", "Bronowice Wielkie", "os. Widok", "os. Zielone"],
+    faq: [
+      { q: "Czy sprzątacie domy jednorodzinne w Bronowicach?", a: "Tak, sprzątanie domów w Bronowicach to jedno z naszych najczęstszych zleceń. Cena zależy od metrażu — wycena jest zawsze bezpłatna." },
+    ],
+  },
+  {
+    slug: "krowodrza",
+    name: "Krowodrza",
+    description: "Profesjonalne sprzątanie w Krowodrzy — mieszkania, biura, wspólnoty. Firma sprzątająca z Krakowa.",
+    intro: "Krowodrza to jedna z centralnych dzielnic Krakowa, w której obsługujemy klientów od lat. Sprzątamy mieszkania w kamienicach, nowoczesne apartamenty, biura przy al. Krasińskiego oraz wspólnoty mieszkaniowe. Znamy specyfikę tej dzielnicy — wąskie klatki, wysokie kondygnacje, różnorodna zabudowa.",
+    areas: ["Łobzów", "Nowa Wieś", "Cichy Kącik", "al. Krasińskiego", "os. Krowodrza Górka"],
+    faq: [
+      { q: "Czy macie doświadczenie ze sprzątaniem kamienic w Krowodrzy?", a: "Tak, obsługujemy wiele wspólnot i mieszkań w zabytkowych kamienicach Krowodrzy. Wiemy, jak dbać o drewniane klatki schodowe i delikatne powierzchnie." },
+    ],
+  },
+  {
+    slug: "czyzyny",
+    name: "Czyżyny",
+    description: "Firma sprzątająca w Czyżynach — sprzątanie mieszkań w nowych osiedlach, biur i wspólnot.",
+    intro: "Czyżyny to dzielnica nowych inwestycji deweloperskich i rozwijających się osiedli. Obsługujemy sprzątanie mieszkań w nowych blokach, biur w centrum logistycznym oraz wspólnot. Dojeżdżamy szybko z centrum Krakowa.",
+    areas: ["os. Dywizjonu 303", "os. 2 Pułku Lotniczego", "Avia", "Centrum Czyżyn"],
+    faq: [
+      { q: "Czy sprzątacie nowe mieszkania po odbiorze od dewelopera w Czyżynach?", a: "Tak, sprzątanie poremontowe i sprzątanie po odbiorze od dewelopera to nasza specjalność. Usuwamy pył budowlany, resztki farby i kleju. Mieszkanie jest gotowe do zamieszkania." },
+    ],
+  },
+  {
+    slug: "debniki",
+    name: "Dębniki",
+    description: "Sprzątanie mieszkań i domów w Dębnikach (Kraków). Ekipa z doświadczeniem, dojazd gratis.",
+    intro: "Dębniki to jedna z najchętniej wybieranych dzielnic Krakowa. Obsługujemy mieszkania, domy, wspólnoty oraz biura w okolicach Ruczaju, Kostrza i Skotnik. Dojazd wliczony w cenę, wycena bezpłatna.",
+    areas: ["Ruczaj", "Kobierzyn", "Kostrzec", "Skotniki", "Kapelanka", "Ludwinów"],
+    faq: [
+      { q: "Czy dojeżdżacie na Ruczaj?", a: "Tak, Ruczaj i okolice (Kobierzyn, Skotniki) to tereny, które obsługujemy regularnie. Dojazd jest wliczony w cenę usługi." },
+    ],
+  },
+  {
+    slug: "pradnik-bialy",
+    name: "Prądnik Biały",
+    description: "Sprzątanie mieszkań i wspólnot w Prądniku Białym. Profesjonalna firma sprzątająca — Kraków.",
+    intro: "Prądnik Biały to duża dzielnica mieszkaniowa Krakowa z gęstą zabudową blokową i nowymi osiedlami. Obsługujemy tu sprzątanie mieszkań, klatek schodowych, wspólnot oraz terenów zielonych wokół budynków.",
+    areas: ["os. Prądnik Biały", "Azory", "Tonie", "Witkowice", "Górka Narodowa"],
+    faq: [
+      { q: "Czy firma sprzątająca obsługuje wspólnoty na Prądniku Białym?", a: "Tak, współpracujemy z wieloma wspólnotami na Prądniku Białym. Oferujemy stałe umowy z dedykowanym opiekunem, raportowaniem i ubezpieczeniem OC." },
+    ],
+  },
+  {
+    slug: "pradnik-czerwony",
+    name: "Prądnik Czerwony",
+    description: "Firma sprzątająca na Prądniku Czerwonym — mieszkania, biura, wspólnoty mieszkaniowe w Krakowie.",
+    intro: "Prądnik Czerwony to rozległa dzielnica północnego Krakowa, znana z dużych osiedli — Olsza, Ugorek, Polsadu. Sprzątamy tu mieszkania, biura, wspólnoty i tereny zielone. Ekipa dojeżdża szybko, a wycena jest zawsze bezpłatna.",
+    areas: ["Olsza", "Ugorek", "os. Polsad", "Rakowice", "Prądniczanka"],
+    faq: [
+      { q: "Jak zamówić sprzątanie mieszkania na Prądniku Czerwonym?", a: "Wystarczy zadzwonić pod numer +48 600 000 000 lub wypełnić formularz na stronie. Podajemy wycenę w ciągu kilku godzin i ustalamy termin." },
+    ],
+  },
+  {
+    slug: "biezanow-prokocim",
+    name: "Bieżanów-Prokocim",
+    description: "Usługi sprzątające w Bieżanowie-Prokocimie — sprzątanie mieszkań, wspólnot i terenów zielonych.",
+    intro: "Bieżanów-Prokocim to jedna z największych dzielnic mieszkaniowych Krakowa. Obsługujemy tu sprzątanie mieszkań w blokach, domów jednorodzinnych w Bieżanowie oraz wspólnot mieszkaniowych na Prokocimiu. Regularni klienci korzystają z atrakcyjniejszych stawek.",
+    areas: ["Prokocim", "Bieżanów", "os. Na Kozłówce", "os. Bieżanowskie", "Rżąka"],
+    faq: [
+      { q: "Ile kosztuje sprzątanie wspólnoty na Prokocimie?", a: "Koszt obsługi wspólnoty zależy od powierzchni części wspólnych, częstotliwości sprzątania i zakresu prac. Wycena jest bezpłatna — skontaktuj się z nami, a przygotujemy indywidualną ofertę." },
+    ],
+  },
+];
+
+export const BLOG_POSTS_EXTENDED: BlogPost[] = [
+  {
+    slug: "sprzatanie-biur-krakow-co-warto-wiedziec",
+    title: "Sprzątanie biur w Krakowie — co warto wiedzieć przed wyborem firmy?",
+    excerpt: "Na co zwrócić uwagę wybierając firmę sprzątającą do biura? Kluczowe kryteria, pytania do zadania i red flags.",
+    date: "2025-12-15",
+    readMinutes: 6,
+    cover: "gallery-2",
+    body: [
+      { heading: "Dlaczego czyste biuro to inwestycja, nie koszt", paragraphs: ["Badania pokazują, że pracownicy w czystym biurze są nawet o 15% bardziej produktywni. Czyste biuro to także wizytówka firmy — klienci i kontrahenci oceniają profesjonalizm już od wejścia."] },
+      { heading: "Na co zwrócić uwagę?", paragraphs: ["Sprawdź ubezpieczenie OC, poproś o referencje, ustal zakres prac na piśmie. Dobra firma sprzątająca powinna oferować SLA, raportowanie i możliwość pracy poza godzinami biurowymi."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-wspolnot-mieszkaniowych-krakow",
+    title: "Sprzątanie wspólnot mieszkaniowych w Krakowie — kompletny poradnik",
+    excerpt: "Jak wybrać firmę sprzątającą dla wspólnoty? Jakie standardy powinny obowiązywać? Odpowiadamy.",
+    date: "2025-11-20",
+    readMinutes: 8,
+    cover: "gallery-4",
+    body: [
+      { heading: "Zakres obowiązków firmy sprzątającej", paragraphs: ["Firma sprzątająca dla wspólnoty powinna obsługiwać: klatki schodowe, windy, piwnice, pomieszczenia techniczne, tereny zielone, odśnieżanie zimą."] },
+      { heading: "Jak kontrolować jakość?", paragraphs: ["Comiesięczne raporty z prac, dedykowany opiekun klienta, możliwość zgłaszania uwag — to absolutne minimum."] },
+    ],
+  },
+  {
+    slug: "mycie-okien-krakow-cennik",
+    title: "Mycie okien w Krakowie — cennik 2026 i porady",
+    excerpt: "Ile kosztuje profesjonalne mycie okien? Jakie czynniki wpływają na cenę? Aktualny cennik.",
+    date: "2025-10-28",
+    readMinutes: 5,
+    cover: "gallery-6",
+    body: [
+      { heading: "Cennik mycia okien w Krakowie", paragraphs: ["Profesjonalne mycie okien w Krakowie kosztuje od 15 zł/szt. Cena zależy od: wielkości okna, stopnia zabrudzenia, dostępności (piętra), konieczności mycia rolet czy moskitier."] },
+      { heading: "Jak często myć okna?", paragraphs: ["Mieszkania w centrum — co kwartał. Domy poza miastem — 2–3 razy w roku. Biura — co miesiąc lub co dwa miesiące."] },
+    ],
+  },
+  {
+    slug: "firma-sprzatajaca-krakow-jak-wybrac",
+    title: "Jak wybrać firmę sprzątającą w Krakowie? 7 kluczowych kryteriów",
+    excerpt: "Nie daj się nabrać na najniższą cenę. Sprawdź, co naprawdę liczy się przy wyborze firmy sprzątającej.",
+    date: "2025-10-05",
+    readMinutes: 7,
+    cover: "gallery-1",
+    body: [
+      { heading: "1. Ubezpieczenie OC", paragraphs: ["Firma bez ubezpieczenia to ryzyko. W razie szkody nie masz żadnej ochrony. Paula Sprzątanie posiada OC do 1 mln zł."] },
+      { heading: "2. Stała ekipa", paragraphs: ["Ciągła rotacja pracowników oznacza brak znajomości Twojego mieszkania i konieczność ciągłego nadzoru. U nas ekipa jest stała."] },
+      { heading: "3. Własny sprzęt i środki", paragraphs: ["Profesjonalna firma przyjeżdża z własnym sprzętem. Nie powinieneś kupować mopów ani płynów."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-po-budowie-krakow",
+    title: "Sprzątanie po budowie w Krakowie — na co uważać?",
+    excerpt: "Sprzątanie po budowie różni się od zwykłego sprzątania. Dowiedz się, dlaczego warto zlecić to profesjonalistom.",
+    date: "2025-09-12",
+    readMinutes: 6,
+    cover: "gallery-1",
+    body: [
+      { heading: "Czym różni się sprzątanie pobudowlane?", paragraphs: ["Pył budowlany jest drobniejszy niż zwykły kurz — wnika w każdą szczelinę, fugi, zawiasy. Zwykły odkurzacz nie daje sobie z nim rady. Potrzebny jest sprzęt klasy przemysłowej i minimum 2–3 przejścia."] },
+      { heading: "Cena sprzątania po budowie", paragraphs: ["W Krakowie cena sprzątania po budowie zaczyna się od 12 zł/m². Przy dużych powierzchniach stawka jest negocjowana indywidualnie."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-mieszkania-przed-sprzedaza",
+    title: "Sprzątanie mieszkania przed sprzedażą — jak podnieść wartość nieruchomości?",
+    excerpt: "Home staging zaczyna się od czystości. Profesjonalne sprzątanie przed sprzedażą może podnieść cenę o kilka procent.",
+    date: "2025-08-20",
+    readMinutes: 5,
+    cover: "gallery-1",
+    body: [
+      { heading: "Pierwsze wrażenie decyduje", paragraphs: ["Kupujący podejmują decyzję w ciągu pierwszych 30 sekund od wejścia do mieszkania. Czyste okna, lśniąca łazienka i świeży zapach robią ogromną różnicę."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-airbnb-krakow",
+    title: "Sprzątanie Airbnb w Krakowie — jak zapewnić 5 gwiazdek?",
+    excerpt: "Zarządzasz apartamentem na wynajem krótkoterminowy? Sprzątanie to klucz do dobrych opinii.",
+    date: "2025-08-01",
+    readMinutes: 5,
+    cover: "gallery-2",
+    body: [
+      { heading: "Czystość = opinie", paragraphs: ["Na Airbnb czystość to osobna kategoria w ocenach. Jeden brudny ręcznik lub nieczysty prysznic może kosztować Cię gwiazdkę."] },
+    ],
+  },
+  {
+    slug: "ekologiczne-sprzatanie-krakow",
+    title: "Ekologiczne sprzątanie w Krakowie — czy warto?",
+    excerpt: "Środki eko są droższe, ale bezpieczne dla dzieci, zwierząt i alergików. Kiedy warto je wybrać?",
+    date: "2025-07-15",
+    readMinutes: 4,
+    cover: "gallery-3",
+    body: [
+      { heading: "Dla kogo sprzątanie ekologiczne?", paragraphs: ["Szczególnie polecane dla rodzin z małymi dziećmi, alergików i właścicieli zwierząt. Środki ekologiczne nie drażnią, nie zostawiają oparów, a ich skuteczność dorównuje klasycznym preparatom."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-po-przeprowadzce",
+    title: "Sprzątanie po przeprowadzce — oddaj mieszkanie w idealnym stanie",
+    excerpt: "Wyprowadzasz się? Sprzątanie zdawcze pozwoli odzyskać kaucję i uniknąć problemów z wynajmującym.",
+    date: "2025-07-01",
+    readMinutes: 5,
+    cover: "gallery-1",
+    body: [
+      { heading: "Co wchodzi w sprzątanie zdawcze?", paragraphs: ["Mycie wszystkich pomieszczeń, okien, łazienki, kuchni, szaf wewnątrz, piekarnika, lodówki, prania wykładzin — wszystko, żeby mieszkanie wyglądało jak nowe."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-klatek-schodowych-krakow",
+    title: "Sprzątanie klatek schodowych w Krakowie — obowiązek zarządcy",
+    excerpt: "Klatka schodowa to wizytówka budynku. Jak zapewnić jej czystość i jakie standardy powinny obowiązywać?",
+    date: "2025-06-15",
+    readMinutes: 6,
+    cover: "gallery-4",
+    body: [
+      { heading: "Jak często sprzątać klatkę schodową?", paragraphs: ["Minimum 2 razy w tygodniu — zamiatanie i mycie podłóg. Raz w miesiącu — mycie okien, barierek, drzwi wejściowych. Raz na kwartał — pranie wycieraczek i czyszczenie lamp."] },
+    ],
+  },
+  {
+    slug: "jak-zabezpieczyc-balkon-przed-golebiami",
+    title: "Jak zabezpieczyć balkon przed gołębiami? Metody i koszty",
+    excerpt: "Siatki, kolce, sznurki — co naprawdę działa? Porównanie metod i cen zabezpieczeń.",
+    date: "2025-06-01",
+    readMinutes: 6,
+    cover: "gallery-3",
+    body: [
+      { heading: "Siatka — najskuteczniejsze rozwiązanie", paragraphs: ["Siatka na balkon to inwestycja jednorazowa (od 200 zł), która eliminuje problem gołębi na lata. Kolce działają dobrze na parapetach, ale nie chronią całej powierzchni balkonu."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-magazynow-krakow",
+    title: "Sprzątanie magazynów i hal w Krakowie",
+    excerpt: "Duże powierzchnie, trudne zabrudzenia — jak wygląda profesjonalne sprzątanie hal magazynowych?",
+    date: "2025-05-15",
+    readMinutes: 5,
+    cover: "gallery-2",
+    body: [
+      { heading: "Specyfika sprzątania hal", paragraphs: ["Hale wymagają sprzętu przemysłowego: szorowarek, myjek ciśnieniowych, odkurzaczy do pyłu betonowego. Standardowy sprzęt tu nie wystarczy."] },
+    ],
+  },
+  {
+    slug: "pranie-tapicerki-meblowej-krakow",
+    title: "Pranie tapicerki meblowej w Krakowie — cennik i porady",
+    excerpt: "Brudna kanapa? Plamy na fotelach? Profesjonalne pranie tapicerki przywraca meble do stanu nowych.",
+    date: "2025-05-01",
+    readMinutes: 4,
+    cover: "gallery-1",
+    body: [
+      { heading: "Kiedy warto prać tapicerkę?", paragraphs: ["Minimum raz w roku, a przy alergikach i dzieciach — co pół roku. W tapicerce gromadzą się roztocza, bakterie i alergeny, których nie usunie zwykłe odkurzanie."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-po-imprezie-krakow",
+    title: "Sprzątanie po imprezie w Krakowie — ekspresowa pomoc",
+    excerpt: "Po domówce, weselu lub evencie firmowym — sprzątamy szybko i dokładnie, nawet w weekendy.",
+    date: "2025-04-15",
+    readMinutes: 4,
+    cover: "gallery-1",
+    body: [
+      { heading: "Szybkie terminy", paragraphs: ["Sprzątanie po imprezie realizujemy nawet tego samego dnia lub następnego ranka. Usuwamy plamy, mycie naczyń, wynoszenie śmieci — wszystko w jednym zleceniu."] },
+    ],
+  },
+  {
+    slug: "dezynfekcja-mieszkania-krakow",
+    title: "Dezynfekcja mieszkania w Krakowie — kiedy jest potrzebna?",
+    excerpt: "Po chorobie, po gołębiach, po zalaniu — kiedy zwykłe sprzątanie nie wystarczy i trzeba sięgnąć po dezynfekcję.",
+    date: "2025-04-01",
+    readMinutes: 5,
+    cover: "gallery-3",
+    body: [
+      { heading: "Kiedy dezynfekcja jest konieczna?", paragraphs: ["Po chorobach zakaźnych, po odchodach gołębi lub gryzoni, po zalaniu (grzyb, pleśń), po długim pustostanie. Profesjonalna dezynfekcja eliminuje bakterie i zagrożenia zdrowotne."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-gabinetu-lekarskiego-krakow",
+    title: "Sprzątanie gabinetów lekarskich w Krakowie",
+    excerpt: "Gabinety medyczne mają specyficzne wymagania dotyczące czystości i dezynfekcji. Spełniamy je wszystkie.",
+    date: "2025-03-15",
+    readMinutes: 5,
+    cover: "gallery-2",
+    body: [
+      { heading: "Standardy medyczne", paragraphs: ["Sprzątanie gabinetów lekarskich wymaga stosowania środków o działaniu bakteriobójczym, wirusobójczym i grzybobójczym. Pracujemy zgodnie z wytycznymi Sanepidu."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-po-zalaniu-krakow",
+    title: "Sprzątanie po zalaniu mieszkania w Krakowie",
+    excerpt: "Zalanie to sytuacja kryzysowa. Szybka reakcja zmniejsza straty — pomagamy od osuszenia po dezynfekcję.",
+    date: "2025-03-01",
+    readMinutes: 5,
+    cover: "gallery-1",
+    body: [
+      { heading: "Co robimy po zalaniu?", paragraphs: ["Usuwamy wodę, osuszamy pomieszczenia, dezynfekujemy powierzchnie, usuwamy zabrudzenia i osady. Działamy szybko — czas ma kluczowe znaczenie."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-restauracji-krakow",
+    title: "Sprzątanie restauracji i lokali gastronomicznych w Krakowie",
+    excerpt: "Gastronomia wymaga najwyższych standardów czystości. Sprzątamy kuchnie, sale, toalety — zgodnie z HACCP.",
+    date: "2025-02-15",
+    readMinutes: 6,
+    cover: "gallery-2",
+    body: [
+      { heading: "Wymogi HACCP", paragraphs: ["Lokale gastronomiczne muszą spełniać rygorystyczne normy czystości. Stosujemy środki dopuszczone do kontaktu z żywnością i prowadzimy dokumentację prac."] },
+    ],
+  },
+  {
+    slug: "czyszczenie-kostki-brukowej-krakow",
+    title: "Czyszczenie kostki brukowej w Krakowie — ceny i metody",
+    excerpt: "Mchy, porosty, plamy olejowe — jak przywrócić kostce brukowej pierwotny wygląd?",
+    date: "2025-02-01",
+    readMinutes: 5,
+    cover: "gallery-5",
+    body: [
+      { heading: "Metoda ciśnieniowa", paragraphs: ["Mycie ciśnieniowe to najskuteczniejszy sposób na czyszczenie kostki. Po myciu zalecamy impregnację, która chroni powierzchnię na 2–3 lata. Cena od 8 zł/m²."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-przedszkoli-krakow",
+    title: "Sprzątanie przedszkoli i żłobków w Krakowie",
+    excerpt: "Dzieci wymagają szczególnie czystego otoczenia. Sprzątamy przedszkola środkami bezpiecznymi dla maluchów.",
+    date: "2025-01-15",
+    readMinutes: 5,
+    cover: "gallery-4",
+    body: [
+      { heading: "Bezpieczeństwo na pierwszym miejscu", paragraphs: ["W przedszkolach stosujemy wyłącznie środki atestowane, bezpieczne dla dzieci. Dezynfekujemy zabawki, stoliki, podłogi i sanitariaty."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-hotel-krakow",
+    title: "Sprzątanie hoteli i pensjonatów w Krakowie",
+    excerpt: "Czystość w hotelu decyduje o opinii gości. Obsługujemy hotele, apartamenty i pensjonaty.",
+    date: "2025-01-01",
+    readMinutes: 5,
+    cover: "gallery-2",
+    body: [
+      { heading: "Sprzątanie pokoi hotelowych", paragraphs: ["Oferujemy codzienne sprzątanie pokoi, wymianę pościeli, uzupełnianie kosmetyków i obsługę części wspólnych. Pracujemy według standardów branży hotelarskiej."] },
+    ],
+  },
+  {
+    slug: "odsniezanie-krakow",
+    title: "Odśnieżanie chodników i parkingów w Krakowie",
+    excerpt: "Zima w Krakowie potrafi zaskoczyć. Oferujemy stałe umowy na odśnieżanie dla wspólnot i firm.",
+    date: "2024-12-15",
+    readMinutes: 4,
+    cover: "gallery-5",
+    body: [
+      { heading: "Odśnieżanie w umowie stałej", paragraphs: ["Wspólnoty i firmy mogą wykupić sezonową umowę na odśnieżanie. Gwarantujemy interwencję w ciągu 2 godzin od opadu. Posypujemy piaskiem i solą."] },
+    ],
+  },
+  {
+    slug: "generalne-sprzatanie-domu-krakow",
+    title: "Generalne sprzątanie domu w Krakowie — co obejmuje?",
+    excerpt: "Gruntowne czyszczenie od piwnicy po strych. Kiedy warto i ile to kosztuje?",
+    date: "2024-12-01",
+    readMinutes: 6,
+    cover: "gallery-1",
+    body: [
+      { heading: "Zakres sprzątania generalnego", paragraphs: ["Sprzątanie generalne obejmuje: mycie okien, czyszczenie kuchni (piekarnik, lodówka, zabudowa), łazienek, mycie podłóg, odkurzanie mebli tapicerowanych, pranie dywanów. Czas pracy: od 4 do 8 godzin."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-kosciola-krakow",
+    title: "Sprzątanie kościołów i obiektów sakralnych w Krakowie",
+    excerpt: "Obiekty sakralne wymagają delikatności i doświadczenia. Sprzątamy kościoły, kaplice i sale parafialne.",
+    date: "2024-11-15",
+    readMinutes: 5,
+    cover: "gallery-4",
+    body: [
+      { heading: "Specyfika obiektów sakralnych", paragraphs: ["Sprzątanie kościołów wymaga delikatności — drewniane ławki, witraże, posadzki z kamienia. Stosujemy odpowiednie środki i techniki, aby nie uszkodzić cennych elementów wyposażenia."] },
+    ],
+  },
+  {
+    slug: "sprzatanie-szkol-krakow",
+    title: "Sprzątanie szkół i placówek oświatowych w Krakowie",
+    excerpt: "Sale lekcyjne, korytarze, toalety — jak zapewnić czystość w szkole?",
+    date: "2024-11-01",
+    readMinutes: 5,
+    cover: "gallery-4",
+    body: [
+      { heading: "Codzienna obsługa placówek oświatowych", paragraphs: ["Oferujemy sprzątanie sal lekcyjnych, korytarzy, sanitariatów, stołówek i sal gimnastycznych. Pracujemy po lekcjach, wieczorami lub wcześnie rano."] },
+    ],
+  },
+];
+
+export const GEO_FAQ = [
+  { q: "Czym zajmuje się firma Paula Sprzątanie?", a: "Paula Sprzątanie to profesjonalna firma sprzątająca z Krakowa, działająca od ponad 10 lat. Świadczymy usługi sprzątania mieszkań, domów, biur, wspólnot mieszkaniowych, administracji, a także sprzątanie po remoncie i budowie, mycie okien, sprzątanie balkonów po gołębiach oraz utrzymanie terenów zielonych. Działamy na terenie Krakowa i okolic." },
+  { q: "Gdzie Paula Sprzątanie świadczy usługi?", a: "Głównym obszarem naszego działania jest Kraków — obsługujemy wszystkie dzielnice: Stare Miasto, Podgórze, Krowodrzę, Bronowice, Nową Hutę, Dębniki, Czyżyny, Prądnik Biały, Prądnik Czerwony, Bieżanów-Prokocim i inne. Dojeżdżamy także do miejscowości wokół Krakowa: Wieliczka, Skawina, Zabierzów, Mogilany." },
+  { q: "Jakie problemy rozwiązuje firma sprzątająca?", a: "Pomagamy ludziom, którzy nie mają czasu na sprzątanie, zarządcom wspólnot potrzebującym stałej obsługi, firmom szukającym czystych biur, właścicielom mieszkań po remoncie, osobom z problemem gołębi na balkonie oraz deweloperom potrzebującym sprzątania po budowie." },
+  { q: "Dlaczego warto wybrać Paula Sprzątanie?", a: "Ponad 10 lat doświadczenia, 1000+ zrealizowanych zleceń, ocena 4.9/5 od klientów, pełne ubezpieczenie OC do 1 mln zł, stała i sprawdzona ekipa, profesjonalny sprzęt, bezpłatna wycena w 15 minut, gwarancja satysfakcji — jeśli efekt nie spełnia oczekiwań, wracamy bezpłatnie." },
+  { q: "Ile kosztuje sprzątanie w Krakowie?", a: "Sprzątanie mieszkania 50 m² kosztuje 180–250 zł. Sprzątanie po remoncie — od 12 zł/m². Mycie okien — od 15 zł/szt. Wspólnoty i biura — wycena indywidualna. Przy stałej współpracy stawki są niższe o 20–30%. Wycena jest zawsze bezpłatna i wiążąca." },
+  { q: "Jak zamówić sprzątanie w Krakowie?", a: "Zadzwoń pod numer +48 600 000 000, napisz e-mail na kontakt@paulasprzatanie.pl lub wypełnij formularz na stronie paulasprzatanie.pl. Wycenę podajemy w ciągu 15 minut, a termin realizacji to zwykle 1–3 dni robocze." },
+];
