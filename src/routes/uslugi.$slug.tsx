@@ -3,6 +3,7 @@ import { ArrowRight, Check, Phone } from "lucide-react";
 import { SiteLayout, PageHero, SectionLabel } from "@/components/site/Layout";
 import { ContactForm } from "@/components/site/ContactForm";
 import { SERVICES, SITE } from "@/lib/site-data";
+import { getServiceImage } from "@/lib/images";
 
 export const Route = createFileRoute("/uslugi/$slug")({
   loader: ({ params }) => {
@@ -79,6 +80,7 @@ export const Route = createFileRoute("/uslugi/$slug")({
 function ServicePage() {
   const { service } = Route.useLoaderData();
   const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const heroImg = getServiceImage(service.slug);
 
   return (
     <SiteLayout>
@@ -95,6 +97,15 @@ function ServicePage() {
       </nav>
 
       <section className="container-x py-20">
+        <div className="mb-12 overflow-hidden rounded-[2rem] border border-border shadow-premium">
+          <img
+            src={heroImg}
+            alt={service.title}
+            loading="lazy"
+            decoding="async"
+            className="aspect-[21/9] w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+          />
+        </div>
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <SectionLabel>Zakres prac</SectionLabel>
@@ -168,10 +179,18 @@ function ServicePage() {
                 key={r.slug}
                 to="/uslugi/$slug"
                 params={{ slug: r.slug }}
-                className="rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-premium"
+                className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-gold hover:shadow-premium"
               >
-                <div className="font-display text-lg font-bold text-navy-deep">{r.title}</div>
-                <p className="mt-2 text-sm text-muted-foreground">{r.short}</p>
+                <img
+                  src={getServiceImage(r.slug)}
+                  alt={r.title}
+                  loading="lazy"
+                  className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="p-6">
+                  <div className="font-display text-lg font-bold text-navy-deep group-hover:text-gold">{r.title}</div>
+                  <p className="mt-2 text-sm text-muted-foreground">{r.short}</p>
+                </div>
               </Link>
             ))}
           </div>
