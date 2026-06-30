@@ -24,7 +24,7 @@ import baRenoAfter from "@/assets/ba-renovation-after.jpg";
 // rather than the office-tower / luxury-terrace stock photos used originally.
 import mieszkanieBefore from "@/assets/mieszkanie-before-v3.jpg";
 import mieszkanieAfter from "@/assets/mieszkanie-clean-living.jpg";
-import oknaBefore from "@/assets/okna-before-v2.jpg";
+import oknaBefore from "@/assets/okna-before-v3.jpg";
 import oknaAfter from "@/assets/okna-after-v2.jpg";
 import balkonBefore from "@/assets/balkon-before-v3.jpg";
 import balkonAfter from "@/assets/balkon-after-v2.jpg";
