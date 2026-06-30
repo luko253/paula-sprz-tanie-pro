@@ -11,7 +11,6 @@ import blogWipe from "@/assets/blog-wipe.jpg";
 import blogFloor from "@/assets/blog-floor.jpg";
 import blogLinens from "@/assets/blog-linens.jpg";
 
-import baBathBefore from "@/assets/ba-bathroom-before.jpg";
 import baBathAfter from "@/assets/ba-bathroom-after.jpg";
 import baStairsBefore from "@/assets/ba-stairs-before.jpg";
 import baStairsAfter from "@/assets/ba-stairs-after.jpg";
@@ -23,12 +22,13 @@ import baRenoAfter from "@/assets/ba-renovation-after.jpg";
 // Replacement set — sourced to match the brief precisely (residential window
 // grime/clarity, balcony neglect/clean, full messy-room/clean-living-room),
 // rather than the office-tower / luxury-terrace stock photos used originally.
-import mieszkanieBefore from "@/assets/mieszkanie-before-v2.jpg";
+import mieszkanieBefore from "@/assets/mieszkanie-before-v3.jpg";
 import mieszkanieAfter from "@/assets/mieszkanie-clean-living.jpg";
 import oknaBefore from "@/assets/okna-before-v2.jpg";
 import oknaAfter from "@/assets/okna-after-v2.jpg";
-import balkonBefore from "@/assets/balkon-before-v2.jpg";
+import balkonBefore from "@/assets/balkon-before-v3.jpg";
 import balkonAfter from "@/assets/balkon-after-v2.jpg";
+import bathroomBefore from "@/assets/bathroom-before-v2.jpg";
 
 export const SERVICE_IMAGES: Record<string, string> = {
   "sprzatanie-mieszkan": mieszkanieAfter,
@@ -109,7 +109,7 @@ export const BEFORE_AFTER: BeforeAfterCase[] = [
     id: "bathroom",
     category: "Łazienki",
     label: "Łazienka po latach zaniedbań",
-    before: baBathBefore,
+    before: bathroomBefore,
     after: baBathAfter,
   },
   {
