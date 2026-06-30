@@ -440,6 +440,46 @@ function Services() {
   );
 }
 
+function MidCta() {
+  return (
+    <section className="container-x py-12 md:py-16">
+      <div className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-gradient-to-br from-cream via-background to-cream p-8 md:p-12">
+        <div
+          className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full opacity-40 blur-3xl"
+          style={{ background: "radial-gradient(circle, var(--gold-soft), transparent 60%)" }}
+        />
+        <div className="relative grid items-center gap-6 md:grid-cols-[1.4fr_auto]">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+              <Sparkles className="h-3.5 w-3.5" /> Promocja sezonowa
+            </div>
+            <h3 className="mt-3 font-display text-2xl font-bold text-navy-deep md:text-4xl">
+              Bezpłatna wycena w&nbsp;15&nbsp;minut — bez zobowiązań.
+            </h3>
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
+              Opisz krótko swoją przestrzeń. Wracamy z konkretną wyceną i terminem tego samego dnia.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
+            <Link
+              to="/kontakt"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-navy-deep px-6 py-3.5 text-sm font-semibold text-cream transition-transform hover:scale-[1.02] shadow-premium"
+            >
+              Zamów wycenę <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href={`tel:${SITE.phoneRaw}`}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-navy/20 bg-card px-6 py-3.5 text-sm font-semibold text-navy-deep hover:border-gold"
+            >
+              <Phone className="h-4 w-4 text-gold" /> {SITE.phone}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const GALLERY_CATS = ["Wszystkie", "Mieszkania", "Biura", "Balkony", "Wspólnoty", "Tereny zielone"];
 
 function Gallery() {
