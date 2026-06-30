@@ -19,7 +19,7 @@ export const Route = createFileRoute("/lokalizacje/$slug")({
   head: ({ loaderData }) => {
     const loc = loaderData?.location;
     const title = loc
-      ? `Sprzątanie ${loc.name} — firma sprzątająca | Paula Sprzątanie`
+      ? `Sprzątanie ${loc.name} — firma sprzątająca | LumiClean`
       : "Lokalizacja";
     const desc = loc?.description ?? "Usługi sprzątające w Krakowie";
     return {
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/lokalizacje/$slug")({
                 "@graph": [
                   {
                     "@type": "LocalBusiness",
-                    name: `Paula Sprzątanie — ${loc.name}`,
+                    name: `LumiClean — ${loc.name}`,
                     description: loc.description,
                     telephone: SITE.phone,
                     email: SITE.email,
@@ -53,16 +53,16 @@ export const Route = createFileRoute("/lokalizacje/$slug")({
                     },
                     parentOrganization: {
                       "@type": "Organization",
-                      name: "Paula Sprzątanie",
-                      url: "https://paulasprzatanie.pl",
+                      name: "LumiClean",
+                      url: "https://lumiclean.pl",
                     },
                   },
                   {
                     "@type": "BreadcrumbList",
                     itemListElement: [
-                      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://paulasprzatanie.pl/" },
-                      { "@type": "ListItem", position: 2, name: "Lokalizacje", item: "https://paulasprzatanie.pl/lokalizacje" },
-                      { "@type": "ListItem", position: 3, name: loc.name, item: `https://paulasprzatanie.pl/lokalizacje/${loc.slug}` },
+                      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://lumiclean.pl/" },
+                      { "@type": "ListItem", position: 2, name: "Lokalizacje", item: "https://lumiclean.pl/lokalizacje" },
+                      { "@type": "ListItem", position: 3, name: loc.name, item: `https://lumiclean.pl/lokalizacje/${loc.slug}` },
                     ],
                   },
                   ...(loc.faq.length > 0

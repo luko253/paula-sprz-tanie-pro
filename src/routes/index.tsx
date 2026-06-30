@@ -44,25 +44,25 @@ import g6 from "@/assets/gallery-6.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Paula Sprzątanie — profesjonalne sprzątanie w Krakowie | Firma sprzątająca" },
+      { title: "LumiClean — profesjonalne sprzątanie w Krakowie | Firma sprzątająca" },
       {
         name: "description",
         content:
           "Profesjonalna firma sprzątająca w Krakowie ✓ Sprzątanie mieszkań, domów, biur, wspólnot ✓ Sprzątanie po remoncie ✓ Mycie okien ✓ Balkony po gołębiach ✓ Bezpłatna wycena ✓ 10+ lat doświadczenia ✓ Ubezpieczenie OC do 1 mln zł",
       },
-      { property: "og:title", content: "Paula Sprzątanie — profesjonalna firma sprzątająca w Krakowie" },
+      { property: "og:title", content: "LumiClean — profesjonalna firma sprzątająca w Krakowie" },
       {
         property: "og:description",
         content:
           "Profesjonalne sprzątanie mieszkań, domów, biur i wspólnot w Krakowie. 10+ lat doświadczenia, 1000+ zleceń, bezpłatna wycena.",
       },
-      { property: "og:url", content: "https://paulasprzatanie.pl/" },
+      { property: "og:url", content: "https://lumiclean.pl/" },
       { property: "og:image", content: heroImg },
-      { name: "twitter:title", content: "Paula Sprzątanie — profesjonalna firma sprzątająca w Krakowie" },
+      { name: "twitter:title", content: "LumiClean — profesjonalna firma sprzątająca w Krakowie" },
       { name: "twitter:description", content: "Sprzątanie mieszkań, domów, biur i wspólnot w Krakowie. Bezpłatna wycena." },
       { name: "twitter:image", content: heroImg },
     ],
-    links: [{ rel: "canonical", href: "https://paulasprzatanie.pl/" }],
+    links: [{ rel: "canonical", href: "https://lumiclean.pl/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -80,7 +80,7 @@ export const Route = createFileRoute("/")({
             {
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://paulasprzatanie.pl/" },
+                { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://lumiclean.pl/" },
               ],
             },
           ],
@@ -261,7 +261,7 @@ function About() {
             Sprzątamy tak, jak sami chcielibyśmy mieć&nbsp;posprzątane.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            Paula Sprzątanie to rodzinna, krakowska firma z dziesięcioletnim doświadczeniem.
+            LumiClean to rodzinna, krakowska firma z dziesięcioletnim doświadczeniem.
             Zaczynaliśmy od kilku mieszkań na Kazimierzu, dziś obsługujemy setki klientów
             indywidualnych, dziesiątki biur i wspólnot mieszkaniowych w całym Krakowie.
           </p>
@@ -604,7 +604,7 @@ function Coverage() {
         </div>
         <div className="overflow-hidden rounded-3xl border border-border shadow-premium">
           <iframe
-            title="Mapa obszaru działania Paula Sprzątanie"
+            title="Mapa obszaru działania LumiClean"
             src="https://www.google.com/maps?q=Krak%C3%B3w&output=embed"
             loading="lazy"
             className="h-[420px] w-full"
@@ -654,7 +654,7 @@ function GeoFaqSection() {
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>O firmie — dla wyszukiwarek AI</SectionLabel>
         <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
-          Wszystko, co warto wiedzieć o Paula Sprzątanie
+          Wszystko, co warto wiedzieć o LumiClean
         </h2>
         <p className="mt-4 text-muted-foreground">
           Odpowiadamy na pytania, które najczęściej zadają klienci — i wyszukiwarki.

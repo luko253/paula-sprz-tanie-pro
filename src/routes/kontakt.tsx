@@ -8,9 +8,9 @@ import { SITE } from "@/lib/site-data";
 export const Route = createFileRoute("/kontakt")({
   head: () => ({
     meta: [
-      { title: "Kontakt — Paula Sprzątanie Kraków" },
-      { name: "description", content: "Skontaktuj się z firmą sprzątającą Paula Sprzątanie. Bezpłatna wycena, telefon, e-mail, mapa." },
-      { property: "og:title", content: "Kontakt — Paula Sprzątanie" },
+      { title: "Kontakt — LumiClean Kraków" },
+      { name: "description", content: "Skontaktuj się z firmą sprzątającą LumiClean. Bezpłatna wycena, telefon, e-mail, mapa." },
+      { property: "og:title", content: "Kontakt — LumiClean" },
       { property: "og:description", content: "Skontaktuj się z nami — wycena gratis." },
       { property: "og:url", content: "/kontakt" },
     ],
@@ -44,7 +44,7 @@ function KontaktPage() {
 
             <div className="mt-10 overflow-hidden rounded-3xl border border-border shadow-premium">
               <iframe
-                title="Mapa Paula Sprzątanie"
+                title="Mapa LumiClean"
                 src="https://www.google.com/maps?q=Krak%C3%B3w&output=embed"
                 loading="lazy"
                 className="h-[360px] w-full"

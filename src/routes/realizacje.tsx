@@ -26,9 +26,9 @@ const CATS = ["Wszystkie", "Mieszkania", "Biura", "Balkony", "Wspólnoty", "Tere
 export const Route = createFileRoute("/realizacje")({
   head: () => ({
     meta: [
-      { title: "Realizacje — Paula Sprzątanie Kraków" },
-      { name: "description", content: "Galeria realizacji firmy sprzątającej Paula Sprzątanie z Krakowa." },
-      { property: "og:title", content: "Realizacje — Paula Sprzątanie" },
+      { title: "Realizacje — LumiClean Kraków" },
+      { name: "description", content: "Galeria realizacji firmy sprzątającej LumiClean z Krakowa." },
+      { property: "og:title", content: "Realizacje — LumiClean" },
       { property: "og:description", content: "Galeria realizacji w Krakowie." },
       { property: "og:url", content: "/realizacje" },
     ],

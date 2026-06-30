@@ -34,13 +34,13 @@ export function Header() {
       )}
     >
       <div className="container-x grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-4 lg:py-5">
-        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="Paula Sprzątanie — strona główna">
+        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="LumiClean — strona główna">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-navy text-cream font-display text-lg font-bold shadow-glow-gold">
-            P
+            L
           </span>
           <span className="min-w-0">
             <span className="block truncate font-display text-base font-bold leading-tight text-navy-deep">
-              Paula Sprzątanie
+              LumiClean
             </span>
             <span className="block truncate text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
               Premium · Kraków

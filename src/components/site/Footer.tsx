@@ -9,9 +9,9 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-3">
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-gold text-navy-deep font-display text-lg font-bold">
-              P
+              L
             </span>
-            <span className="font-display text-lg font-bold">Paula Sprzątanie</span>
+            <span className="font-display text-lg font-bold">LumiClean</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-cream/70">
             Profesjonalna firma sprzątająca z Krakowa. Działamy dokładnie, terminowo i z poszanowaniem
@@ -82,7 +82,7 @@ export function Footer() {
 
       <div className="border-t border-cream/10">
         <div className="container-x flex flex-col gap-2 py-6 text-xs text-cream/60 md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} Paula Sprzątanie. Wszystkie prawa zastrzeżone.</span>
+          <span>© {new Date().getFullYear()} LumiClean. Wszystkie prawa zastrzeżone.</span>
           <span>Profesjonalne sprzątanie · Kraków i okolice</span>
         </div>
       </div>

@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://paulasprzatanie.pl/sitemap.xml
+Sitemap: https://lumiclean.pl/sitemap.xml
 
 User-agent: GPTBot
 Allow: /

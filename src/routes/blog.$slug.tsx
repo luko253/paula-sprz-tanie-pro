@@ -22,7 +22,7 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => {
     const p = loaderData?.post;
-    const title = p ? `${p.title} | Blog Paula Sprzątanie` : "Wpis";
+    const title = p ? `${p.title} | Blog LumiClean` : "Wpis";
     const desc = p?.excerpt ?? "";
     const img = p ? COVERS[p.cover] : undefined;
     return {
@@ -48,16 +48,16 @@ export const Route = createFileRoute("/blog/$slug")({
                     headline: p.title,
                     description: p.excerpt,
                     datePublished: p.date,
-                    author: { "@type": "Organization", name: "Paula Sprzątanie" },
-                    publisher: { "@type": "Organization", name: "Paula Sprzątanie", url: "https://paulasprzatanie.pl" },
-                    mainEntityOfPage: `https://paulasprzatanie.pl/blog/${p.slug}`,
+                    author: { "@type": "Organization", name: "LumiClean" },
+                    publisher: { "@type": "Organization", name: "LumiClean", url: "https://lumiclean.pl" },
+                    mainEntityOfPage: `https://lumiclean.pl/blog/${p.slug}`,
                   },
                   {
                     "@type": "BreadcrumbList",
                     itemListElement: [
-                      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://paulasprzatanie.pl/" },
-                      { "@type": "ListItem", position: 2, name: "Blog", item: "https://paulasprzatanie.pl/blog" },
-                      { "@type": "ListItem", position: 3, name: p.title, item: `https://paulasprzatanie.pl/blog/${p.slug}` },
+                      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://lumiclean.pl/" },
+                      { "@type": "ListItem", position: 2, name: "Blog", item: "https://lumiclean.pl/blog" },
+                      { "@type": "ListItem", position: 3, name: p.title, item: `https://lumiclean.pl/blog/${p.slug}` },
                     ],
                   },
                 ],

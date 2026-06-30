@@ -8,7 +8,7 @@ const ICONS = { Home, Building2, Briefcase, Users, Landmark, Hammer, Bird, Spark
 export const Route = createFileRoute("/uslugi/")({
   head: () => ({
     meta: [
-      { title: "Usługi sprzątające — Paula Sprzątanie Kraków" },
+      { title: "Usługi sprzątające — LumiClean Kraków" },
       { name: "description", content: "Pełna oferta usług sprzątających w Krakowie: mieszkania, domy, biura, wspólnoty, mycie okien, sprzątanie po remoncie." },
       { property: "og:title", content: "Usługi sprzątające — Kraków" },
       { property: "og:description", content: "Pełna oferta usług sprzątających w Krakowie." },

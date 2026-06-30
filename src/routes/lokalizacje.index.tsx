@@ -6,9 +6,9 @@ import { LOCATIONS } from "@/lib/site-data";
 export const Route = createFileRoute("/lokalizacje/")({
   head: () => ({
     meta: [
-      { title: "Sprzątanie Kraków i okolice — obszar działania | Paula Sprzątanie" },
-      { name: "description", content: "Paula Sprzątanie obsługuje Kraków i wszystkie dzielnice: Nowa Huta, Podgórze, Bronowice, Krowodrza, Czyżyny, Dębniki, Prądnik Biały, Prądnik Czerwony, Bieżanów-Prokocim." },
-      { property: "og:title", content: "Obszar działania — Paula Sprzątanie Kraków" },
+      { title: "Sprzątanie Kraków i okolice — obszar działania | LumiClean" },
+      { name: "description", content: "LumiClean obsługuje Kraków i wszystkie dzielnice: Nowa Huta, Podgórze, Bronowice, Krowodrza, Czyżyny, Dębniki, Prądnik Biały, Prądnik Czerwony, Bieżanów-Prokocim." },
+      { property: "og:title", content: "Obszar działania — LumiClean Kraków" },
       { property: "og:description", content: "Profesjonalne sprzątanie we wszystkich dzielnicach Krakowa." },
       { property: "og:url", content: "/lokalizacje" },
     ],

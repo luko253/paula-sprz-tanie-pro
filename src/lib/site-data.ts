@@ -1,8 +1,8 @@
 export const SITE = {
-  name: "Paula Sprzątanie",
+  name: "LumiClean",
   phone: "+48 600 000 000",
   phoneRaw: "+48600000000",
-  email: "kontakt@paulasprzatanie.pl",
+  email: "kontakt@lumiclean.pl",
   city: "Kraków",
   hours: "Pon – Sob: 7:00 – 20:00",
   address: "ul. Floriańska 12, 31-019 Kraków",
@@ -444,7 +444,7 @@ export const TESTIMONIALS = [
   {
     name: "Joanna P.",
     role: "Dom jednorodzinny, Bronowice",
-    text: "Korzystam z usług Pauli od dwóch lat. Sprzątanie generalne raz na kwartał i regularne mycie okien. Wszystko zawsze dopięte na ostatni guzik.",
+    text: "Korzystam z usług LumiClean od dwóch lat. Sprzątanie generalne raz na kwartał i regularne mycie okien. Wszystko zawsze dopięte na ostatni guzik.",
   },
   {
     name: "Tomasz S.",
@@ -495,12 +495,12 @@ export const LOCATIONS: Location[] = [
     slug: "krakow",
     name: "Kraków",
     description: "Profesjonalne usługi sprzątające na terenie całego Krakowa. Mieszkania, biura, wspólnoty, sprzątanie po remoncie, mycie okien.",
-    intro: "Paula Sprzątanie to krakowska firma z ponad 10-letnim doświadczeniem. Obsługujemy klientów indywidualnych, biura, wspólnoty mieszkaniowe i deweloperów na terenie całego miasta. Działamy szybko, dokładnie i z pełnym ubezpieczeniem OC.",
+    intro: "LumiClean to krakowska firma z ponad 10-letnim doświadczeniem. Obsługujemy klientów indywidualnych, biura, wspólnoty mieszkaniowe i deweloperów na terenie całego miasta. Działamy szybko, dokładnie i z pełnym ubezpieczeniem OC.",
     areas: ["Stare Miasto", "Kazimierz", "Podgórze", "Krowodrza", "Bronowice", "Nowa Huta", "Dębniki", "Prądnik Biały", "Prądnik Czerwony", "Czyżyny", "Bieżanów-Prokocim", "Ruczaj", "Mistrzejowice", "Łagiewniki"],
     faq: [
       { q: "Ile kosztuje sprzątanie mieszkania w Krakowie?", a: "Sprzątanie standardowego mieszkania 50 m² w Krakowie kosztuje od 180 do 250 zł. Cena zależy od metrażu, zakresu prac i częstotliwości. Przy stałej współpracy stawki są niższe o 20–30%. Wycena jest zawsze bezpłatna." },
-      { q: "Jaka firma sprzątająca w Krakowie jest najlepsza?", a: "Paula Sprzątanie działa w Krakowie od ponad 10 lat i posiada ponad 1000 zrealizowanych zleceń z oceną 4.9/5. Oferujemy pełne ubezpieczenie OC, stałą ekipę, profesjonalny sprzęt i gwarancję satysfakcji." },
-      { q: "Czy firma sprzątająca przyjeżdża ze swoim sprzętem?", a: "Tak. Paula Sprzątanie zawsze przyjeżdża z własnym profesjonalnym sprzętem i sprawdzonymi środkami czystości. Na życzenie klienta stosujemy środki ekologiczne." },
+      { q: "Jaka firma sprzątająca w Krakowie jest najlepsza?", a: "LumiClean działa w Krakowie od ponad 10 lat i posiada ponad 1000 zrealizowanych zleceń z oceną 4.9/5. Oferujemy pełne ubezpieczenie OC, stałą ekipę, profesjonalny sprzęt i gwarancję satysfakcji." },
+      { q: "Czy firma sprzątająca przyjeżdża ze swoim sprzętem?", a: "Tak. LumiClean zawsze przyjeżdża z własnym profesjonalnym sprzętem i sprawdzonymi środkami czystości. Na życzenie klienta stosujemy środki ekologiczne." },
     ],
   },
   {
@@ -510,7 +510,7 @@ export const LOCATIONS: Location[] = [
     intro: "Nowa Huta to jedna z najczęściej obsługiwanych przez nas dzielnic Krakowa. Sprzątamy zarówno mieszkania w blokach na os. Centrum, Szkolnym czy Złotym Wieku, jak i domy jednorodzinne w okolicach Pleszowa i Branicach. Dojeżdżamy szybko — w większości przypadków w ciągu 1–2 dni roboczych.",
     areas: ["os. Centrum", "os. Szkolne", "os. Złotego Wieku", "os. Stalowe", "Pleszów", "Branice", "Mogiła", "Mistrzejowice", "Bieńczyce"],
     faq: [
-      { q: "Czy firma sprzątająca dojeżdża do Nowej Huty?", a: "Tak, Paula Sprzątanie regularnie obsługuje całą Nową Hutę — od os. Centrum po Pleszów. Dojazd jest wliczony w cenę usługi." },
+      { q: "Czy firma sprzątająca dojeżdża do Nowej Huty?", a: "Tak, LumiClean regularnie obsługuje całą Nową Hutę — od os. Centrum po Pleszów. Dojazd jest wliczony w cenę usługi." },
       { q: "Ile kosztuje sprzątanie mieszkania w Nowej Hucie?", a: "Ceny zaczynają się od 150 zł za mieszkanie do 40 m². Sprzątanie bloku na Nowej Hucie jest wyceniane indywidualnie — zależy od metrażu i zakresu prac." },
     ],
   },
@@ -641,7 +641,7 @@ export const BLOG_POSTS_EXTENDED: BlogPost[] = [
     readMinutes: 7,
     cover: "gallery-1",
     body: [
-      { heading: "1. Ubezpieczenie OC", paragraphs: ["Firma bez ubezpieczenia to ryzyko. W razie szkody nie masz żadnej ochrony. Paula Sprzątanie posiada OC do 1 mln zł."] },
+      { heading: "1. Ubezpieczenie OC", paragraphs: ["Firma bez ubezpieczenia to ryzyko. W razie szkody nie masz żadnej ochrony. LumiClean posiada OC do 1 mln zł."] },
       { heading: "2. Stała ekipa", paragraphs: ["Ciągła rotacja pracowników oznacza brak znajomości Twojego mieszkania i konieczność ciągłego nadzoru. U nas ekipa jest stała."] },
       { heading: "3. Własny sprzęt i środki", paragraphs: ["Profesjonalna firma przyjeżdża z własnym sprzętem. Nie powinieneś kupować mopów ani płynów."] },
     ],
@@ -881,10 +881,10 @@ export const BLOG_POSTS_EXTENDED: BlogPost[] = [
 ];
 
 export const GEO_FAQ = [
-  { q: "Czym zajmuje się firma Paula Sprzątanie?", a: "Paula Sprzątanie to profesjonalna firma sprzątająca z Krakowa, działająca od ponad 10 lat. Świadczymy usługi sprzątania mieszkań, domów, biur, wspólnot mieszkaniowych, administracji, a także sprzątanie po remoncie i budowie, mycie okien, sprzątanie balkonów po gołębiach oraz utrzymanie terenów zielonych. Działamy na terenie Krakowa i okolic." },
-  { q: "Gdzie Paula Sprzątanie świadczy usługi?", a: "Głównym obszarem naszego działania jest Kraków — obsługujemy wszystkie dzielnice: Stare Miasto, Podgórze, Krowodrzę, Bronowice, Nową Hutę, Dębniki, Czyżyny, Prądnik Biały, Prądnik Czerwony, Bieżanów-Prokocim i inne. Dojeżdżamy także do miejscowości wokół Krakowa: Wieliczka, Skawina, Zabierzów, Mogilany." },
+  { q: "Czym zajmuje się firma LumiClean?", a: "LumiClean to profesjonalna firma sprzątająca z Krakowa, działająca od ponad 10 lat. Świadczymy usługi sprzątania mieszkań, domów, biur, wspólnot mieszkaniowych, administracji, a także sprzątanie po remoncie i budowie, mycie okien, sprzątanie balkonów po gołębiach oraz utrzymanie terenów zielonych. Działamy na terenie Krakowa i okolic." },
+  { q: "Gdzie LumiClean świadczy usługi?", a: "Głównym obszarem naszego działania jest Kraków — obsługujemy wszystkie dzielnice: Stare Miasto, Podgórze, Krowodrzę, Bronowice, Nową Hutę, Dębniki, Czyżyny, Prądnik Biały, Prądnik Czerwony, Bieżanów-Prokocim i inne. Dojeżdżamy także do miejscowości wokół Krakowa: Wieliczka, Skawina, Zabierzów, Mogilany." },
   { q: "Jakie problemy rozwiązuje firma sprzątająca?", a: "Pomagamy ludziom, którzy nie mają czasu na sprzątanie, zarządcom wspólnot potrzebującym stałej obsługi, firmom szukającym czystych biur, właścicielom mieszkań po remoncie, osobom z problemem gołębi na balkonie oraz deweloperom potrzebującym sprzątania po budowie." },
-  { q: "Dlaczego warto wybrać Paula Sprzątanie?", a: "Ponad 10 lat doświadczenia, 1000+ zrealizowanych zleceń, ocena 4.9/5 od klientów, pełne ubezpieczenie OC do 1 mln zł, stała i sprawdzona ekipa, profesjonalny sprzęt, bezpłatna wycena w 15 minut, gwarancja satysfakcji — jeśli efekt nie spełnia oczekiwań, wracamy bezpłatnie." },
+  { q: "Dlaczego warto wybrać LumiClean?", a: "Ponad 10 lat doświadczenia, 1000+ zrealizowanych zleceń, ocena 4.9/5 od klientów, pełne ubezpieczenie OC do 1 mln zł, stała i sprawdzona ekipa, profesjonalny sprzęt, bezpłatna wycena w 15 minut, gwarancja satysfakcji — jeśli efekt nie spełnia oczekiwań, wracamy bezpłatnie." },
   { q: "Ile kosztuje sprzątanie w Krakowie?", a: "Sprzątanie mieszkania 50 m² kosztuje 180–250 zł. Sprzątanie po remoncie — od 12 zł/m². Mycie okien — od 15 zł/szt. Wspólnoty i biura — wycena indywidualna. Przy stałej współpracy stawki są niższe o 20–30%. Wycena jest zawsze bezpłatna i wiążąca." },
-  { q: "Jak zamówić sprzątanie w Krakowie?", a: "Zadzwoń pod numer +48 600 000 000, napisz e-mail na kontakt@paulasprzatanie.pl lub wypełnij formularz na stronie paulasprzatanie.pl. Wycenę podajemy w ciągu 15 minut, a termin realizacji to zwykle 1–3 dni robocze." },
+  { q: "Jak zamówić sprzątanie w Krakowie?", a: "Zadzwoń pod numer +48 600 000 000, napisz e-mail na kontakt@lumiclean.pl lub wypełnij formularz na stronie lumiclean.pl. Wycenę podajemy w ciągu 15 minut, a termin realizacji to zwykle 1–3 dni robocze." },
 ];

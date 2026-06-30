@@ -12,7 +12,7 @@ export const Route = createFileRoute("/uslugi/$slug")({
   },
   head: ({ loaderData }) => {
     const s = loaderData?.service;
-    const title = s ? `${s.title} — Kraków | Paula Sprzątanie` : "Usługa";
+    const title = s ? `${s.title} — Kraków | LumiClean` : "Usługa";
     const desc = s?.short ?? "Usługa sprzątająca w Krakowie";
     return {
       meta: [
@@ -36,8 +36,8 @@ export const Route = createFileRoute("/uslugi/$slug")({
                     description: s.intro,
                     provider: {
                       "@type": "LocalBusiness",
-                      name: "Paula Sprzątanie",
-                      url: "https://paulasprzatanie.pl",
+                      name: "LumiClean",
+                      url: "https://lumiclean.pl",
                     },
                     areaServed: { "@type": "City", name: "Kraków" },
                     serviceType: "CleaningService",
@@ -45,9 +45,9 @@ export const Route = createFileRoute("/uslugi/$slug")({
                   {
                     "@type": "BreadcrumbList",
                     itemListElement: [
-                      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://paulasprzatanie.pl/" },
-                      { "@type": "ListItem", position: 2, name: "Usługi", item: "https://paulasprzatanie.pl/uslugi" },
-                      { "@type": "ListItem", position: 3, name: s.title, item: `https://paulasprzatanie.pl/uslugi/${s.slug}` },
+                      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://lumiclean.pl/" },
+                      { "@type": "ListItem", position: 2, name: "Usługi", item: "https://lumiclean.pl/uslugi" },
+                      { "@type": "ListItem", position: 3, name: s.title, item: `https://lumiclean.pl/uslugi/${s.slug}` },
                     ],
                   },
                 ],

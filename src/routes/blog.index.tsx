@@ -14,10 +14,10 @@ const COVERS: Record<string, string> = {
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Blog — porady sprzątania | Paula Sprzątanie" },
+      { title: "Blog — porady sprzątania | LumiClean" },
       { name: "description", content: "Blog firmy sprzątającej: porady, cenniki i poradniki dotyczące sprzątania mieszkań, biur i wspólnot." },
       { property: "og:url", content: "/blog" },
-      { property: "og:title", content: "Blog — Paula Sprzątanie" },
+      { property: "og:title", content: "Blog — LumiClean" },
       { property: "og:description", content: "Porady i poradniki o sprzątaniu." },
     ],
     links: [{ rel: "canonical", href: "/blog" }],
