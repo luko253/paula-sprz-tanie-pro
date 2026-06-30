@@ -194,3 +194,40 @@
     linear-gradient(to bottom, color-mix(in oklab, var(--navy) 6%, transparent) 1px, transparent 1px);
   background-size: 56px 56px;
 }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInSoft {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shimmerBg {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .35; }
+  50% { transform: translate3d(2%, -2%, 0) scale(1.08); opacity: .55; }
+}
+
+@utility animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-fade-up-delay {
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+}
+@utility animate-fade-soft {
+  animation: fadeInSoft 1.2s ease-out both;
+}
+@utility animate-glow-pulse {
+  animation: shimmerBg 9s ease-in-out infinite;
+}
+
+@utility glass-dark {
+  background: color-mix(in oklab, var(--cream) 6%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--cream) 14%, transparent);
+}
+@utility glass-light {
+  background: color-mix(in oklab, white 70%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--navy) 8%, transparent);
+}
