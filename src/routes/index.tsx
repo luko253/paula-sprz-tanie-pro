@@ -122,6 +122,7 @@ function Index() {
       <WhyUs />
       <About />
       <Services />
+      <MidCta />
       <Gallery />
       <Process />
       <Testimonials />
@@ -138,94 +139,116 @@ function Index() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-cream via-background to-background" />
-      <div className="absolute inset-0 -z-10 bg-grid-navy opacity-[0.18]" />
+    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden text-cream">
+      <img
+        src={heroImg}
+        alt="Profesjonalna firma sprzątająca LumiClean w Krakowie"
+        width={1920}
+        height={1280}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        className="absolute inset-0 -z-20 h-full w-full object-cover animate-fade-soft"
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy-deep/95 via-navy-deep/85 to-navy/70" />
+      <div className="absolute inset-0 -z-10 bg-grid-navy opacity-[0.15] mix-blend-overlay" />
       <div
-        className="absolute -top-20 -right-20 -z-10 h-[30rem] w-[30rem] rounded-full opacity-40 blur-3xl"
-        style={{ background: "radial-gradient(circle, var(--gold-soft), transparent 60%)" }}
+        className="absolute -bottom-40 -right-40 -z-10 h-[42rem] w-[42rem] rounded-full opacity-40 blur-3xl animate-glow-pulse"
+        style={{ background: "radial-gradient(circle, var(--gold), transparent 60%)" }}
+      />
+      <div
+        className="absolute -top-40 -left-32 -z-10 h-[32rem] w-[32rem] rounded-full opacity-25 blur-3xl"
+        style={{ background: "radial-gradient(circle, var(--ember), transparent 65%)" }}
       />
 
-      <div className="container-x grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24">
-        <div>
-          <SectionLabel>Profesjonalne sprzątanie · Kraków</SectionLabel>
-          <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] text-navy-deep md:text-6xl lg:text-7xl">
-            Profesjonalne <span className="text-gradient-gold">usługi sprzątające</span> w Krakowie
+      <div className="container-x grid items-center gap-14 py-28 lg:grid-cols-[1.25fr_1fr] lg:py-32">
+        <div className="animate-fade-up">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-gold backdrop-blur">
+            <Sparkles className="h-3 w-3" />
+            Premium sprzątanie · Kraków
+          </span>
+          <h1 className="mt-7 font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-7xl lg:text-[5.25rem]">
+            Czystość, która <span className="text-gradient-gold">robi wrażenie</span>
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Kompleksowe sprzątanie mieszkań, domów, biur i wspólnot mieszkaniowych. Działamy
-            terminowo, dokładnie i profesjonalnie — z gwarancją satysfakcji.
+          <p className="mt-7 max-w-xl text-base leading-relaxed text-cream/80 md:text-lg">
+            Kompleksowe sprzątanie mieszkań, domów, biur i wspólnot w Krakowie. Działamy
+            terminowo, dokładnie i z pełną gwarancją satysfakcji.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               to="/kontakt"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-navy px-7 py-4 text-sm font-semibold text-cream transition-transform hover:scale-[1.02] shadow-premium"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-4 text-sm font-semibold text-navy-deep transition-all hover:scale-[1.03] shadow-glow-gold"
             >
-              Bezpłatna wycena
-              <ArrowRight className="h-4 w-4" />
+              Darmowa wycena
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <a
               href={`tel:${SITE.phoneRaw}`}
-              className="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-navy/15 bg-card px-7 py-4 text-sm font-semibold text-navy-deep transition-colors hover:border-gold hover:bg-cream"
+              className="group inline-flex items-center justify-center gap-2 rounded-full border border-cream/25 bg-cream/5 px-8 py-4 text-sm font-semibold text-cream backdrop-blur transition-colors hover:bg-cream/10"
             >
               <Phone className="h-4 w-4 text-gold" />
-              <span>
-                Zadzwoń teraz
-                <span className="hidden font-bold tabular-nums text-navy-deep group-hover:text-gold sm:inline"> — {SITE.phone}</span>
-              </span>
+              <span className="tabular-nums">{SITE.phone}</span>
             </a>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-gold" />
-              Ubezpieczenie OC do 1 mln zł
+          <div className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-cream/15 pt-8">
+            <div>
+              <div className="font-display text-3xl font-bold text-gold md:text-4xl">500+</div>
+              <div className="mt-1 text-xs text-cream/65">wykonanych realizacji</div>
             </div>
-            <div className="flex items-center gap-2">
-              <Star className="h-4 w-4 text-gold" />
-              4.9 / 5 — opinie klientów
+            <div>
+              <div className="font-display text-3xl font-bold text-gold md:text-4xl">24h</div>
+              <div className="mt-1 text-xs text-cream/65">szybka odpowiedź</div>
             </div>
-          </div>
-        </div>
-
-        <div className="relative">
-          <div className="relative overflow-hidden rounded-[2rem] shadow-premium">
-            <img
-              src={heroImg}
-              alt="Profesjonalna firma sprzątająca w Krakowie"
-              width={1600}
-              height={1200}
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-navy-deep/40 via-transparent to-transparent" />
-          </div>
-
-          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-border bg-card p-5 shadow-premium md:block">
-            <div className="flex items-center gap-3">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-gold/15 text-gold">
-                <Sparkles className="h-6 w-6" />
-              </div>
-              <div>
-                <div className="font-display text-lg font-bold text-navy-deep">1000+</div>
-                <div className="text-xs text-muted-foreground">zadowolonych klientów</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute -top-6 -right-6 hidden rounded-2xl border border-border bg-navy-deep p-5 text-cream shadow-premium lg:block">
-            <div className="flex items-center gap-3">
-              <Clock className="h-5 w-5 text-gold" />
-              <div>
-                <div className="text-xs uppercase tracking-widest text-cream/60">Wycena w</div>
-                <div className="font-display text-lg font-bold">15 minut</div>
-              </div>
+            <div>
+              <div className="font-display text-3xl font-bold text-gold md:text-4xl">100%</div>
+              <div className="mt-1 text-xs text-cream/65">satysfakcji</div>
             </div>
           </div>
         </div>
+
+        <div className="hidden animate-fade-up-delay lg:block">
+          <div className="relative ml-auto max-w-md rounded-3xl glass-dark p-7 shadow-premium">
+            <div className="flex items-center gap-2 text-gold">
+              {Array.from({ length: 5 }).map((_, k) => (
+                <Star key={k} className="h-4 w-4 fill-current" />
+              ))}
+              <span className="ml-2 text-xs text-cream/80">4.9 / 5 — opinie Google</span>
+            </div>
+            <p className="mt-5 font-display text-lg leading-snug text-cream">
+              „Najlepsza firma sprzątająca w&nbsp;Krakowie. Punktualnie, dokładnie, bez stresu."
+            </p>
+            <div className="mt-5 flex items-center gap-3 border-t border-cream/15 pt-5">
+              <div className="grid h-10 w-10 place-items-center rounded-full bg-gold/20 font-semibold text-gold">
+                A
+              </div>
+              <div>
+                <div className="text-sm font-semibold text-cream">Anna K.</div>
+                <div className="text-xs text-cream/60">klientka z Krowodrzy</div>
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-2.5 text-xs">
+              <div className="flex items-center gap-2 rounded-xl bg-cream/5 px-3 py-2.5 text-cream/85">
+                <ShieldCheck className="h-4 w-4 text-gold" /> OC 1 mln zł
+              </div>
+              <div className="flex items-center gap-2 rounded-xl bg-cream/5 px-3 py-2.5 text-cream/85">
+                <Award className="h-4 w-4 text-gold" /> 10+ lat
+              </div>
+              <div className="flex items-center gap-2 rounded-xl bg-cream/5 px-3 py-2.5 text-cream/85">
+                <FileCheck className="h-4 w-4 text-gold" /> Faktury VAT
+              </div>
+              <div className="flex items-center gap-2 rounded-xl bg-cream/5 px-3 py-2.5 text-cream/85">
+                <Clock className="h-4 w-4 text-gold" /> Wycena 15 min
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-cream/45 md:block">
+        Przewiń ↓
       </div>
     </section>
   );
@@ -233,11 +256,13 @@ function Hero() {
 
 function Stats() {
   return (
-    <section className="container-x">
+    <section className="container-x -mt-10 relative z-10">
       <div className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-4">
         {STATS.map((s) => (
-          <div key={s.label} className="bg-card p-8 text-center">
-            <div className="font-display text-4xl font-bold text-navy-deep md:text-5xl">{s.value}</div>
+          <div key={s.label} className="group bg-card p-8 text-center transition-colors hover:bg-cream">
+            <div className="font-display text-4xl font-bold text-navy-deep md:text-5xl">
+              <span className="text-gradient-gold">{s.value}</span>
+            </div>
             <div className="mt-2 text-sm text-muted-foreground">{s.label}</div>
           </div>
         ))}
