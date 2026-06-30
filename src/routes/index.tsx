@@ -654,10 +654,6 @@ function Testimonials() {
   );
 }
 
-const BLOG_COVERS: Record<string, string> = {
-  "gallery-1": g1, "gallery-2": g2, "gallery-3": g3, "gallery-4": g4, "gallery-6": g6,
-};
-
 function BlogPreview() {
   return (
     <section className="bg-secondary/40">
@@ -686,7 +682,7 @@ function BlogPreview() {
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-premium"
             >
               <img
-                src={BLOG_COVERS[p.cover] ?? g1}
+                src={getBlogCover(p.slug)}
                 alt={p.title}
                 width={800}
                 height={500}
