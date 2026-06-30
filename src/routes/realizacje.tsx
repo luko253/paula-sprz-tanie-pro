@@ -1,27 +1,46 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { ArrowLeftRight, Sparkles } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { BEFORE_AFTER } from "@/lib/images";
+import svcApartments from "@/assets/svc-apartments.jpg";
+import svcOffices from "@/assets/svc-offices.jpg";
+import svcWindows from "@/assets/svc-windows.jpg";
+import svcCommunity from "@/assets/svc-community.jpg";
+import svcBalcony from "@/assets/svc-balcony.jpg";
+import svcStairs from "@/assets/svc-stairs.jpg";
+import svcGreen from "@/assets/svc-green.jpg";
+import svcRenovation from "@/assets/svc-renovation.jpg";
+import svcConstruction from "@/assets/svc-construction.jpg";
+import svcIndustrial from "@/assets/svc-industrial.jpg";
 
 const ITEMS = [
-  { src: g1, cat: "Mieszkania", alt: "Mieszkanie po sprzątaniu" },
-  { src: g2, cat: "Biura", alt: "Biuro po sprzątaniu" },
-  { src: g3, cat: "Balkony", alt: "Czysty balkon" },
-  { src: g4, cat: "Wspólnoty", alt: "Klatka schodowa" },
-  { src: g5, cat: "Tereny zielone", alt: "Teren zielony" },
-  { src: g6, cat: "Mieszkania", alt: "Mycie okien" },
-  { src: g1, cat: "Mieszkania", alt: "Salon po sprzątaniu" },
-  { src: g2, cat: "Biura", alt: "Open space po sprzątaniu" },
-  { src: g4, cat: "Wspólnoty", alt: "Część wspólna" },
+  { src: svcApartments, cat: "Mieszkania", alt: "Mieszkanie po sprzątaniu" },
+  { src: svcOffices, cat: "Biura", alt: "Biuro po sprzątaniu" },
+  { src: svcBalcony, cat: "Balkony", alt: "Czysty balkon" },
+  { src: svcCommunity, cat: "Wspólnoty", alt: "Klatka schodowa wspólnoty" },
+  { src: svcGreen, cat: "Tereny zielone", alt: "Zadbany teren zielony" },
+  { src: svcWindows, cat: "Mycie okien", alt: "Mycie okien" },
+  { src: svcStairs, cat: "Wspólnoty", alt: "Wspólny korytarz" },
+  { src: svcRenovation, cat: "Po remoncie", alt: "Mieszkanie po remoncie" },
+  { src: svcConstruction, cat: "Po budowie", alt: "Lokal po budowie" },
+  { src: svcIndustrial, cat: "Przemysłowe", alt: "Hala przemysłowa" },
 ];
 
-const CATS = ["Wszystkie", "Mieszkania", "Biura", "Balkony", "Wspólnoty", "Tereny zielone"];
+const CATS = [
+  "Wszystkie",
+  "Mieszkania",
+  "Biura",
+  "Balkony",
+  "Wspólnoty",
+  "Mycie okien",
+  "Po remoncie",
+  "Po budowie",
+  "Tereny zielone",
+  "Przemysłowe",
+];
 
 export const Route = createFileRoute("/realizacje")({
   head: () => ({
