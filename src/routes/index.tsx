@@ -36,12 +36,14 @@ import {
 } from "@/components/ui/accordion";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { BEFORE_AFTER, getBlogCover, getServiceImage } from "@/lib/images";
+import svcApartments from "@/assets/svc-apartments.jpg";
+import svcOffices from "@/assets/svc-offices.jpg";
+import svcWindows from "@/assets/svc-windows.jpg";
+import svcCommunity from "@/assets/svc-community.jpg";
+import svcBalcony from "@/assets/svc-balcony.jpg";
+import svcGreen from "@/assets/svc-green.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -106,12 +108,12 @@ const STATS = [
 ];
 
 const GALLERY = [
-  { src: g1, cat: "Mieszkania", alt: "Czyste mieszkanie po sprzątaniu", h: "tall" },
-  { src: g2, cat: "Biura", alt: "Wysprzątane nowoczesne biuro" },
-  { src: g3, cat: "Balkony", alt: "Czysty balkon po sprzątaniu" },
-  { src: g4, cat: "Wspólnoty", alt: "Czysta klatka schodowa", h: "tall" },
-  { src: g5, cat: "Tereny zielone", alt: "Zadbany teren zielony" },
-  { src: g6, cat: "Mieszkania", alt: "Mycie okien" },
+  { src: svcApartments, cat: "Mieszkania", alt: "Czyste mieszkanie po sprzątaniu", h: "tall" },
+  { src: svcOffices, cat: "Biura", alt: "Wysprzątane nowoczesne biuro" },
+  { src: svcBalcony, cat: "Balkony", alt: "Czysty balkon po sprzątaniu" },
+  { src: svcCommunity, cat: "Wspólnoty", alt: "Czysta klatka schodowa", h: "tall" },
+  { src: svcGreen, cat: "Tereny zielone", alt: "Zadbany teren zielony" },
+  { src: svcWindows, cat: "Mieszkania", alt: "Mycie okien" },
 ] as const;
 
 function Index() {
