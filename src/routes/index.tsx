@@ -503,6 +503,9 @@ function Gallery() {
           <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
             Zobacz efekty naszej pracy
           </h2>
+          <p className="mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
+            Przeciągnij suwak na zdjęciach poniżej i zobacz, jak wygląda przestrzeń przed i po naszej interwencji.
+          </p>
         </div>
         <div className="flex flex-wrap gap-2">
           {GALLERY_CATS.map((c) => (
@@ -524,7 +527,26 @@ function Gallery() {
         </div>
       </div>
 
-      <div className="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {BEFORE_AFTER.slice(0, 2).map((c) => (
+          <BeforeAfter
+            key={c.id}
+            before={c.before}
+            after={c.after}
+            label={c.label}
+            category={c.category}
+          />
+        ))}
+      </div>
+
+      <div className="mt-12 flex items-center justify-between">
+        <h3 className="font-display text-xl font-bold text-navy-deep md:text-2xl">Galeria realizacji</h3>
+        <Link to="/realizacje" className="inline-flex items-center gap-1 text-sm font-semibold text-navy-deep hover:text-gold">
+          Więcej realizacji <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+
+      <div className="mt-6 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
         {items.map((g, i) => {
           const isTall = (g as { h?: string }).h === "tall";
           return (
