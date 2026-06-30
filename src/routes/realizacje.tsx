@@ -1,27 +1,46 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { ArrowLeftRight, Sparkles } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { BEFORE_AFTER } from "@/lib/images";
+import svcApartments from "@/assets/svc-apartments.jpg";
+import svcOffices from "@/assets/svc-offices.jpg";
+import svcWindows from "@/assets/svc-windows.jpg";
+import svcCommunity from "@/assets/svc-community.jpg";
+import svcBalcony from "@/assets/svc-balcony.jpg";
+import svcStairs from "@/assets/svc-stairs.jpg";
+import svcGreen from "@/assets/svc-green.jpg";
+import svcRenovation from "@/assets/svc-renovation.jpg";
+import svcConstruction from "@/assets/svc-construction.jpg";
+import svcIndustrial from "@/assets/svc-industrial.jpg";
 
 const ITEMS = [
-  { src: g1, cat: "Mieszkania", alt: "Mieszkanie po sprzątaniu" },
-  { src: g2, cat: "Biura", alt: "Biuro po sprzątaniu" },
-  { src: g3, cat: "Balkony", alt: "Czysty balkon" },
-  { src: g4, cat: "Wspólnoty", alt: "Klatka schodowa" },
-  { src: g5, cat: "Tereny zielone", alt: "Teren zielony" },
-  { src: g6, cat: "Mieszkania", alt: "Mycie okien" },
-  { src: g1, cat: "Mieszkania", alt: "Salon po sprzątaniu" },
-  { src: g2, cat: "Biura", alt: "Open space po sprzątaniu" },
-  { src: g4, cat: "Wspólnoty", alt: "Część wspólna" },
+  { src: svcApartments, cat: "Mieszkania", alt: "Mieszkanie po sprzątaniu" },
+  { src: svcOffices, cat: "Biura", alt: "Biuro po sprzątaniu" },
+  { src: svcBalcony, cat: "Balkony", alt: "Czysty balkon" },
+  { src: svcCommunity, cat: "Wspólnoty", alt: "Klatka schodowa wspólnoty" },
+  { src: svcGreen, cat: "Tereny zielone", alt: "Zadbany teren zielony" },
+  { src: svcWindows, cat: "Mycie okien", alt: "Mycie okien" },
+  { src: svcStairs, cat: "Wspólnoty", alt: "Wspólny korytarz" },
+  { src: svcRenovation, cat: "Po remoncie", alt: "Mieszkanie po remoncie" },
+  { src: svcConstruction, cat: "Po budowie", alt: "Lokal po budowie" },
+  { src: svcIndustrial, cat: "Przemysłowe", alt: "Hala przemysłowa" },
 ];
 
-const CATS = ["Wszystkie", "Mieszkania", "Biura", "Balkony", "Wspólnoty", "Tereny zielone"];
+const CATS = [
+  "Wszystkie",
+  "Mieszkania",
+  "Biura",
+  "Balkony",
+  "Wspólnoty",
+  "Mycie okien",
+  "Po remoncie",
+  "Po budowie",
+  "Tereny zielone",
+  "Przemysłowe",
+];
 
 export const Route = createFileRoute("/realizacje")({
   head: () => ({
@@ -59,7 +78,42 @@ function RealizacjePage() {
           <li className="font-semibold text-navy-deep">Realizacje</li>
         </ol>
       </nav>
+
+      <section className="container-x pb-4 pt-10">
+        <div className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+              <ArrowLeftRight className="h-3.5 w-3.5" /> Przed / Po
+            </div>
+            <h2 className="mt-4 max-w-2xl font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
+              Przesuń suwak i zobacz różnicę
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
+              Realne efekty pracy naszej ekipy. Kliknij i przeciągnij środkowy uchwyt, aby porównać stan przed i po profesjonalnym czyszczeniu.
+            </p>
+          </div>
+          <div className="hidden items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs text-muted-foreground md:inline-flex">
+            <Sparkles className="h-3.5 w-3.5 text-gold" /> Bez retuszu — prawdziwe realizacje
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {BEFORE_AFTER.map((c) => (
+            <BeforeAfter
+              key={c.id}
+              before={c.before}
+              after={c.after}
+              label={c.label}
+              category={c.category}
+            />
+          ))}
+        </div>
+      </section>
+
       <section className="container-x py-16">
+        <h2 className="mb-8 font-display text-2xl font-bold text-navy-deep md:text-3xl">
+          Pełna galeria realizacji
+        </h2>
         <div className="flex flex-wrap gap-2">
           {CATS.map((c) => (
             <button

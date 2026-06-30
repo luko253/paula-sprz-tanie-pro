@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Bird, Briefcase, Building2, Hammer, Home, Landmark, Layers, Leaf, Sparkles, Users } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { SERVICES } from "@/lib/site-data";
+import { getServiceImage } from "@/lib/images";
 
 const ICONS = { Home, Building2, Briefcase, Users, Landmark, Hammer, Bird, Sparkles, Layers, Leaf };
 
@@ -43,18 +44,32 @@ function UslugiIndex() {
                 key={s.slug}
                 to="/uslugi/$slug"
                 params={{ slug: s.slug }}
-                className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-premium"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1.5 hover:border-gold hover:shadow-premium"
               >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-navy text-cream transition-colors group-hover:bg-gold group-hover:text-navy-deep">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <h2 className="font-display text-xl font-bold text-navy-deep">{s.title}</h2>
-                <p className="text-sm leading-relaxed text-muted-foreground">{s.short}</p>
-                <div className="mt-auto flex items-center justify-between border-t border-border pt-4 text-xs">
-                  <span className="font-semibold text-gold">{s.priceFrom}</span>
-                  <span className="inline-flex items-center gap-1 text-navy-deep/70 group-hover:text-navy-deep">
-                    Szczegóły <ArrowRight className="h-3.5 w-3.5" />
+                <div className="relative overflow-hidden">
+                  <img
+                    src={getServiceImage(s.slug)}
+                    alt={s.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/55 via-navy-deep/10 to-transparent" />
+                  <span className="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-cream/95 text-navy-deep shadow-premium transition-transform duration-300 group-hover:scale-110 group-hover:bg-gold">
+                    <Icon className="h-5 w-5" />
                   </span>
+                </div>
+                <div className="flex flex-1 flex-col gap-3 p-6">
+                  <h2 className="font-display text-xl font-bold text-navy-deep transition-colors group-hover:text-gold">
+                    {s.title}
+                  </h2>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{s.short}</p>
+                  <div className="mt-auto flex items-center justify-between border-t border-border pt-4 text-xs">
+                    <span className="font-semibold text-gold">{s.priceFrom}</span>
+                    <span className="inline-flex items-center gap-1 font-semibold text-navy-deep/70 transition-all group-hover:gap-2 group-hover:text-navy-deep">
+                      Szczegóły <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
                 </div>
               </Link>
             );

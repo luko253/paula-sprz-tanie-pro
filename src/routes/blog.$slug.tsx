@@ -2,15 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { BLOG_POSTS, BLOG_POSTS_EXTENDED } from "@/lib/site-data";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g6 from "@/assets/gallery-6.jpg";
-
-const COVERS: Record<string, string> = {
-  "gallery-1": g1, "gallery-2": g2, "gallery-3": g3, "gallery-4": g4, "gallery-6": g6,
-};
+import { getBlogCover } from "@/lib/images";
 
 const ALL_POSTS = [...BLOG_POSTS, ...BLOG_POSTS_EXTENDED];
 
@@ -24,7 +16,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const p = loaderData?.post;
     const title = p ? `${p.title} | Blog LumiClean` : "Wpis";
     const desc = p?.excerpt ?? "";
-    const img = p ? COVERS[p.cover] : undefined;
+    const img = p ? getBlogCover(p.slug) : undefined;
     return {
       meta: [
         { title },
@@ -112,7 +104,7 @@ function PostPage() {
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{post.excerpt}</p>
         </header>
         <img
-          src={COVERS[post.cover] ?? g1}
+          src={getBlogCover(post.slug)}
           alt={post.title}
           width={1200}
           height={675}

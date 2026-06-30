@@ -36,12 +36,14 @@ import {
 } from "@/components/ui/accordion";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { BEFORE_AFTER, getBlogCover, getServiceImage } from "@/lib/images";
+import svcApartments from "@/assets/svc-apartments.jpg";
+import svcOffices from "@/assets/svc-offices.jpg";
+import svcWindows from "@/assets/svc-windows.jpg";
+import svcCommunity from "@/assets/svc-community.jpg";
+import svcBalcony from "@/assets/svc-balcony.jpg";
+import svcGreen from "@/assets/svc-green.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -106,12 +108,12 @@ const STATS = [
 ];
 
 const GALLERY = [
-  { src: g1, cat: "Mieszkania", alt: "Czyste mieszkanie po sprzątaniu", h: "tall" },
-  { src: g2, cat: "Biura", alt: "Wysprzątane nowoczesne biuro" },
-  { src: g3, cat: "Balkony", alt: "Czysty balkon po sprzątaniu" },
-  { src: g4, cat: "Wspólnoty", alt: "Czysta klatka schodowa", h: "tall" },
-  { src: g5, cat: "Tereny zielone", alt: "Zadbany teren zielony" },
-  { src: g6, cat: "Mieszkania", alt: "Mycie okien" },
+  { src: svcApartments, cat: "Mieszkania", alt: "Czyste mieszkanie po sprzątaniu", h: "tall" },
+  { src: svcOffices, cat: "Biura", alt: "Wysprzątane nowoczesne biuro" },
+  { src: svcBalcony, cat: "Balkony", alt: "Czysty balkon po sprzątaniu" },
+  { src: svcCommunity, cat: "Wspólnoty", alt: "Czysta klatka schodowa", h: "tall" },
+  { src: svcGreen, cat: "Tereny zielone", alt: "Zadbany teren zielony" },
+  { src: svcWindows, cat: "Mieszkania", alt: "Mycie okien" },
 ] as const;
 
 function Index() {
@@ -501,6 +503,9 @@ function Gallery() {
           <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
             Zobacz efekty naszej pracy
           </h2>
+          <p className="mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
+            Przeciągnij suwak na zdjęciach poniżej i zobacz, jak wygląda przestrzeń przed i po naszej interwencji.
+          </p>
         </div>
         <div className="flex flex-wrap gap-2">
           {GALLERY_CATS.map((c) => (
@@ -522,7 +527,26 @@ function Gallery() {
         </div>
       </div>
 
-      <div className="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {BEFORE_AFTER.slice(0, 2).map((c) => (
+          <BeforeAfter
+            key={c.id}
+            before={c.before}
+            after={c.after}
+            label={c.label}
+            category={c.category}
+          />
+        ))}
+      </div>
+
+      <div className="mt-12 flex items-center justify-between">
+        <h3 className="font-display text-xl font-bold text-navy-deep md:text-2xl">Galeria realizacji</h3>
+        <Link to="/realizacje" className="inline-flex items-center gap-1 text-sm font-semibold text-navy-deep hover:text-gold">
+          Więcej realizacji <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+
+      <div className="mt-6 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
         {items.map((g, i) => {
           const isTall = (g as { h?: string }).h === "tall";
           return (
@@ -652,10 +676,6 @@ function Testimonials() {
   );
 }
 
-const BLOG_COVERS: Record<string, string> = {
-  "gallery-1": g1, "gallery-2": g2, "gallery-3": g3, "gallery-4": g4, "gallery-6": g6,
-};
-
 function BlogPreview() {
   return (
     <section className="bg-secondary/40">
@@ -684,7 +704,7 @@ function BlogPreview() {
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-premium"
             >
               <img
-                src={BLOG_COVERS[p.cover] ?? g1}
+                src={getBlogCover(p.slug)}
                 alt={p.title}
                 width={800}
                 height={500}
