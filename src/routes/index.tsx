@@ -416,19 +416,23 @@ function Services() {
                 key={s.slug}
                 to="/uslugi/$slug"
                 params={{ slug: s.slug }}
-                className="group relative flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-premium"
+                className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold hover:shadow-premium"
               >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-navy text-cream transition-colors group-hover:bg-gold group-hover:text-navy-deep">
+                <span
+                  className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
+                  style={{ background: "radial-gradient(circle, var(--gold-soft), transparent 60%)" }}
+                />
+                <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-navy text-cream transition-all duration-300 group-hover:bg-gold group-hover:text-navy-deep group-hover:rotate-[-4deg]">
                   <Icon className="h-6 w-6" />
                 </span>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-navy-deep">{s.title}</h3>
+                <div className="relative">
+                  <h3 className="font-display text-lg font-bold text-navy-deep transition-colors group-hover:text-navy">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.short}</p>
                 </div>
-                <div className="mt-auto flex items-center justify-between border-t border-border pt-4 text-xs">
+                <div className="relative mt-auto flex items-center justify-between border-t border-border pt-4 text-xs">
                   <span className="font-semibold text-gold">{s.priceFrom}</span>
-                  <span className="inline-flex items-center gap-1 text-navy-deep/70 group-hover:text-navy-deep">
-                    Zobacz <ArrowRight className="h-3.5 w-3.5" />
+                  <span className="inline-flex items-center gap-1 font-semibold text-navy-deep/70 transition-all group-hover:text-navy-deep group-hover:gap-2">
+                    Zobacz <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </div>
               </Link>
