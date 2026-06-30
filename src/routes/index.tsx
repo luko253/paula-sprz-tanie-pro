@@ -621,19 +621,26 @@ function Testimonials() {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-premium md:p-12">
+        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-8 shadow-premium md:p-12">
+          <Quote className="absolute -top-4 -right-2 h-32 w-32 text-gold/10" />
           <div className="flex items-center gap-1 text-gold">
             {Array.from({ length: 5 }).map((_, k) => (
               <Star key={k} className="h-5 w-5 fill-current" />
             ))}
+            <span className="ml-3 text-xs font-semibold text-muted-foreground">5.0 / 5</span>
           </div>
-          <p className="mt-6 font-display text-xl leading-relaxed text-navy-deep md:text-2xl">
+          <p className="relative mt-6 font-display text-xl leading-relaxed text-navy-deep md:text-2xl lg:text-[1.65rem]">
             „{t.text}"
           </p>
-          <div className="mt-8 flex items-center justify-between">
-            <div>
-              <div className="font-semibold text-navy-deep">{t.name}</div>
-              <div className="text-sm text-muted-foreground">{t.role}</div>
+          <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
+            <div className="flex items-center gap-3">
+              <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-gold to-ember font-display text-lg font-bold text-navy-deep shadow-sm">
+                {t.name.charAt(0)}
+              </div>
+              <div>
+                <div className="font-semibold text-navy-deep">{t.name}</div>
+                <div className="text-sm text-muted-foreground">{t.role}</div>
+              </div>
             </div>
             <div className="text-sm text-muted-foreground">
               {i + 1} / {total}
