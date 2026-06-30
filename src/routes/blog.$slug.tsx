@@ -1,11 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import { ALL_BLOG_POSTS, getBlogCover } from "@/lib/site-data";
+import { BLOG_POSTS, BLOG_POSTS_EXTENDED } from "@/lib/site-data";
+import { getBlogCover } from "@/lib/images";
+
+const ALL_POSTS = [...BLOG_POSTS, ...BLOG_POSTS_EXTENDED];
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
-    const post = ALL_BLOG_POSTS.find((p) => p.slug === params.slug);
+    const post = ALL_POSTS.find((p) => p.slug === params.slug);
     if (!post) throw notFound();
     return { post };
   },

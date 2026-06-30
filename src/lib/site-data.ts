@@ -1,27 +1,14 @@
-import svcMieszkaniaHero from "@/assets/svc-mieszkania-hero.jpg";
 import mieszkanieAfter from "@/assets/mieszkanie-after.jpg";
 import mieszkanieCleanLiving from "@/assets/mieszkanie-clean-living.jpg";
-import mieszkanieBeforeClutter from "@/assets/mieszkanie-before-clutter.jpg";
-import svcDomowHero from "@/assets/svc-domow-hero.jpg";
-import domExterior2 from "@/assets/dom-exterior-2.jpg";
-import svcBiurHero from "@/assets/svc-biur-hero.jpg";
 import biuroLounge from "@/assets/biuro-lounge.jpg";
 import biuroGlassRoom from "@/assets/biuro-glass-room.jpg";
-import svcWspolnotyHero from "@/assets/svc-wspolnoty-hero.jpg";
-import klatkaAfterBw from "@/assets/klatka-after-bw.jpg";
-import klatkaBeforeWorn from "@/assets/klatka-before-worn.jpg";
 import buildingExteriorModern from "@/assets/building-exterior-modern.jpg";
-import svcRemontBefore from "@/assets/svc-remont-before.jpg";
 import remontBeforeTools from "@/assets/remont-before-tools.jpg";
 import svcRemontAfter from "@/assets/svc-remont-after.jpg";
-import svcBalkonyBefore from "@/assets/svc-balkony-before.jpg";
-import svcBalkonyAfter from "@/assets/svc-balkony-after.jpg";
-import svcOknaHero from "@/assets/svc-okna-hero.jpg";
-import oknaBuilding from "@/assets/okna-building.jpg";
-import oknaIndoor from "@/assets/okna-indoor.jpg";
-import svcTerenyHero from "@/assets/svc-tereny-hero.jpg";
-import terenyLawn from "@/assets/tereny-lawn.jpg";
-import wspolnotaBeforeCorridor from "@/assets/wspolnota-before-corridor.jpg";
+import svcBalkonyBefore from "@/assets/balkon-before-v2.jpg";
+import svcBalkonyAfter from "@/assets/balkon-after-v2.jpg";
+import oknaBuilding from "@/assets/okna-before-v2.jpg";
+import oknaIndoor from "@/assets/okna-after-v2.jpg";
 import wspolnotaAfterLobby from "@/assets/wspolnota-after-lobby.jpg";
 
 export const SITE = {
@@ -881,140 +868,6 @@ export const GEO_FAQ = [
   { q: "Dlaczego warto wybrać LumiClean?", a: "Ponad 10 lat doświadczenia, 1000+ zrealizowanych zleceń, ocena 4.9/5 od klientów, pełne ubezpieczenie OC do 1 mln zł, stała i sprawdzona ekipa, profesjonalny sprzęt, bezpłatna wycena w 15 minut, gwarancja satysfakcji — jeśli efekt nie spełnia oczekiwań, wracamy bezpłatnie." },
   { q: "Ile kosztuje sprzątanie w Krakowie?", a: "Sprzątanie mieszkania 50 m² kosztuje 180–250 zł. Sprzątanie po remoncie — od 12 zł/m². Mycie okien — od 15 zł/szt. Wspólnoty i biura — wycena indywidualna. Przy stałej współpracy stawki są niższe o 20–30%. Wycena jest zawsze bezpłatna i wiążąca." },
   { q: "Jak zamówić sprzątanie w Krakowie?", a: "Zadzwoń pod numer +48 600 000 000, napisz e-mail na kontakt@lumiclean.pl lub wypełnij formularz na stronie lumiclean.pl. Wycenę podajemy w ciągu 15 minut, a termin realizacji to zwykle 1–3 dni robocze." },
-];
-
-export const ALL_BLOG_POSTS: BlogPost[] = [...BLOG_POSTS, ...BLOG_POSTS_EXTENDED];
-
-const BLOG_COVER_POOL: string[] = [
-  mieszkanieAfter,
-  biuroLounge,
-  wspolnotaBeforeCorridor,
-  oknaBuilding,
-  svcRemontBefore,
-  svcBalkonyBefore,
-  svcMieszkaniaHero,
-  domExterior2,
-  klatkaAfterBw,
-  mieszkanieBeforeClutter,
-  klatkaBeforeWorn,
-  svcBalkonyAfter,
-  buildingExteriorModern,
-  svcOknaHero,
-  svcDomowHero,
-  svcRemontAfter,
-  terenyLawn,
-  svcTerenyHero,
-  biuroGlassRoom,
-  wspolnotaAfterLobby,
-  svcBiurHero,
-  svcWspolnotyHero,
-  oknaIndoor,
-  mieszkanieCleanLiving,
-];
-
-export function getBlogCover(slug: string): string {
-  const index = ALL_BLOG_POSTS.findIndex((p) => p.slug === slug);
-  const safeIndex = index === -1 ? 0 : index;
-  return BLOG_COVER_POOL[safeIndex % BLOG_COVER_POOL.length];
-}
-
-export const SERVICE_HERO_IMAGES: Record<string, string> = {
-  "sprzatanie-mieszkan": svcMieszkaniaHero,
-  "sprzatanie-domow": svcDomowHero,
-  "sprzatanie-biur": svcBiurHero,
-  "sprzatanie-wspolnot-mieszkaniowych": svcWspolnotyHero,
-  "sprzatanie-administracji": biuroGlassRoom,
-  "sprzatanie-po-remoncie": svcRemontBefore,
-  "sprzatanie-balkonow-po-golebiach": svcBalkonyBefore,
-  "mycie-okien": svcOknaHero,
-  "sprzatanie-terenow-zielonych": svcTerenyHero,
-};
-
-export type BeforeAfter = {
-  slug: string;
-  serviceSlug: string;
-  title: string;
-  description: string;
-  category: string;
-  beforeLabel: string;
-  afterLabel: string;
-  before: { src: string; alt: string };
-  after: { src: string; alt: string };
-};
-
-export const REALIZACJE: BeforeAfter[] = [
-  {
-    slug: "mieszkanie-krowodrza",
-    serviceSlug: "sprzatanie-mieszkan",
-    category: "Mieszkania",
-    title: "Generalne sprzątanie mieszkania — Krowodrza",
-    description:
-      "Mieszkanie 62 m² po dwóch latach bez generalnego sprzątania. Zabałaganione szafy, zaniedbane powierzchnie, zalegający kurz. Po trzygodzinnej pracy dwuosobowej ekipy: lśniące podłogi, wyczyszczone fronty mebli, uporządkowana przestrzeń gotowa do zamieszkania.",
-    beforeLabel: "Przed sprzątaniem",
-    afterLabel: "Po sprzątaniu",
-    before: { src: mieszkanieBeforeClutter, alt: "Zabałaganione, zaniedbane wnętrze mieszkania przed generalnym sprzątaniem" },
-    after: { src: mieszkanieCleanLiving, alt: "Czyste, uporządkowane mieszkanie po profesjonalnym sprzątaniu generalnym" },
-  },
-  {
-    slug: "remont-podgorze",
-    serviceSlug: "sprzatanie-po-remoncie",
-    category: "Po remoncie",
-    title: "Sprzątanie po remoncie — apartament na Podgórzu",
-    description:
-      "Mieszkanie po całkowitym remoncie — pył budowlany na każdej powierzchni, resztki farby i taśmy malarskiej, narzędzia ekipy budowlanej. Trzykrotne odkurzanie, mycie wszystkich powierzchni i okien pozwoliło oddać mieszkanie gotowe do odbioru tego samego dnia.",
-    beforeLabel: "W trakcie remontu",
-    afterLabel: "Po sprzątaniu poremontowym",
-    before: { src: svcRemontBefore, alt: "Pomieszczenie w trakcie remontu z narzędziami i pyłem budowlanym przed sprzątaniem" },
-    after: { src: svcRemontAfter, alt: "Czyste, jasne wnętrze gotowe do zamieszkania po sprzątaniu poremontowym" },
-  },
-  {
-    slug: "okna-stare-miasto",
-    serviceSlug: "mycie-okien",
-    category: "Mycie okien",
-    title: "Mycie okien — kamienica przy Rynku",
-    description:
-      "Duże, wysokie okna w zabytkowej kamienicy — zaniedbane od kilku sezonów, ze smugami i osadem. Profesjonalne mycie dwustronne z czyszczeniem ram i parapetów dało efekt pełnej przejrzystości szyb i więcej naturalnego światła we wnętrzu.",
-    beforeLabel: "Ekipa w trakcie pracy",
-    afterLabel: "Efekt końcowy",
-    before: { src: svcOknaHero, alt: "Pracownik myjący duże okno na wysokości przy użyciu profesjonalnego sprzętu" },
-    after: { src: oknaBuilding, alt: "Lśniąca, czysta fasada szklana po profesjonalnym myciu okien" },
-  },
-  {
-    slug: "balkon-bronowice",
-    serviceSlug: "sprzatanie-balkonow-po-golebiach",
-    category: "Balkony po gołębiach",
-    title: "Czyszczenie balkonu po gołębiach — Bronowice",
-    description:
-      "Balkon nawiedzany przez gołębie od dłuższego czasu — zabrudzona posadzka, barierki i ściana. Mechaniczne usunięcie zabrudzeń, pełna dezynfekcja powierzchni oraz montaż siatki zabezpieczającej przed powrotem ptaków.",
-    beforeLabel: "Przed czyszczeniem",
-    afterLabel: "Po dezynfekcji",
-    before: { src: svcBalkonyBefore, alt: "Zaniedbany, zabrudzony balkon przed profesjonalnym czyszczeniem i dezynfekcją" },
-    after: { src: svcBalkonyAfter, alt: "Czysty, zadbany balkon po dezynfekcji i zabezpieczeniu przed gołębiami" },
-  },
-  {
-    slug: "wspolnota-debniki",
-    serviceSlug: "sprzatanie-wspolnot-mieszkaniowych",
-    category: "Wspólnoty mieszkaniowe",
-    title: "Obsługa wspólnoty mieszkaniowej — Dębniki",
-    description:
-      "Korytarz wejściowy budynku wielorodzinnego z odpryskującą farbą i zaniedbaną posadzką. Po wdrożeniu stałej umowy: regularne mycie, odświeżenie powierzchni i estetyczne, zadbane lobby, które poprawiło odbiór całego budynku.",
-    beforeLabel: "Przed obsługą",
-    afterLabel: "Po wdrożeniu stałej umowy",
-    before: { src: wspolnotaBeforeCorridor, alt: "Zaniedbany korytarz wejściowy budynku wielorodzinnego z odpryskującą farbą" },
-    after: { src: wspolnotaAfterLobby, alt: "Nowoczesne, czyste lobby budynku po wdrożeniu stałej obsługi sprzątającej" },
-  },
-  {
-    slug: "klatka-pradnik",
-    serviceSlug: "sprzatanie-wspolnot-mieszkaniowych",
-    category: "Klatki schodowe",
-    title: "Sprzątanie klatki schodowej — Prądnik Czerwony",
-    description:
-      "Klatka schodowa z widocznym zaniedbaniem — zmatowiałe stopnie, zabrudzone barierki i poręcze. Wprowadzenie cyklicznego sprzątania 2× w tygodniu przywróciło czystość i estetykę, którą doceniają mieszkańcy.",
-    beforeLabel: "Przed wdrożeniem usługi",
-    afterLabel: "Po cyklicznym sprzątaniu",
-    before: { src: klatkaBeforeWorn, alt: "Zniszczona, zaniedbana klatka schodowa z odpryskującym betonem przed sprzątaniem" },
-    after: { src: klatkaAfterBw, alt: "Czysta, nowoczesna klatka schodowa po wdrożeniu cyklicznego sprzątania" },
-  },
 ];
 
 export type ServiceDetail = {

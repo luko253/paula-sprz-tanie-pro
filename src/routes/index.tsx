@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ArrowRight,
   Award,
@@ -14,6 +14,7 @@ import {
   Hammer,
   Home,
   Landmark,
+  Layers,
   Leaf,
   Mail,
   MapPin,
@@ -26,9 +27,7 @@ import {
 } from "lucide-react";
 import { SiteLayout, SectionLabel } from "@/components/site/Layout";
 import { ContactForm } from "@/components/site/ContactForm";
-import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
-import { Reveal } from "@/components/site/Reveal";
-import { BLOG_POSTS, FAQ, GEO_FAQ, LOCATIONS, REALIZACJE, SERVICES, SITE, STEPS, TESTIMONIALS, getBlogCover } from "@/lib/site-data";
+import { BLOG_POSTS, FAQ, GEO_FAQ, LOCATIONS, SERVICES, SITE, STEPS, TESTIMONIALS } from "@/lib/site-data";
 import {
   Accordion,
   AccordionContent,
@@ -37,6 +36,14 @@ import {
 } from "@/components/ui/accordion";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { BEFORE_AFTER, getBlogCover, getServiceImage } from "@/lib/images";
+import svcApartments from "@/assets/svc-apartments.jpg";
+import svcOffices from "@/assets/svc-offices.jpg";
+import oknaAfter from "@/assets/okna-after-v2.jpg";
+import svcCommunity from "@/assets/svc-community.jpg";
+import balkonAfter from "@/assets/balkon-after-v2.jpg";
+import svcGreen from "@/assets/svc-green.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -91,7 +98,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const ICONS = { Home, Building2, Briefcase, Users, Landmark, Hammer, Bird, Sparkles, Leaf };
+const ICONS = { Home, Building2, Briefcase, Users, Landmark, Hammer, Bird, Sparkles, Layers, Leaf };
 
 const STATS = [
   { value: "10+", label: "lat doświadczenia" },
@@ -99,6 +106,15 @@ const STATS = [
   { value: "100%", label: "zadowolonych klientów" },
   { value: "24h", label: "szybkie terminy realizacji" },
 ];
+
+const GALLERY = [
+  { src: svcApartments, cat: "Mieszkania", alt: "Czyste mieszkanie po sprzątaniu", h: "tall" },
+  { src: svcOffices, cat: "Biura", alt: "Wysprzątane nowoczesne biuro" },
+  { src: balkonAfter, cat: "Balkony", alt: "Czysty balkon po sprzątaniu i dezynfekcji" },
+  { src: svcCommunity, cat: "Wspólnoty", alt: "Czysta klatka schodowa", h: "tall" },
+  { src: svcGreen, cat: "Tereny zielone", alt: "Zadbany teren zielony" },
+  { src: oknaAfter, cat: "Mieszkania", alt: "Czyste, jasne okno po myciu" },
+] as const;
 
 function Index() {
   return (
@@ -108,6 +124,7 @@ function Index() {
       <WhyUs />
       <About />
       <Services />
+      <MidCta />
       <Gallery />
       <Process />
       <Testimonials />
@@ -124,94 +141,116 @@ function Index() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-cream via-background to-background" />
-      <div className="absolute inset-0 -z-10 bg-grid-navy opacity-[0.18]" />
+    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden text-cream">
+      <img
+        src={heroImg}
+        alt="Profesjonalna firma sprzątająca LumiClean w Krakowie"
+        width={1920}
+        height={1280}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        className="absolute inset-0 -z-20 h-full w-full object-cover animate-fade-soft"
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy-deep/95 via-navy-deep/85 to-navy/70" />
+      <div className="absolute inset-0 -z-10 bg-grid-navy opacity-[0.15] mix-blend-overlay" />
       <div
-        className="absolute -top-20 -right-20 -z-10 h-[30rem] w-[30rem] rounded-full opacity-40 blur-3xl"
-        style={{ background: "radial-gradient(circle, var(--gold-soft), transparent 60%)" }}
+        className="absolute -bottom-40 -right-40 -z-10 h-[42rem] w-[42rem] rounded-full opacity-40 blur-3xl animate-glow-pulse"
+        style={{ background: "radial-gradient(circle, var(--gold), transparent 60%)" }}
+      />
+      <div
+        className="absolute -top-40 -left-32 -z-10 h-[32rem] w-[32rem] rounded-full opacity-25 blur-3xl"
+        style={{ background: "radial-gradient(circle, var(--ember), transparent 65%)" }}
       />
 
-      <div className="container-x grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24">
-        <div>
-          <SectionLabel>Profesjonalne sprzątanie · Kraków</SectionLabel>
-          <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] text-navy-deep md:text-6xl lg:text-7xl">
-            Profesjonalne <span className="text-gradient-gold">usługi sprzątające</span> w Krakowie
+      <div className="container-x grid items-center gap-14 py-28 lg:grid-cols-[1.25fr_1fr] lg:py-32">
+        <div className="animate-fade-up">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-gold backdrop-blur">
+            <Sparkles className="h-3 w-3" />
+            Premium sprzątanie · Kraków
+          </span>
+          <h1 className="mt-7 font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-7xl lg:text-[5.25rem]">
+            Czystość, która <span className="text-gradient-gold">robi wrażenie</span>
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Kompleksowe sprzątanie mieszkań, domów, biur i wspólnot mieszkaniowych. Działamy
-            terminowo, dokładnie i profesjonalnie — z gwarancją satysfakcji.
+          <p className="mt-7 max-w-xl text-base leading-relaxed text-cream/80 md:text-lg">
+            Kompleksowe sprzątanie mieszkań, domów, biur i wspólnot w Krakowie. Działamy
+            terminowo, dokładnie i z pełną gwarancją satysfakcji.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               to="/kontakt"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-navy px-7 py-4 text-sm font-semibold text-cream transition-transform hover:scale-[1.02] shadow-premium"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-4 text-sm font-semibold text-navy-deep transition-all hover:scale-[1.03] shadow-glow-gold"
             >
-              Bezpłatna wycena
-              <ArrowRight className="h-4 w-4" />
+              Darmowa wycena
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <a
               href={`tel:${SITE.phoneRaw}`}
-              className="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-navy/15 bg-card px-7 py-4 text-sm font-semibold text-navy-deep transition-colors hover:border-gold hover:bg-cream"
+              className="group inline-flex items-center justify-center gap-2 rounded-full border border-cream/25 bg-cream/5 px-8 py-4 text-sm font-semibold text-cream backdrop-blur transition-colors hover:bg-cream/10"
             >
               <Phone className="h-4 w-4 text-gold" />
-              <span>
-                Zadzwoń teraz
-                <span className="hidden font-bold tabular-nums text-navy-deep group-hover:text-gold sm:inline"> — {SITE.phone}</span>
-              </span>
+              <span className="tabular-nums">{SITE.phone}</span>
             </a>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-gold" />
-              Ubezpieczenie OC do 1 mln zł
+          <div className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-cream/15 pt-8">
+            <div>
+              <div className="font-display text-3xl font-bold text-gold md:text-4xl">500+</div>
+              <div className="mt-1 text-xs text-cream/65">wykonanych realizacji</div>
             </div>
-            <div className="flex items-center gap-2">
-              <Star className="h-4 w-4 text-gold" />
-              4.9 / 5 — opinie klientów
+            <div>
+              <div className="font-display text-3xl font-bold text-gold md:text-4xl">24h</div>
+              <div className="mt-1 text-xs text-cream/65">szybka odpowiedź</div>
             </div>
-          </div>
-        </div>
-
-        <div className="relative">
-          <div className="relative overflow-hidden rounded-[2rem] shadow-premium">
-            <img
-              src={heroImg}
-              alt="Profesjonalna firma sprzątająca w Krakowie"
-              width={1600}
-              height={1200}
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-navy-deep/40 via-transparent to-transparent" />
-          </div>
-
-          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-border bg-card p-5 shadow-premium md:block">
-            <div className="flex items-center gap-3">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-gold/15 text-gold">
-                <Sparkles className="h-6 w-6" />
-              </div>
-              <div>
-                <div className="font-display text-lg font-bold text-navy-deep">1000+</div>
-                <div className="text-xs text-muted-foreground">zadowolonych klientów</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute -top-6 -right-6 hidden rounded-2xl border border-border bg-navy-deep p-5 text-cream shadow-premium lg:block">
-            <div className="flex items-center gap-3">
-              <Clock className="h-5 w-5 text-gold" />
-              <div>
-                <div className="text-xs uppercase tracking-widest text-cream/60">Wycena w</div>
-                <div className="font-display text-lg font-bold">15 minut</div>
-              </div>
+            <div>
+              <div className="font-display text-3xl font-bold text-gold md:text-4xl">100%</div>
+              <div className="mt-1 text-xs text-cream/65">satysfakcji</div>
             </div>
           </div>
         </div>
+
+        <div className="hidden animate-fade-up-delay lg:block">
+          <div className="relative ml-auto max-w-md rounded-3xl glass-dark p-7 shadow-premium">
+            <div className="flex items-center gap-2 text-gold">
+              {Array.from({ length: 5 }).map((_, k) => (
+                <Star key={k} className="h-4 w-4 fill-current" />
+              ))}
+              <span className="ml-2 text-xs text-cream/80">4.9 / 5 — opinie Google</span>
+            </div>
+            <p className="mt-5 font-display text-lg leading-snug text-cream">
+              „Najlepsza firma sprzątająca w&nbsp;Krakowie. Punktualnie, dokładnie, bez stresu."
+            </p>
+            <div className="mt-5 flex items-center gap-3 border-t border-cream/15 pt-5">
+              <div className="grid h-10 w-10 place-items-center rounded-full bg-gold/20 font-semibold text-gold">
+                A
+              </div>
+              <div>
+                <div className="text-sm font-semibold text-cream">Anna K.</div>
+                <div className="text-xs text-cream/60">klientka z Krowodrzy</div>
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-2.5 text-xs">
+              <div className="flex items-center gap-2 rounded-xl bg-cream/5 px-3 py-2.5 text-cream/85">
+                <ShieldCheck className="h-4 w-4 text-gold" /> OC 1 mln zł
+              </div>
+              <div className="flex items-center gap-2 rounded-xl bg-cream/5 px-3 py-2.5 text-cream/85">
+                <Award className="h-4 w-4 text-gold" /> 10+ lat
+              </div>
+              <div className="flex items-center gap-2 rounded-xl bg-cream/5 px-3 py-2.5 text-cream/85">
+                <FileCheck className="h-4 w-4 text-gold" /> Faktury VAT
+              </div>
+              <div className="flex items-center gap-2 rounded-xl bg-cream/5 px-3 py-2.5 text-cream/85">
+                <Clock className="h-4 w-4 text-gold" /> Wycena 15 min
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-cream/45 md:block">
+        Przewiń ↓
       </div>
     </section>
   );
@@ -219,11 +258,13 @@ function Hero() {
 
 function Stats() {
   return (
-    <section className="container-x">
+    <section className="container-x -mt-10 relative z-10">
       <div className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-4">
         {STATS.map((s) => (
-          <div key={s.label} className="bg-card p-8 text-center">
-            <div className="font-display text-4xl font-bold text-navy-deep md:text-5xl">{s.value}</div>
+          <div key={s.label} className="group bg-card p-8 text-center transition-colors hover:bg-cream">
+            <div className="font-display text-4xl font-bold text-navy-deep md:text-5xl">
+              <span className="text-gradient-gold">{s.value}</span>
+            </div>
             <div className="mt-2 text-sm text-muted-foreground">{s.label}</div>
           </div>
         ))}
@@ -275,10 +316,9 @@ function WhyUs() {
         </h2>
       </div>
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {WHY_US.map((item, i) => (
-          <Reveal
+        {WHY_US.map((item) => (
+          <div
             key={item.title}
-            delay={(i % 3) * 90}
             className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-premium"
           >
             <span className="grid h-12 w-12 place-items-center rounded-xl bg-gold/15 text-gold">
@@ -286,7 +326,7 @@ function WhyUs() {
             </span>
             <h3 className="font-display text-lg font-bold text-navy-deep">{item.title}</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-          </Reveal>
+          </div>
         ))}
       </div>
     </section>
@@ -378,19 +418,23 @@ function Services() {
                 key={s.slug}
                 to="/uslugi/$slug"
                 params={{ slug: s.slug }}
-                className="group relative flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-premium"
+                className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold hover:shadow-premium"
               >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-navy text-cream transition-colors group-hover:bg-gold group-hover:text-navy-deep">
+                <span
+                  className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
+                  style={{ background: "radial-gradient(circle, var(--gold-soft), transparent 60%)" }}
+                />
+                <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-navy text-cream transition-all duration-300 group-hover:bg-gold group-hover:text-navy-deep group-hover:rotate-[-4deg]">
                   <Icon className="h-6 w-6" />
                 </span>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-navy-deep">{s.title}</h3>
+                <div className="relative">
+                  <h3 className="font-display text-lg font-bold text-navy-deep transition-colors group-hover:text-navy">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.short}</p>
                 </div>
-                <div className="mt-auto flex items-center justify-between border-t border-border pt-4 text-xs">
+                <div className="relative mt-auto flex items-center justify-between border-t border-border pt-4 text-xs">
                   <span className="font-semibold text-gold">{s.priceFrom}</span>
-                  <span className="inline-flex items-center gap-1 text-navy-deep/70 group-hover:text-navy-deep">
-                    Zobacz <ArrowRight className="h-3.5 w-3.5" />
+                  <span className="inline-flex items-center gap-1 font-semibold text-navy-deep/70 transition-all group-hover:text-navy-deep group-hover:gap-2">
+                    Zobacz <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </div>
               </Link>
@@ -402,57 +446,137 @@ function Services() {
   );
 }
 
-function Gallery() {
-  const teaser = REALIZACJE.slice(0, 3);
-
+function MidCta() {
   return (
-    <section className="container-x py-20 md:py-28">
-      <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-        <div className="max-w-2xl">
-          <SectionLabel>Realizacje</SectionLabel>
-          <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
-            Zobacz prawdziwe efekty „przed” i „po”
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Przesuń suwak na zdjęciu, aby zobaczyć różnicę. To prawdziwe realizacje naszej ekipy — nie zdjęcia poglądowe.
-          </p>
+    <section className="container-x py-12 md:py-16">
+      <div className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-gradient-to-br from-cream via-background to-cream p-8 md:p-12">
+        <div
+          className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full opacity-40 blur-3xl"
+          style={{ background: "radial-gradient(circle, var(--gold-soft), transparent 60%)" }}
+        />
+        <div className="relative grid items-center gap-6 md:grid-cols-[1.4fr_auto]">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+              <Sparkles className="h-3.5 w-3.5" /> Promocja sezonowa
+            </div>
+            <h3 className="mt-3 font-display text-2xl font-bold text-navy-deep md:text-4xl">
+              Bezpłatna wycena w&nbsp;15&nbsp;minut — bez zobowiązań.
+            </h3>
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
+              Opisz krótko swoją przestrzeń. Wracamy z konkretną wyceną i terminem tego samego dnia.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
+            <Link
+              to="/kontakt"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-navy-deep px-6 py-3.5 text-sm font-semibold text-cream transition-transform hover:scale-[1.02] shadow-premium"
+            >
+              Zamów wycenę <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href={`tel:${SITE.phoneRaw}`}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-navy/20 bg-card px-6 py-3.5 text-sm font-semibold text-navy-deep hover:border-gold"
+            >
+              <Phone className="h-4 w-4 text-gold" /> {SITE.phone}
+            </a>
+          </div>
         </div>
-        <Link
-          to="/realizacje"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-navy-deep hover:text-gold transition-colors"
-        >
-          Zobacz wszystkie realizacje <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
-
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {teaser.map((item, i) => (
-          <Reveal key={item.slug} delay={i * 100}>
-            <HomeBeforeAfter item={item} />
-          </Reveal>
-        ))}
       </div>
     </section>
   );
 }
 
-function HomeBeforeAfter({ item }: { item: (typeof REALIZACJE)[number] }) {
+const GALLERY_CATS = ["Wszystkie", "Mieszkania", "Biura", "Balkony", "Wspólnoty", "Tereny zielone"];
+
+function Gallery() {
+  const [filter, setFilter] = useState<string>("Wszystkie");
+  const items = useMemo(
+    () => GALLERY.filter((g) => filter === "Wszystkie" || g.cat === filter),
+    [filter],
+  );
+
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:shadow-premium">
-      <BeforeAfterSlider
-        before={item.before}
-        after={item.after}
-        beforeLabel={item.beforeLabel}
-        afterLabel={item.afterLabel}
-        title={item.title}
-        width={900}
-        height={675}
-      />
-      <div className="p-5">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-gold">{item.category}</span>
-        <h3 className="mt-1.5 font-display text-base font-bold leading-snug text-navy-deep">{item.title}</h3>
+    <section className="container-x py-20 md:py-28">
+      <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div>
+          <SectionLabel>Realizacje</SectionLabel>
+          <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
+            Zobacz efekty naszej pracy
+          </h2>
+          <p className="mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
+            Przeciągnij suwak na zdjęciach poniżej i zobacz, jak wygląda przestrzeń przed i po naszej interwencji.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {GALLERY_CATS.map((c) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setFilter(c)}
+              aria-pressed={filter === c}
+              className={
+                "rounded-full px-4 py-2 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 " +
+                (filter === c
+                  ? "bg-navy text-cream"
+                  : "border border-border bg-card text-navy-deep/70 hover:text-navy-deep")
+              }
+            >
+              {c}
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
+
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {BEFORE_AFTER.slice(0, 2).map((c) => (
+          <BeforeAfter
+            key={c.id}
+            before={c.before}
+            after={c.after}
+            label={c.label}
+            category={c.category}
+          />
+        ))}
+      </div>
+
+      <div className="mt-12 flex items-center justify-between">
+        <h3 className="font-display text-xl font-bold text-navy-deep md:text-2xl">Galeria realizacji</h3>
+        <Link to="/realizacje" className="inline-flex items-center gap-1 text-sm font-semibold text-navy-deep hover:text-gold">
+          Więcej realizacji <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+
+      <div className="mt-6 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
+        {items.map((g, i) => {
+          const isTall = (g as { h?: string }).h === "tall";
+          return (
+            <figure
+              key={i}
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+            >
+              <img
+                src={g.src}
+                alt={g.alt}
+                width={isTall ? 900 : 1200}
+                height={isTall ? 1200 : 900}
+                loading="lazy"
+                decoding="async"
+                className={
+                  "w-full object-cover transition-transform duration-500 group-hover:scale-105 " +
+                  (isTall ? "aspect-[3/4]" : "aspect-[4/3]")
+                }
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-navy-deep/85 to-transparent p-4 text-xs font-semibold text-cream">
+                <span>{g.cat}</span>
+                <span className="rounded-full bg-gold/90 px-2.5 py-0.5 text-[10px] text-navy-deep">
+                  Realizacja
+                </span>
+              </figcaption>
+            </figure>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -468,17 +592,15 @@ function Process() {
 
         <ol className="mt-14 grid gap-6 md:grid-cols-3 lg:grid-cols-5">
           {STEPS.map((s, i) => (
-            <li key={s.title}>
-              <Reveal
-                delay={i * 80}
-                className="relative rounded-2xl border border-cream/10 bg-cream/[0.03] p-6 backdrop-blur"
-              >
-                <div className="font-display text-5xl font-bold text-gold/80">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <h3 className="mt-4 font-display text-xl font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-cream/70">{s.text}</p>
-              </Reveal>
+            <li
+              key={s.title}
+              className="relative rounded-2xl border border-cream/10 bg-cream/[0.03] p-6 backdrop-blur"
+            >
+              <div className="font-display text-5xl font-bold text-gold/80">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <h3 className="mt-4 font-display text-xl font-bold">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-cream/70">{s.text}</p>
             </li>
           ))}
         </ol>
@@ -523,19 +645,26 @@ function Testimonials() {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-border bg-card p-8 shadow-premium md:p-12">
+        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-8 shadow-premium md:p-12">
+          <Quote className="absolute -top-4 -right-2 h-32 w-32 text-gold/10" />
           <div className="flex items-center gap-1 text-gold">
             {Array.from({ length: 5 }).map((_, k) => (
               <Star key={k} className="h-5 w-5 fill-current" />
             ))}
+            <span className="ml-3 text-xs font-semibold text-muted-foreground">5.0 / 5</span>
           </div>
-          <p className="mt-6 font-display text-xl leading-relaxed text-navy-deep md:text-2xl">
+          <p className="relative mt-6 font-display text-xl leading-relaxed text-navy-deep md:text-2xl lg:text-[1.65rem]">
             „{t.text}"
           </p>
-          <div className="mt-8 flex items-center justify-between">
-            <div>
-              <div className="font-semibold text-navy-deep">{t.name}</div>
-              <div className="text-sm text-muted-foreground">{t.role}</div>
+          <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
+            <div className="flex items-center gap-3">
+              <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-gold to-ember font-display text-lg font-bold text-navy-deep shadow-sm">
+                {t.name.charAt(0)}
+              </div>
+              <div>
+                <div className="font-semibold text-navy-deep">{t.name}</div>
+                <div className="text-sm text-muted-foreground">{t.role}</div>
+              </div>
             </div>
             <div className="text-sm text-muted-foreground">
               {i + 1} / {total}
