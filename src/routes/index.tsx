@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   Award,
@@ -14,7 +14,6 @@ import {
   Hammer,
   Home,
   Landmark,
-  Layers,
   Leaf,
   Mail,
   MapPin,
@@ -27,7 +26,9 @@ import {
 } from "lucide-react";
 import { SiteLayout, SectionLabel } from "@/components/site/Layout";
 import { ContactForm } from "@/components/site/ContactForm";
-import { BLOG_POSTS, FAQ, GEO_FAQ, LOCATIONS, SERVICES, SITE, STEPS, TESTIMONIALS } from "@/lib/site-data";
+import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
+import { Reveal } from "@/components/site/Reveal";
+import { BLOG_POSTS, FAQ, GEO_FAQ, LOCATIONS, REALIZACJE, SERVICES, SITE, STEPS, TESTIMONIALS, getBlogCover } from "@/lib/site-data";
 import {
   Accordion,
   AccordionContent,
@@ -36,12 +37,6 @@ import {
 } from "@/components/ui/accordion";
 import heroImg from "@/assets/hero.jpg";
 import aboutImg from "@/assets/about.jpg";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -96,7 +91,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const ICONS = { Home, Building2, Briefcase, Users, Landmark, Hammer, Bird, Sparkles, Layers, Leaf };
+const ICONS = { Home, Building2, Briefcase, Users, Landmark, Hammer, Bird, Sparkles, Leaf };
 
 const STATS = [
   { value: "10+", label: "lat doświadczenia" },
@@ -104,15 +99,6 @@ const STATS = [
   { value: "100%", label: "zadowolonych klientów" },
   { value: "24h", label: "szybkie terminy realizacji" },
 ];
-
-const GALLERY = [
-  { src: g1, cat: "Mieszkania", alt: "Czyste mieszkanie po sprzątaniu", h: "tall" },
-  { src: g2, cat: "Biura", alt: "Wysprzątane nowoczesne biuro" },
-  { src: g3, cat: "Balkony", alt: "Czysty balkon po sprzątaniu" },
-  { src: g4, cat: "Wspólnoty", alt: "Czysta klatka schodowa", h: "tall" },
-  { src: g5, cat: "Tereny zielone", alt: "Zadbany teren zielony" },
-  { src: g6, cat: "Mieszkania", alt: "Mycie okien" },
-] as const;
 
 function Index() {
   return (
@@ -289,9 +275,10 @@ function WhyUs() {
         </h2>
       </div>
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {WHY_US.map((item) => (
-          <div
+        {WHY_US.map((item, i) => (
+          <Reveal
             key={item.title}
+            delay={(i % 3) * 90}
             className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-premium"
           >
             <span className="grid h-12 w-12 place-items-center rounded-xl bg-gold/15 text-gold">
@@ -299,7 +286,7 @@ function WhyUs() {
             </span>
             <h3 className="font-display text-lg font-bold text-navy-deep">{item.title}</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -415,75 +402,57 @@ function Services() {
   );
 }
 
-const GALLERY_CATS = ["Wszystkie", "Mieszkania", "Biura", "Balkony", "Wspólnoty", "Tereny zielone"];
-
 function Gallery() {
-  const [filter, setFilter] = useState<string>("Wszystkie");
-  const items = useMemo(
-    () => GALLERY.filter((g) => filter === "Wszystkie" || g.cat === filter),
-    [filter],
-  );
+  const teaser = REALIZACJE.slice(0, 3);
 
   return (
     <section className="container-x py-20 md:py-28">
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-        <div>
+        <div className="max-w-2xl">
           <SectionLabel>Realizacje</SectionLabel>
           <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
-            Zobacz efekty naszej pracy
+            Zobacz prawdziwe efekty „przed” i „po”
           </h2>
+          <p className="mt-4 text-muted-foreground">
+            Przesuń suwak na zdjęciu, aby zobaczyć różnicę. To prawdziwe realizacje naszej ekipy — nie zdjęcia poglądowe.
+          </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {GALLERY_CATS.map((c) => (
-            <button
-              key={c}
-              type="button"
-              onClick={() => setFilter(c)}
-              aria-pressed={filter === c}
-              className={
-                "rounded-full px-4 py-2 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 " +
-                (filter === c
-                  ? "bg-navy text-cream"
-                  : "border border-border bg-card text-navy-deep/70 hover:text-navy-deep")
-              }
-            >
-              {c}
-            </button>
-          ))}
-        </div>
+        <Link
+          to="/realizacje"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-navy-deep hover:text-gold transition-colors"
+        >
+          Zobacz wszystkie realizacje <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
 
-      <div className="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
-        {items.map((g, i) => {
-          const isTall = (g as { h?: string }).h === "tall";
-          return (
-            <figure
-              key={i}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
-            >
-              <img
-                src={g.src}
-                alt={g.alt}
-                width={isTall ? 900 : 1200}
-                height={isTall ? 1200 : 900}
-                loading="lazy"
-                decoding="async"
-                className={
-                  "w-full object-cover transition-transform duration-500 group-hover:scale-105 " +
-                  (isTall ? "aspect-[3/4]" : "aspect-[4/3]")
-                }
-              />
-              <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-navy-deep/85 to-transparent p-4 text-xs font-semibold text-cream">
-                <span>{g.cat}</span>
-                <span className="rounded-full bg-gold/90 px-2.5 py-0.5 text-[10px] text-navy-deep">
-                  Realizacja
-                </span>
-              </figcaption>
-            </figure>
-          );
-        })}
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {teaser.map((item, i) => (
+          <Reveal key={item.slug} delay={i * 100}>
+            <HomeBeforeAfter item={item} />
+          </Reveal>
+        ))}
       </div>
     </section>
+  );
+}
+
+function HomeBeforeAfter({ item }: { item: (typeof REALIZACJE)[number] }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:shadow-premium">
+      <BeforeAfterSlider
+        before={item.before}
+        after={item.after}
+        beforeLabel={item.beforeLabel}
+        afterLabel={item.afterLabel}
+        title={item.title}
+        width={900}
+        height={675}
+      />
+      <div className="p-5">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-gold">{item.category}</span>
+        <h3 className="mt-1.5 font-display text-base font-bold leading-snug text-navy-deep">{item.title}</h3>
+      </div>
+    </div>
   );
 }
 
@@ -499,15 +468,17 @@ function Process() {
 
         <ol className="mt-14 grid gap-6 md:grid-cols-3 lg:grid-cols-5">
           {STEPS.map((s, i) => (
-            <li
-              key={s.title}
-              className="relative rounded-2xl border border-cream/10 bg-cream/[0.03] p-6 backdrop-blur"
-            >
-              <div className="font-display text-5xl font-bold text-gold/80">
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <h3 className="mt-4 font-display text-xl font-bold">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-cream/70">{s.text}</p>
+            <li key={s.title}>
+              <Reveal
+                delay={i * 80}
+                className="relative rounded-2xl border border-cream/10 bg-cream/[0.03] p-6 backdrop-blur"
+              >
+                <div className="font-display text-5xl font-bold text-gold/80">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="mt-4 font-display text-xl font-bold">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-cream/70">{s.text}</p>
+              </Reveal>
             </li>
           ))}
         </ol>
@@ -576,10 +547,6 @@ function Testimonials() {
   );
 }
 
-const BLOG_COVERS: Record<string, string> = {
-  "gallery-1": g1, "gallery-2": g2, "gallery-3": g3, "gallery-4": g4, "gallery-6": g6,
-};
-
 function BlogPreview() {
   return (
     <section className="bg-secondary/40">
@@ -608,7 +575,7 @@ function BlogPreview() {
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-premium"
             >
               <img
-                src={BLOG_COVERS[p.cover] ?? g1}
+                src={getBlogCover(p.slug)}
                 alt={p.title}
                 width={800}
                 height={500}

@@ -242,6 +242,40 @@ function LocationPage() {
             ))}
         </div>
       </section>
+
+      <section className="container-x pb-20">
+        <div className="relative overflow-hidden rounded-[2rem] bg-navy-deep p-10 text-cream shadow-premium md:p-16">
+          <div className="absolute inset-0 bg-grid-navy opacity-20" />
+          <div
+            className="absolute -top-24 -right-10 h-80 w-80 rounded-full opacity-40 blur-3xl"
+            style={{ background: "radial-gradient(circle, var(--gold), transparent 60%)" }}
+          />
+          <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
+            <div>
+              <h2 className="font-display text-2xl font-bold leading-tight md:text-4xl">
+                Sprzątanie w {location.name} — zacznijmy od bezpłatnej wyceny
+              </h2>
+              <p className="mt-4 max-w-xl text-cream/75">
+                Wycena w 15 minut, odpowiedź w ciągu kilku godzin, dojazd w ciągu 1–3 dni roboczych.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 md:items-end">
+              <Link
+                to="/kontakt"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-semibold text-navy-deep transition-transform hover:scale-[1.02]"
+              >
+                Zamów wycenę <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a
+                href={`tel:${SITE.phoneRaw}`}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-cream/30 px-7 py-4 text-sm font-semibold text-cream hover:bg-cream/5"
+              >
+                <Phone className="h-4 w-4" /> {SITE.phone}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </SiteLayout>
   );
 }

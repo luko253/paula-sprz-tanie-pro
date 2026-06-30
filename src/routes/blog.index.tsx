@@ -1,15 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
-import { BLOG_POSTS, BLOG_POSTS_EXTENDED } from "@/lib/site-data";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g6 from "@/assets/gallery-6.jpg";
-
-const COVERS: Record<string, string> = {
-  "gallery-1": g1, "gallery-2": g2, "gallery-3": g3, "gallery-4": g4, "gallery-6": g6,
-};
+import { ALL_BLOG_POSTS, getBlogCover } from "@/lib/site-data";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -26,7 +17,6 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogIndex() {
-  const allPosts = [...BLOG_POSTS, ...BLOG_POSTS_EXTENDED];
   return (
     <SiteLayout>
       <PageHero
@@ -43,7 +33,7 @@ function BlogIndex() {
       </nav>
       <section className="container-x py-16">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {allPosts.map((p) => (
+          {ALL_BLOG_POSTS.map((p) => (
             <Link
               key={p.slug}
               to="/blog/$slug"
@@ -51,7 +41,7 @@ function BlogIndex() {
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-premium"
             >
               <img
-                src={COVERS[p.cover] ?? g1}
+                src={getBlogCover(p.slug)}
                 alt={p.title}
                 width={800}
                 height={500}

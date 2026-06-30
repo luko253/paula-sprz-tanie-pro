@@ -1,3 +1,29 @@
+import svcMieszkaniaHero from "@/assets/svc-mieszkania-hero.jpg";
+import mieszkanieAfter from "@/assets/mieszkanie-after.jpg";
+import mieszkanieCleanLiving from "@/assets/mieszkanie-clean-living.jpg";
+import mieszkanieBeforeClutter from "@/assets/mieszkanie-before-clutter.jpg";
+import svcDomowHero from "@/assets/svc-domow-hero.jpg";
+import domExterior2 from "@/assets/dom-exterior-2.jpg";
+import svcBiurHero from "@/assets/svc-biur-hero.jpg";
+import biuroLounge from "@/assets/biuro-lounge.jpg";
+import biuroGlassRoom from "@/assets/biuro-glass-room.jpg";
+import svcWspolnotyHero from "@/assets/svc-wspolnoty-hero.jpg";
+import klatkaAfterBw from "@/assets/klatka-after-bw.jpg";
+import klatkaBeforeWorn from "@/assets/klatka-before-worn.jpg";
+import buildingExteriorModern from "@/assets/building-exterior-modern.jpg";
+import svcRemontBefore from "@/assets/svc-remont-before.jpg";
+import remontBeforeTools from "@/assets/remont-before-tools.jpg";
+import svcRemontAfter from "@/assets/svc-remont-after.jpg";
+import svcBalkonyBefore from "@/assets/svc-balkony-before.jpg";
+import svcBalkonyAfter from "@/assets/svc-balkony-after.jpg";
+import svcOknaHero from "@/assets/svc-okna-hero.jpg";
+import oknaBuilding from "@/assets/okna-building.jpg";
+import oknaIndoor from "@/assets/okna-indoor.jpg";
+import svcTerenyHero from "@/assets/svc-tereny-hero.jpg";
+import terenyLawn from "@/assets/tereny-lawn.jpg";
+import wspolnotaBeforeCorridor from "@/assets/wspolnota-before-corridor.jpg";
+import wspolnotaAfterLobby from "@/assets/wspolnota-after-lobby.jpg";
+
 export const SITE = {
   name: "LumiClean",
   phone: "+48 600 000 000",
@@ -193,27 +219,6 @@ export const SERVICES: Service[] = [
       "Czyszczenie moskitier i rolet",
     ],
     priceFrom: "od 15 zł/szt.",
-  },
-  {
-    slug: "czyszczenie-kostki-brukowej",
-    title: "Czyszczenie kostki brukowej",
-    short: "Mechaniczne czyszczenie podjazdów, tarasów i chodników.",
-    icon: "Layers",
-    intro:
-      "Kostka jak nowa. Usuwamy mchy, porosty i głęboko wniknięty brud. Po czyszczeniu impregnujemy powierzchnię.",
-    benefits: [
-      "Profesjonalne myjki ciśnieniowe",
-      "Usuwanie mchu i chwastów",
-      "Impregnacja po umyciu",
-      "Cena zależna od metrażu",
-    ],
-    scope: [
-      "Mycie kostki ciśnieniem",
-      "Usuwanie zabrudzeń olejowych",
-      "Uzupełnianie fugi piaskowej",
-      "Impregnacja powierzchni (opcja)",
-    ],
-    priceFrom: "od 8 zł/m²",
   },
   {
     slug: "sprzatanie-terenow-zielonych",
@@ -802,17 +807,6 @@ export const BLOG_POSTS_EXTENDED: BlogPost[] = [
     ],
   },
   {
-    slug: "czyszczenie-kostki-brukowej-krakow",
-    title: "Czyszczenie kostki brukowej w Krakowie — ceny i metody",
-    excerpt: "Mchy, porosty, plamy olejowe — jak przywrócić kostce brukowej pierwotny wygląd?",
-    date: "2025-02-01",
-    readMinutes: 5,
-    cover: "gallery-5",
-    body: [
-      { heading: "Metoda ciśnieniowa", paragraphs: ["Mycie ciśnieniowe to najskuteczniejszy sposób na czyszczenie kostki. Po myciu zalecamy impregnację, która chroni powierzchnię na 2–3 lata. Cena od 8 zł/m²."] },
-    ],
-  },
-  {
     slug: "sprzatanie-przedszkoli-krakow",
     title: "Sprzątanie przedszkoli i żłobków w Krakowie",
     excerpt: "Dzieci wymagają szczególnie czystego otoczenia. Sprzątamy przedszkola środkami bezpiecznymi dla maluchów.",
@@ -888,3 +882,329 @@ export const GEO_FAQ = [
   { q: "Ile kosztuje sprzątanie w Krakowie?", a: "Sprzątanie mieszkania 50 m² kosztuje 180–250 zł. Sprzątanie po remoncie — od 12 zł/m². Mycie okien — od 15 zł/szt. Wspólnoty i biura — wycena indywidualna. Przy stałej współpracy stawki są niższe o 20–30%. Wycena jest zawsze bezpłatna i wiążąca." },
   { q: "Jak zamówić sprzątanie w Krakowie?", a: "Zadzwoń pod numer +48 600 000 000, napisz e-mail na kontakt@lumiclean.pl lub wypełnij formularz na stronie lumiclean.pl. Wycenę podajemy w ciągu 15 minut, a termin realizacji to zwykle 1–3 dni robocze." },
 ];
+
+export const ALL_BLOG_POSTS: BlogPost[] = [...BLOG_POSTS, ...BLOG_POSTS_EXTENDED];
+
+const BLOG_COVER_POOL: string[] = [
+  mieszkanieAfter,
+  biuroLounge,
+  wspolnotaBeforeCorridor,
+  oknaBuilding,
+  svcRemontBefore,
+  svcBalkonyBefore,
+  svcMieszkaniaHero,
+  domExterior2,
+  klatkaAfterBw,
+  mieszkanieBeforeClutter,
+  klatkaBeforeWorn,
+  svcBalkonyAfter,
+  buildingExteriorModern,
+  svcOknaHero,
+  svcDomowHero,
+  svcRemontAfter,
+  terenyLawn,
+  svcTerenyHero,
+  biuroGlassRoom,
+  wspolnotaAfterLobby,
+  svcBiurHero,
+  svcWspolnotyHero,
+  oknaIndoor,
+  mieszkanieCleanLiving,
+];
+
+export function getBlogCover(slug: string): string {
+  const index = ALL_BLOG_POSTS.findIndex((p) => p.slug === slug);
+  const safeIndex = index === -1 ? 0 : index;
+  return BLOG_COVER_POOL[safeIndex % BLOG_COVER_POOL.length];
+}
+
+export const SERVICE_HERO_IMAGES: Record<string, string> = {
+  "sprzatanie-mieszkan": svcMieszkaniaHero,
+  "sprzatanie-domow": svcDomowHero,
+  "sprzatanie-biur": svcBiurHero,
+  "sprzatanie-wspolnot-mieszkaniowych": svcWspolnotyHero,
+  "sprzatanie-administracji": biuroGlassRoom,
+  "sprzatanie-po-remoncie": svcRemontBefore,
+  "sprzatanie-balkonow-po-golebiach": svcBalkonyBefore,
+  "mycie-okien": svcOknaHero,
+  "sprzatanie-terenow-zielonych": svcTerenyHero,
+};
+
+export type BeforeAfter = {
+  slug: string;
+  serviceSlug: string;
+  title: string;
+  description: string;
+  category: string;
+  beforeLabel: string;
+  afterLabel: string;
+  before: { src: string; alt: string };
+  after: { src: string; alt: string };
+};
+
+export const REALIZACJE: BeforeAfter[] = [
+  {
+    slug: "mieszkanie-krowodrza",
+    serviceSlug: "sprzatanie-mieszkan",
+    category: "Mieszkania",
+    title: "Generalne sprzątanie mieszkania — Krowodrza",
+    description:
+      "Mieszkanie 62 m² po dwóch latach bez generalnego sprzątania. Zabałaganione szafy, zaniedbane powierzchnie, zalegający kurz. Po trzygodzinnej pracy dwuosobowej ekipy: lśniące podłogi, wyczyszczone fronty mebli, uporządkowana przestrzeń gotowa do zamieszkania.",
+    beforeLabel: "Przed sprzątaniem",
+    afterLabel: "Po sprzątaniu",
+    before: { src: mieszkanieBeforeClutter, alt: "Zabałaganione, zaniedbane wnętrze mieszkania przed generalnym sprzątaniem" },
+    after: { src: mieszkanieCleanLiving, alt: "Czyste, uporządkowane mieszkanie po profesjonalnym sprzątaniu generalnym" },
+  },
+  {
+    slug: "remont-podgorze",
+    serviceSlug: "sprzatanie-po-remoncie",
+    category: "Po remoncie",
+    title: "Sprzątanie po remoncie — apartament na Podgórzu",
+    description:
+      "Mieszkanie po całkowitym remoncie — pył budowlany na każdej powierzchni, resztki farby i taśmy malarskiej, narzędzia ekipy budowlanej. Trzykrotne odkurzanie, mycie wszystkich powierzchni i okien pozwoliło oddać mieszkanie gotowe do odbioru tego samego dnia.",
+    beforeLabel: "W trakcie remontu",
+    afterLabel: "Po sprzątaniu poremontowym",
+    before: { src: svcRemontBefore, alt: "Pomieszczenie w trakcie remontu z narzędziami i pyłem budowlanym przed sprzątaniem" },
+    after: { src: svcRemontAfter, alt: "Czyste, jasne wnętrze gotowe do zamieszkania po sprzątaniu poremontowym" },
+  },
+  {
+    slug: "okna-stare-miasto",
+    serviceSlug: "mycie-okien",
+    category: "Mycie okien",
+    title: "Mycie okien — kamienica przy Rynku",
+    description:
+      "Duże, wysokie okna w zabytkowej kamienicy — zaniedbane od kilku sezonów, ze smugami i osadem. Profesjonalne mycie dwustronne z czyszczeniem ram i parapetów dało efekt pełnej przejrzystości szyb i więcej naturalnego światła we wnętrzu.",
+    beforeLabel: "Ekipa w trakcie pracy",
+    afterLabel: "Efekt końcowy",
+    before: { src: svcOknaHero, alt: "Pracownik myjący duże okno na wysokości przy użyciu profesjonalnego sprzętu" },
+    after: { src: oknaBuilding, alt: "Lśniąca, czysta fasada szklana po profesjonalnym myciu okien" },
+  },
+  {
+    slug: "balkon-bronowice",
+    serviceSlug: "sprzatanie-balkonow-po-golebiach",
+    category: "Balkony po gołębiach",
+    title: "Czyszczenie balkonu po gołębiach — Bronowice",
+    description:
+      "Balkon nawiedzany przez gołębie od dłuższego czasu — zabrudzona posadzka, barierki i ściana. Mechaniczne usunięcie zabrudzeń, pełna dezynfekcja powierzchni oraz montaż siatki zabezpieczającej przed powrotem ptaków.",
+    beforeLabel: "Przed czyszczeniem",
+    afterLabel: "Po dezynfekcji",
+    before: { src: svcBalkonyBefore, alt: "Zaniedbany, zabrudzony balkon przed profesjonalnym czyszczeniem i dezynfekcją" },
+    after: { src: svcBalkonyAfter, alt: "Czysty, zadbany balkon po dezynfekcji i zabezpieczeniu przed gołębiami" },
+  },
+  {
+    slug: "wspolnota-debniki",
+    serviceSlug: "sprzatanie-wspolnot-mieszkaniowych",
+    category: "Wspólnoty mieszkaniowe",
+    title: "Obsługa wspólnoty mieszkaniowej — Dębniki",
+    description:
+      "Korytarz wejściowy budynku wielorodzinnego z odpryskującą farbą i zaniedbaną posadzką. Po wdrożeniu stałej umowy: regularne mycie, odświeżenie powierzchni i estetyczne, zadbane lobby, które poprawiło odbiór całego budynku.",
+    beforeLabel: "Przed obsługą",
+    afterLabel: "Po wdrożeniu stałej umowy",
+    before: { src: wspolnotaBeforeCorridor, alt: "Zaniedbany korytarz wejściowy budynku wielorodzinnego z odpryskującą farbą" },
+    after: { src: wspolnotaAfterLobby, alt: "Nowoczesne, czyste lobby budynku po wdrożeniu stałej obsługi sprzątającej" },
+  },
+  {
+    slug: "klatka-pradnik",
+    serviceSlug: "sprzatanie-wspolnot-mieszkaniowych",
+    category: "Klatki schodowe",
+    title: "Sprzątanie klatki schodowej — Prądnik Czerwony",
+    description:
+      "Klatka schodowa z widocznym zaniedbaniem — zmatowiałe stopnie, zabrudzone barierki i poręcze. Wprowadzenie cyklicznego sprzątania 2× w tygodniu przywróciło czystość i estetykę, którą doceniają mieszkańcy.",
+    beforeLabel: "Przed wdrożeniem usługi",
+    afterLabel: "Po cyklicznym sprzątaniu",
+    before: { src: klatkaBeforeWorn, alt: "Zniszczona, zaniedbana klatka schodowa z odpryskującym betonem przed sprzątaniem" },
+    after: { src: klatkaAfterBw, alt: "Czysta, nowoczesna klatka schodowa po wdrożeniu cyklicznego sprzątania" },
+  },
+];
+
+export type ServiceDetail = {
+  longIntro: string[];
+  benefitCards: { title: string; text: string }[];
+  process: { title: string; text: string }[];
+  faq: { q: string; a: string }[];
+  galleryImages: { src: string; alt: string }[];
+  highlight: string;
+};
+
+export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
+  "sprzatanie-mieszkan": {
+    highlight: "Najczęściej wybierana usługa",
+    longIntro: [
+      "Sprzątanie mieszkań w Krakowie to nasza podstawowa i najczęściej zamawiana usługa — realizujemy ją od ponad 10 lat, zarówno jako sprzątanie jednorazowe, jak i regularną, cykliczną współpracę. Wiemy, że każde mieszkanie jest inne: kawalerka na Kazimierzu wymaga innego podejścia niż 5-pokojowy apartament na Woli Justowskiej. Dlatego zawsze dopasowujemy zakres prac, czas trwania i dobór środków do konkretnej przestrzeni.",
+      "Nasza ekipa pracuje według sprawdzonej, powtarzalnej procedury — zaczynamy od pomieszczeń \"mokrych\" (kuchnia, łazienka), gdzie zabrudzenia są najbardziej uciążliwe, a kończymy na powierzchniach suchych. Dzięki temu efekt jest spójny w całym mieszkaniu, a nie tylko punktowo tam, gdzie \"widać\". Każde zlecenie kończy się krótką kontrolą jakości razem z klientem.",
+      "Szczególnie chętnie podejmujemy się sprzątania regularnego — raz w tygodniu, raz na dwa tygodnie lub raz w miesiącu. Stali klienci zyskują nie tylko niższą cenę (nawet do 30% taniej niż przy zleceniach jednorazowych), ale przede wszystkim spokój — ta sama, zaufana osoba zna rozkład mieszkania, preferencje co do środków czystości i szczególne wymagania (alergie, zwierzęta, delikatne powierzchnie).",
+    ],
+    benefitCards: [
+      { title: "Indywidualna wycena z góry", text: "Cenę ustalamy przed rozpoczęciem prac na podstawie metrażu i zakresu — żadnych niespodzianek na koniec." },
+      { title: "Stała opiekunka/opiekun", text: "Przy regularnej współpracy przypisujemy do Twojego mieszkania tę samą, zaufaną osobę." },
+      { title: "Środki dopasowane do Ciebie", text: "Klasyczne środki profesjonalne lub w pełni ekologiczne — bez agresywnej chemii, bezpieczne dla dzieci i zwierząt." },
+      { title: "Elastyczne terminy", text: "Pracujemy również w weekendy i wieczorami — dopasowujemy się do Twojego kalendarza, nie odwrotnie." },
+    ],
+    process: [
+      { title: "Wycena na podstawie metrażu", text: "Podajesz metraż i liczbę pomieszczeń — w 15 minut otrzymujesz orientacyjną wycenę." },
+      { title: "Ustalenie zakresu i terminu", text: "Doprecyzowujemy szczegóły: czy mycie okien wchodzi w zakres, czy potrzebne są środki eko, kiedy wygodnie nam wejść." },
+      { title: "Sprzątanie według procedury", text: "Ekipa pracuje od pomieszczeń mokrych do suchych, z kontrolą jakości na każdym etapie." },
+      { title: "Odbiór i ewentualne poprawki", text: "Sprawdzamy efekt razem — jeśli coś wymaga poprawy, wracamy bezpłatnie tego samego dnia." },
+    ],
+    faq: [
+      { q: "Czy sprzątacie mieszkania w trakcie wynajmu (z lokatorami)?", a: "Tak, regularnie sprzątamy mieszkania zamieszkane. Pracujemy dyskretnie, w ustalonych godzinach, z poszanowaniem prywatności domowników." },
+      { q: "Czy mogę zamówić tylko wybrane pomieszczenia?", a: "Oczywiście. Sprzątanie punktowe (np. tylko kuchnia i łazienka) wyceniamy proporcjonalnie do zakresu." },
+      { q: "Czy sprzątacie po zwierzętach domowych?", a: "Tak, mamy doświadczenie w usuwaniu sierści i zapachów. Na życzenie stosujemy środki neutralizujące zapachy, bezpieczne dla zwierząt." },
+      { q: "Jak długo trwa sprzątanie typowego mieszkania?", a: "Mieszkanie 50 m² to zwykle 2,5–3,5 godziny pracy jednej osoby. Większe metraże lub sprzątanie generalne wymagają więcej czasu lub większej ekipy." },
+    ],
+    galleryImages: [
+      { src: mieszkanieAfter, alt: "Czysta, nowoczesna kuchnia po profesjonalnym sprzątaniu mieszkania" },
+      { src: mieszkanieCleanLiving, alt: "Jasny, uporządkowany salon po sprzątaniu mieszkania w Krakowie" },
+    ],
+  },
+  "sprzatanie-biur": {
+    highlight: "Wybór firm i korporacji",
+    longIntro: [
+      "Czyste biuro to nie tylko kwestia estetyki — to realny wpływ na produktywność zespołu i pierwsze wrażenie, jakie firma robi na klientach i kontrahentach. Obsługujemy biura w całym Krakowie: od kilkuosobowych startupów w Zabłociu, przez kancelarie w centrum, po duże open space'y korporacyjne w biurowcach przy Capital Parku czy Bonarka Business Park.",
+      "Pracujemy elastycznie — najczęściej poza godzinami pracy biura: wcześnie rano, wieczorem lub w weekendy, tak aby nie zakłócać codziennego funkcjonowania firmy. Dla klientów ceniących dyskrecję (kancelarie prawne, biura rachunkowe, firmy z branży finansowej) nasi pracownicy podpisują dodatkowe klauzule poufności.",
+      "Przy stałej współpracy ustalamy szczegółowy harmonogram (SLA) określający częstotliwość, zakres i standard prac — wraz z możliwością zgłaszania uwag i comiesięcznym raportowaniem. To rozwiązanie szczególnie cenione przez większe organizacje, które potrzebują przewidywalności i udokumentowanej jakości usługi.",
+    ],
+    benefitCards: [
+      { title: "Praca poza godzinami biura", text: "Sprzątamy wcześnie rano, wieczorem lub w weekendy — bez zakłócania pracy zespołu." },
+      { title: "Klauzule poufności", text: "Na życzenie podpisujemy dodatkowe NDA dla kancelarii, biur finansowych i firm o podwyższonych standardach bezpieczeństwa." },
+      { title: "SLA i raportowanie", text: "Przy stałych umowach ustalamy mierzalne standardy jakości i przesyłamy comiesięczne raporty z wykonanych prac." },
+      { title: "Uzupełnianie zużywalnych", text: "Dbamy o zapas papieru, mydła i środków w toaletach i kuchniach biurowych — zgłaszamy braki z wyprzedzeniem." },
+    ],
+    process: [
+      { title: "Wizja lokalna lub wycena zdalna", text: "Dla większych biur proponujemy bezpłatną wizję lokalną; mniejsze powierzchnie wyceniamy na podstawie metrażu i zdjęć." },
+      { title: "Ustalenie harmonogramu i SLA", text: "Określamy częstotliwość (codziennie, kilka razy w tygodniu, raz w tygodniu), zakres prac i standardy jakości." },
+      { title: "Wdrożenie i pierwsza realizacja", text: "Ekipa poznaje specyfikę biura, lokalizację sprzętu i preferencje zespołu." },
+      { title: "Stała obsługa z raportowaniem", text: "Regularne sprzątanie zgodnie z harmonogramem, z możliwością zgłaszania uwag przez dedykowany kontakt." },
+    ],
+    faq: [
+      { q: "Czy obsługujecie biura w systemie codziennym?", a: "Tak, oferujemy sprzątanie codzienne, kilka razy w tygodniu lub raz w tygodniu — w zależności od wielkości zespołu i intensywności użytkowania biura." },
+      { q: "Czy pracownicy są ubezpieczeni i zweryfikowani?", a: "Tak. Wszyscy pracownicy są zatrudnieni legalnie, przeszkoleni i objęci naszym ubezpieczeniem OC do 1 mln zł." },
+      { q: "Czy wystawiacie faktury VAT z odroczonym terminem płatności?", a: "Tak, dla stałych klientów biznesowych oferujemy faktury VAT z terminem płatności do 14 dni." },
+      { q: "Co jeśli nie jesteśmy zadowoleni z jakości danego sprzątania?", a: "Zgłoszenie uwagi w ciągu 24h skutkuje bezpłatną poprawką tego samego lub następnego dnia roboczego." },
+    ],
+    galleryImages: [
+      { src: biuroLounge, alt: "Nowoczesna strefa wypoczynku w biurze po profesjonalnym sprzątaniu" },
+      { src: biuroGlassRoom, alt: "Czysta sala konferencyjna ze szklanymi ścianami po sprzątaniu biura" },
+    ],
+  },
+  "sprzatanie-po-remoncie": {
+    highlight: "Gwarancja gotowości do zamieszkania",
+    longIntro: [
+      "Sprzątanie po remoncie to nasza specjalność i jedna z najczęściej zlecanych usług — rocznie realizujemy kilkaset takich zleceń. Pył budowlany różni się znacząco od zwykłego kurzu domowego: jest drobniejszy, elektrostatycznie przywiera do powierzchni i potrafi unosić się w powietrzu jeszcze przez wiele godzin po zakończeniu prac wykończeniowych. Standardowy odkurzacz domowy sobie z nim nie poradzi.",
+      "Dlatego pracujemy sprzętem klasy przemysłowej — odkurzaczami z filtrami HEPA, które wychwytują nawet najdrobniejsze cząstki pyłu. Proces zawsze obejmuje minimum trzykrotne odkurzanie wszystkich powierzchni: raz na sucho, raz na mokro i finalnie kontrolne, aby mieć pewność, że żaden pył nie osiadł ponownie po wyschnięciu powierzchni.",
+      "Sprzątanie po remoncie to nie tylko pył — to także resztki farby, kleju, silikonu, taśmy malarskiej na szybach czy cement na glazurze. Nasza ekipa ma doświadczenie w bezpiecznym usuwaniu takich zabrudzeń bez ryzyka zarysowania nowych powierzchni — szczególnie istotne przy delikatnych materiałach jak kamień naturalny, drewno czy mat na podłogach.",
+    ],
+    benefitCards: [
+      { title: "Sprzęt z filtrami HEPA", text: "Profesjonalne odkurzacze przemysłowe wychwytują drobny pył budowlany, którego nie usunie zwykły sprzęt domowy." },
+      { title: "Trzykrotne odkurzanie", text: "Standardowa procedura: na sucho, na mokro i kontrolnie — gwarancja braku osiadającego pyłu." },
+      { title: "Bezpieczne usuwanie farby i kleju", text: "Dobieramy środki i techniki dopasowane do konkretnej powierzchni — bez ryzyka zarysowań." },
+      { title: "Szybki termin realizacji", text: "Wiemy, że czeka na Ciebie odbiór mieszkania lub przeprowadzka — w pilnych przypadkach działamy nawet następnego dnia." },
+    ],
+    process: [
+      { title: "Oględziny zakresu prac", text: "Na podstawie zdjęć lub wizji lokalnej oceniamy stopień zabrudzenia i dobieramy odpowiednią ekipę i sprzęt." },
+      { title: "Pierwsze odkurzanie na sucho", text: "Usuwamy główną warstwę pyłu budowlanego ze wszystkich powierzchni, łącznie z górnymi krawędziami mebli i listew." },
+      { title: "Mycie na mokro", text: "Dokładne mycie podłóg, glazury, terakoty, parapetów, drzwi i zabudowy kuchennej." },
+      { title: "Odkurzanie kontrolne i mycie okien", text: "Finalne odkurzanie po wyschnięciu powierzchni oraz mycie okien, ram i parapetów w cenie usługi." },
+    ],
+    faq: [
+      { q: "Ile czasu zajmuje sprzątanie po remoncie?", a: "Standardowe mieszkanie 50–60 m² to zwykle 5–7 godzin pracy dwuosobowej ekipy. Duże domy lub generalne remonty mogą wymagać 1–2 dni." },
+      { q: "Czy usuwacie naklejki ochronne i folie z okien?", a: "Tak, zdejmowanie folii ochronnych, naklejek producenta i taśmy malarskiej wchodzi w standardowy zakres usługi." },
+      { q: "Czy mogę zlecić tylko mycie okien po remoncie, bez całego mieszkania?", a: "Tak, oferujemy też usługi punktowe — samo mycie okien po remoncie wycenimy osobno." },
+      { q: "Czy zajmujecie się też wywozem odpadów poremontowych?", a: "Tak, na życzenie organizujemy wywóz większych odpadów budowlanych — wystarczy dodać tę opcję do wyceny." },
+    ],
+    galleryImages: [
+      { src: remontBeforeTools, alt: "Pomieszczenie w trakcie prac wykończeniowych z narzędziami przed sprzątaniem" },
+      { src: svcRemontAfter, alt: "Czyste mieszkanie gotowe do odbioru po sprzątaniu poremontowym" },
+    ],
+  },
+  "sprzatanie-balkonow-po-golebiach": {
+    highlight: "Specjalistyczna dezynfekcja",
+    longIntro: [
+      "Gołębie potrafią upodobać sobie balkon na długie miesiące, pozostawiając po sobie odchody, pióra i resztki gniazd. To nie tylko nieestetyczny widok — odchody ptasie zawierają bakterie, grzyby i pasożyty, które stanowią realne zagrożenie dla zdrowia, szczególnie przy kontakcie z drogami oddechowymi podczas wysychania i unoszenia się w powietrzu wraz z kurzem.",
+      "Nasza procedura zaczyna się od zmiękczenia zaschniętych zabrudzeń specjalistycznym preparatem — nigdy nie usuwamy ich \"na sucho\", ponieważ wzbija to szkodliwy pył w powietrze. Po zmiękczeniu mechanicznie usuwamy wszystkie zabrudzenia, a następnie dezynfekujemy całą powierzchnię balkonu: podłogę, barierki, ściany i sufit preparatem o działaniu bakteriobójczym i grzybobójczym.",
+      "Sama dezynfekcja to jednak tylko połowa rozwiązania — bez zabezpieczenia gołębie z dużym prawdopodobieństwem wrócą. Dlatego każde zlecenie kończymy doradztwem w zakresie zabezpieczeń: siatek ochronnych (najskuteczniejsze rozwiązanie długoterminowe), kolców na parapetach czy odstraszaczy. Na życzenie zorganizujemy też sam montaż.",
+    ],
+    benefitCards: [
+      { title: "Bezpieczne zmiękczanie zabrudzeń", text: "Nigdy nie usuwamy odchodów \"na sucho\" — zmiękczamy je najpierw, by uniknąć wzbijania szkodliwego pyłu." },
+      { title: "Pełna dezynfekcja powierzchni", text: "Preparaty bakteriobójcze i grzybobójcze obejmują podłogę, barierki, ściany i sufit balkonu." },
+      { title: "Praca w odzieży ochronnej", text: "Nasi pracownicy używają kombinezonów, masek i rękawic zgodnie z zaleceniami sanitarnymi." },
+      { title: "Doradztwo w zabezpieczeniu", text: "Po czyszczeniu doradzamy i na życzenie montujemy siatki lub kolce, by gołębie nie wróciły." },
+    ],
+    process: [
+      { title: "Ocena stopnia zabrudzenia", text: "Na podstawie zdjęć lub wizji lokalnej dobieramy odpowiednie środki i czas realizacji." },
+      { title: "Zmiękczenie zabrudzeń", text: "Specjalistyczny preparat rozmiękcza zaschnięte odchody, eliminując ryzyko wzbicia pyłu." },
+      { title: "Mechaniczne usunięcie i dezynfekcja", text: "Usuwamy zabrudzenia, a następnie dezynfekujemy całą powierzchnię balkonu — łącznie z barierkami i sufitem." },
+      { title: "Doradztwo w zabezpieczeniu", text: "Proponujemy rozwiązanie dopasowane do Twojego balkonu — siatkę, kolce lub odstraszacz." },
+    ],
+    faq: [
+      { q: "Czy dezynfekcja jest bezpieczna dla dzieci i zwierząt?", a: "Tak, stosujemy preparaty dopuszczone do użytku w przestrzeniach mieszkalnych. Zalecamy jedynie krótkie wywietrzenie balkonu po zabiegu." },
+      { q: "Jak szybko gołębie mogą wrócić po czyszczeniu?", a: "Bez zabezpieczenia — nawet po kilku dniach. Dlatego rekomendujemy montaż siatki lub kolców bezpośrednio po dezynfekcji." },
+      { q: "Czy usuwacie też gniazda gołębi?", a: "Tak, mechaniczne usunięcie gniazd i zabezpieczonych resztek wchodzi w zakres usługi." },
+      { q: "Ile kosztuje montaż siatki zabezpieczającej?", a: "Cena zależy od wielkości balkonu i typu siatki — wyceniamy indywidualnie razem z usługą czyszczenia." },
+    ],
+    galleryImages: [
+      { src: svcBalkonyBefore, alt: "Zaniedbany balkon przed profesjonalnym czyszczeniem i dezynfekcją po gołębiach" },
+      { src: svcBalkonyAfter, alt: "Czysty, zadbany balkon po dezynfekcji i zabezpieczeniu przed ptakami" },
+    ],
+  },
+  "mycie-okien": {
+    highlight: "Bez smug, bez ryzyka",
+    longIntro: [
+      "Mycie okien wydaje się proste, dopóki nie trzeba umyć dużych przeszkleń na wysokim piętrze, okien dachowych lub witryn sklepowych bez pozostawiania smug. Nasi pracownicy korzystają z profesjonalnych ściągaczek, mikrofibr i środków, które nie zostawiają zacieków nawet przy intensywnym nasłonecznieniu — częstym problemie przy samodzielnym myciu domowymi sposobami.",
+      "Obsługujemy mycie okien na każdej wysokości — od parteru po wyższe kondygnacje, z użyciem technik bezpiecznych i zgodnych z przepisami BHP. Dla budynków biurowych i kamienic z trudno dostępnymi oknami stosujemy systemy na wysięgnikach teleskopowych, eliminując konieczność wchodzenia na zewnętrzne parapety.",
+      "Usługa zawsze obejmuje więcej niż same szyby: czyścimy ramy, uszczelki, parapety wewnętrzne i zewnętrzne oraz, na życzenie, moskitiery i rolety zewnętrzne. To kompleksowe podejście sprawia, że efekt jest widoczny i trwały — bez szybkiego ponownego osiadania kurzu w newralgicznych miejscach.",
+    ],
+    benefitCards: [
+      { title: "Mycie na każdej wysokości", text: "Wysięgniki teleskopowe i sprzęt dostosowany do wyższych kondygnacji — bez ryzyka i bez wchodzenia na parapety." },
+      { title: "Zero smug gwarantowane", text: "Profesjonalne ściągaczki i środki dobrane pod kątem nasłonecznienia i typu szkła." },
+      { title: "Pełny zakres w cenie", text: "Ramy, uszczelki i parapety czyścimy standardowo — nie tylko samą szybę." },
+      { title: "Możliwość stałej umowy", text: "Cykliczne mycie okien co kwartał lub co pół roku — z rabatem za regularną współpracę." },
+    ],
+    process: [
+      { title: "Wycena na podstawie liczby okien", text: "Podajesz liczbę i wielkość okien — błyskawicznie podajemy orientacyjną cenę." },
+      { title: "Dobór techniki i sprzętu", text: "Dla wyższych kondygnacji lub trudno dostępnych okien dobieramy wysięgniki lub odpowiednie zabezpieczenia." },
+      { title: "Mycie dwustronne i ram", text: "Czyścimy szyby z obu stron oraz ramy, uszczelki i parapety wewnętrzne i zewnętrzne." },
+      { title: "Kontrola pod światło", text: "Sprawdzamy efekt pod różnym kątem padania światła, by wyeliminować nawet drobne smugi." },
+    ],
+    faq: [
+      { q: "Czy myjecie okna dachowe i świetliki?", a: "Tak, mamy doświadczenie i odpowiedni sprzęt do bezpiecznego mycia okien dachowych oraz świetlików." },
+      { q: "Co z moskitierami i roletami zewnętrznymi?", a: "Czyszczenie moskitier i rolet jest dostępne jako dodatkowa opcja — zgłoś to przy wycenie." },
+      { q: "Czy mycie okien działa też przy bardzo zabrudzonych szybach po budowie?", a: "Tak, dla mocno zabrudzonych szyb (np. po remoncie) stosujemy mocniejsze środki usuwające zaschnięty cement czy farbę." },
+      { q: "Jak często warto myć okna w mieszkaniu w centrum Krakowa?", a: "Rekomendujemy mycie co kwartał — spaliny i kurz w centrum miasta osiadają znacznie szybciej niż na obrzeżach." },
+    ],
+    galleryImages: [
+      { src: oknaBuilding, alt: "Czysta, lśniąca fasada szklana budynku po profesjonalnym myciu okien" },
+      { src: oknaIndoor, alt: "Profesjonalne mycie dużego okna od wewnątrz bez pozostawiania smug" },
+    ],
+  },
+  "sprzatanie-wspolnot-mieszkaniowych": {
+    highlight: "Zaufanie dziesiątek zarządców",
+    longIntro: [
+      "Obsługa wspólnoty mieszkaniowej to coś więcej niż mycie podłóg na klatce schodowej — to odpowiedzialność za pierwsze wrażenie, jakie budynek robi na mieszkańcach i gościach, a także za bezpieczeństwo i higienę części wspólnych. Współpracujemy z dziesiątkami wspólnot i spółdzielni mieszkaniowych w Krakowie na podstawie długoterminowych umów, obejmujących zarówno codzienną obsługę, jak i prace okresowe.",
+      "Każdej wspólnocie przypisujemy dedykowanego opiekuna, który zna specyfikę budynku, harmonogram prac i indywidualne ustalenia z zarządem. Comiesięczne raporty z wykonanych prac oraz możliwość bezpośredniego zgłaszania uwag sprawiają, że zarząd ma pełną kontrolę nad jakością usługi — bez konieczności osobistego nadzorowania ekipy.",
+      "Standardowy zakres obejmuje sprzątanie klatek schodowych i wind, mycie okien na klatkach, utrzymanie piwnic i pomieszczeń technicznych oraz pielęgnację terenów zewnętrznych. W sezonie zimowym oferujemy także odśnieżanie chodników i wjazdów na podstawie sezonowej umowy z gwarantowanym czasem reakcji.",
+    ],
+    benefitCards: [
+      { title: "Dedykowany opiekun klienta", text: "Jedna osoba odpowiedzialna za kontakt, harmonogram i jakość obsługi Twojej wspólnoty." },
+      { title: "Comiesięczne raportowanie", text: "Przejrzysty raport z wykonanych prac — pełna kontrola dla zarządu bez konieczności nadzoru na miejscu." },
+      { title: "Pełna dokumentacja i OC", text: "Umowa, faktury VAT i ubezpieczenie OC do 1 mln zł — formalności załatwione od początku." },
+      { title: "Odśnieżanie w sezonie zimowym", text: "Sezonowa umowa na odśnieżanie chodników i wjazdów z gwarantowanym czasem reakcji do 2 godzin." },
+    ],
+    process: [
+      { title: "Wizja lokalna i wycena", text: "Oceniamy zakres części wspólnych, częstotliwość potrzebnych prac i przygotowujemy indywidualną ofertę." },
+      { title: "Podpisanie umowy i harmonogramu", text: "Ustalamy częstotliwość sprzątania, zakres prac i osobę kontaktową po obu stronach." },
+      { title: "Przypisanie dedykowanego opiekuna", text: "Wyznaczamy stałą ekipę i opiekuna znającego specyfikę budynku." },
+      { title: "Stała obsługa z raportowaniem", text: "Cykliczne prace zgodnie z harmonogramem oraz comiesięczne raporty przesyłane do zarządu." },
+    ],
+    faq: [
+      { q: "Czy obsługujecie też niewielkie wspólnoty (do 10 lokali)?", a: "Tak, dostosowujemy zakres i częstotliwość do wielkości wspólnoty — także tych mniejszych, kameralnych." },
+      { q: "Czy możemy zmienić zakres umowy w trakcie współpracy?", a: "Tak, harmonogram i zakres prac można elastycznie modyfikować — wystarczy zgłoszenie do opiekuna." },
+      { q: "Jak wygląda rozliczenie za odśnieżanie?", a: "Oferujemy sezonową umowę ryczałtową lub rozliczenie za pojedyncze interwencje — w zależności od preferencji wspólnoty." },
+      { q: "Czy zapewniacie zastępstwo w razie urlopu lub choroby pracownika?", a: "Tak, ciągłość obsługi gwarantujemy zawsze — w razie nieobecności wysyłamy zastępczą, przeszkoloną osobę." },
+    ],
+    galleryImages: [
+      { src: wspolnotaAfterLobby, alt: "Czyste, nowoczesne lobby budynku wielorodzinnego po obsłudze wspólnoty" },
+      { src: buildingExteriorModern, alt: "Zadbany budynek wielorodzinny obsługiwany w ramach stałej umowy sprzątającej" },
+    ],
+  },
+};
