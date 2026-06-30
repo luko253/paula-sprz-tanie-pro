@@ -34,6 +34,13 @@ function BlogIndex() {
         title="Porady, które pomogą Ci dbać o czystość"
         subtitle="Dziesięć lat doświadczenia w jednym miejscu. Praktyczne poradniki, cenniki i odpowiedzi na najczęstsze pytania."
       />
+      <nav aria-label="Nawigacja okruszkowa" className="container-x py-4">
+        <ol className="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+          <li><Link to="/" className="hover:text-navy-deep">Strona główna</Link></li>
+          <li>/</li>
+          <li className="font-semibold text-navy-deep">Blog</li>
+        </ol>
+      </nav>
       <section className="container-x py-16">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {allPosts.map((p) => (
@@ -46,7 +53,10 @@ function BlogIndex() {
               <img
                 src={COVERS[p.cover] ?? g1}
                 alt={p.title}
+                width={800}
+                height={500}
                 loading="lazy"
+                decoding="async"
                 className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="flex flex-1 flex-col p-6">

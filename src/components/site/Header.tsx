@@ -18,8 +18,18 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    let ticking = false;
+    const update = () => {
+      setScrolled(window.scrollY > 8);
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -49,14 +59,14 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-2">
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav aria-label="Nawigacja główna" className="hidden items-center gap-1 lg:flex">
             {NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
                 activeOptions={{ exact: n.to === "/" }}
-                className="rounded-full px-4 py-2 text-sm font-medium text-navy-deep/80 transition-colors hover:text-navy-deep hover:bg-secondary"
-                activeProps={{ className: "text-navy-deep bg-secondary" }}
+                className="rounded-full px-4 py-2 text-sm font-medium text-navy-deep/80 transition-colors hover:text-navy-deep hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                activeProps={{ className: "text-navy-deep bg-secondary", "aria-current": "page" }}
               >
                 {n.label}
               </Link>
@@ -65,7 +75,7 @@ export function Header() {
 
           <a
             href={`tel:${SITE.phoneRaw}`}
-            className="hidden items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-cream transition-transform hover:scale-[1.02] shadow-premium md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-cream transition-transform hover:scale-[1.02] shadow-premium md:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
           >
             <Phone className="h-4 w-4" />
             <span className="hidden xl:inline">{SITE.phone}</span>
@@ -75,8 +85,10 @@ export function Header() {
           <button
             type="button"
             aria-label={open ? "Zamknij menu" : "Otwórz menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
-            className="grid h-11 w-11 place-items-center rounded-full border border-border text-navy-deep lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-border text-navy-deep lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -84,22 +96,22 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur animate-fade-in">
-          <nav className="container-x flex flex-col gap-1 py-4">
+        <div id="mobile-nav" className="lg:hidden border-t border-border bg-background/95 backdrop-blur animate-fade-in">
+          <nav aria-label="Nawigacja mobilna" className="container-x flex flex-col gap-1 py-4">
             {NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-4 py-3 text-base font-medium text-navy-deep/90 hover:bg-secondary"
-                activeProps={{ className: "bg-secondary" }}
+                className="rounded-xl px-4 py-3 text-base font-medium text-navy-deep/90 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                activeProps={{ className: "bg-secondary", "aria-current": "page" }}
               >
                 {n.label}
               </Link>
             ))}
             <a
               href={`tel:${SITE.phoneRaw}`}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-3 text-base font-semibold text-cream"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-3 text-base font-semibold text-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
             >
               <Phone className="h-4 w-4" />
               {SITE.phone}

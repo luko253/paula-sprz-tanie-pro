@@ -91,7 +91,16 @@ function PostPage() {
   return (
     <SiteLayout>
       <article className="container-x py-16 lg:py-24">
-        <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy-deep">
+        <nav aria-label="Nawigacja okruszkowa">
+          <ol className="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+            <li><Link to="/" className="hover:text-navy-deep">Strona główna</Link></li>
+            <li>/</li>
+            <li><Link to="/blog" className="hover:text-navy-deep">Blog</Link></li>
+            <li>/</li>
+            <li className="font-semibold text-navy-deep line-clamp-1">{post.title}</li>
+          </ol>
+        </nav>
+        <Link to="/blog" className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy-deep">
           <ArrowLeft className="h-4 w-4" /> Wszystkie wpisy
         </Link>
         <header className="mt-6 max-w-3xl">
@@ -105,6 +114,9 @@ function PostPage() {
         <img
           src={COVERS[post.cover] ?? g1}
           alt={post.title}
+          width={1200}
+          height={675}
+          decoding="async"
           className="mt-10 w-full rounded-3xl object-cover shadow-premium"
         />
         <div className="mx-auto mt-12 grid max-w-3xl gap-10">

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { SiteLayout, PageHero, SectionLabel } from "@/components/site/Layout";
@@ -27,6 +27,14 @@ function KontaktPage() {
         title="Porozmawiajmy o Twoim sprzątaniu"
         subtitle="Zadzwoń, napisz, wyślij formularz — wybierz formę, która jest dla Ciebie najwygodniejsza."
       />
+
+      <nav aria-label="Nawigacja okruszkowa" className="container-x py-4">
+        <ol className="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+          <li><Link to="/" className="hover:text-navy-deep">Strona główna</Link></li>
+          <li>/</li>
+          <li className="font-semibold text-navy-deep">Kontakt</li>
+        </ol>
+      </nav>
 
       <section className="container-x py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">

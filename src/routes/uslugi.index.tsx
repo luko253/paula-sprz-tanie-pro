@@ -27,6 +27,13 @@ function UslugiIndex() {
         title="Sprzątamy wszystko — od kawalerki po wieżowiec biurowy"
         subtitle="Wybierz interesującą Cię usługę, aby poznać szczegółowy zakres prac, cennik i odpowiedzi na najczęstsze pytania."
       />
+      <nav aria-label="Nawigacja okruszkowa" className="container-x py-4">
+        <ol className="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+          <li><Link to="/" className="hover:text-navy-deep">Strona główna</Link></li>
+          <li>/</li>
+          <li className="font-semibold text-navy-deep">Usługi</li>
+        </ol>
+      </nav>
       <section className="container-x py-20">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => {

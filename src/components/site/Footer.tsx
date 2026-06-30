@@ -81,9 +81,14 @@ export function Footer() {
       </div>
 
       <div className="border-t border-cream/10">
-        <div className="container-x flex flex-col gap-2 py-6 text-xs text-cream/60 md:flex-row md:items-center md:justify-between">
+        <div className="container-x flex flex-col gap-3 py-6 text-xs text-cream/60 md:flex-row md:items-center md:justify-between">
           <span>© {new Date().getFullYear()} LumiClean. Wszystkie prawa zastrzeżone.</span>
-          <span>Profesjonalne sprzątanie · Kraków i okolice</span>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span>Profesjonalne sprzątanie · Kraków i okolice</span>
+            <Link to="/polityka-prywatnosci" className="underline-offset-2 hover:text-gold hover:underline">
+              Polityka prywatności
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

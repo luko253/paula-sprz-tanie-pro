@@ -84,6 +84,16 @@ function ServicePage() {
     <SiteLayout>
       <PageHero eyebrow="Usługa" title={service.title} subtitle={service.intro} />
 
+      <nav aria-label="Nawigacja okruszkowa" className="container-x py-4">
+        <ol className="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+          <li><Link to="/" className="hover:text-navy-deep">Strona główna</Link></li>
+          <li>/</li>
+          <li><Link to="/uslugi" className="hover:text-navy-deep">Usługi</Link></li>
+          <li>/</li>
+          <li className="font-semibold text-navy-deep">{service.title}</li>
+        </ol>
+      </nav>
+
       <section className="container-x py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>

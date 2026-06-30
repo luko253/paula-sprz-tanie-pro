@@ -1,13 +1,46 @@
 import type { ReactNode } from "react";
+import { Phone, Sparkles } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { SITE } from "@/lib/site-data";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <a
+        href="#main-content"
+        className="sr-only z-[60] rounded-full bg-navy px-5 py-3 text-sm font-semibold text-cream focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Przejdź do treści głównej
+      </a>
       <Header />
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="flex-1 pb-20 lg:pb-0">
+        {children}
+      </main>
       <Footer />
+      <StickyMobileCta />
+    </div>
+  );
+}
+
+function StickyMobileCta() {
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-card/95 backdrop-blur shadow-[0_-8px_24px_-12px_rgba(11,26,59,0.25)] lg:hidden">
+      <a
+        href={`tel:${SITE.phoneRaw}`}
+        className="flex flex-1 items-center justify-center gap-2 border-r border-border py-3.5 text-sm font-semibold text-navy-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-inset"
+      >
+        <Phone className="h-4 w-4" />
+        Zadzwoń
+      </a>
+      <Link
+        to="/kontakt"
+        className="flex flex-1 items-center justify-center gap-2 bg-navy py-3.5 text-sm font-semibold text-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-inset"
+      >
+        <Sparkles className="h-4 w-4" />
+        Bezpłatna wycena
+      </Link>
     </div>
   );
 }

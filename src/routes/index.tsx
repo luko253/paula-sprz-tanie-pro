@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ArrowRight,
+  Award,
   Bird,
   Briefcase,
   Building2,
@@ -9,6 +10,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
+  FileCheck,
   Hammer,
   Home,
   Landmark,
@@ -62,7 +64,10 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: "Sprzątanie mieszkań, domów, biur i wspólnot w Krakowie. Bezpłatna wycena." },
       { name: "twitter:image", content: heroImg },
     ],
-    links: [{ rel: "canonical", href: "https://lumiclean.pl/" }],
+    links: [
+      { rel: "canonical", href: "https://lumiclean.pl/" },
+      { rel: "preload", as: "image", href: heroImg, type: "image/jpeg" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
@@ -114,6 +119,7 @@ function Index() {
     <SiteLayout>
       <Hero />
       <Stats />
+      <WhyUs />
       <About />
       <Services />
       <Gallery />
@@ -161,10 +167,13 @@ function Hero() {
             </Link>
             <a
               href={`tel:${SITE.phoneRaw}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-navy/15 bg-card px-7 py-4 text-sm font-semibold text-navy-deep transition-colors hover:border-gold hover:bg-cream"
+              className="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-navy/15 bg-card px-7 py-4 text-sm font-semibold text-navy-deep transition-colors hover:border-gold hover:bg-cream"
             >
-              <Phone className="h-4 w-4" />
-              Zadzwoń teraz
+              <Phone className="h-4 w-4 text-gold" />
+              <span>
+                Zadzwoń teraz
+                <span className="hidden font-bold tabular-nums text-navy-deep group-hover:text-gold sm:inline"> — {SITE.phone}</span>
+              </span>
             </a>
           </div>
 
@@ -187,6 +196,9 @@ function Hero() {
               alt="Profesjonalna firma sprzątająca w Krakowie"
               width={1600}
               height={1200}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-navy-deep/40 via-transparent to-transparent" />
@@ -234,6 +246,66 @@ function Stats() {
   );
 }
 
+const WHY_US = [
+  {
+    icon: ShieldCheck,
+    title: "Ubezpieczenie OC do 1 mln zł",
+    text: "Każde zlecenie jest objęte pełną ochroną ubezpieczeniową — w razie szkody nigdy nie zostajesz z problemem sam.",
+  },
+  {
+    icon: Clock,
+    title: "10+ lat doświadczenia",
+    text: "Działamy w Krakowie od ponad dekady. Znamy specyfikę różnych dzielnic, budynków i typów zabudowy.",
+  },
+  {
+    icon: Sparkles,
+    title: "1000+ zrealizowanych zleceń",
+    text: "Od kawalerek po biurowce — mamy doświadczenie w niemal każdym typie powierzchni.",
+  },
+  {
+    icon: Users,
+    title: "Stała, sprawdzona ekipa",
+    text: "Pracujemy z zaufanymi ludźmi — bez przypadkowej rotacji. Wiesz, kto wchodzi do Twojej przestrzeni.",
+  },
+  {
+    icon: FileCheck,
+    title: "Faktury VAT i umowy",
+    text: "Pełna dokumentacja każdego zlecenia — formalnie i przejrzyście, dla firm i osób prywatnych.",
+  },
+  {
+    icon: Award,
+    title: "Gwarancja satysfakcji",
+    text: "Jeśli efekt nie spełnia oczekiwań, wracamy bezpłatnie i poprawiamy — bez dodatkowych pytań.",
+  },
+];
+
+function WhyUs() {
+  return (
+    <section className="container-x py-20 md:py-28">
+      <div className="mx-auto max-w-2xl text-center">
+        <SectionLabel>Dlaczego my?</SectionLabel>
+        <h2 className="mt-6 font-display text-3xl font-bold leading-tight text-navy-deep md:text-5xl">
+          Powody, dla których klienci nam ufają
+        </h2>
+      </div>
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {WHY_US.map((item) => (
+          <div
+            key={item.title}
+            className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-premium"
+          >
+            <span className="grid h-12 w-12 place-items-center rounded-xl bg-gold/15 text-gold">
+              <item.icon className="h-6 w-6" />
+            </span>
+            <h3 className="font-display text-lg font-bold text-navy-deep">{item.title}</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function About() {
   return (
     <section className="container-x py-20 md:py-28">
@@ -245,6 +317,7 @@ function About() {
             width={1200}
             height={1000}
             loading="lazy"
+            decoding="async"
             className="w-full rounded-[2rem] object-cover shadow-premium"
           />
           <div className="absolute -bottom-6 -right-6 hidden max-w-[16rem] rounded-2xl bg-navy-deep p-6 text-cream shadow-premium md:block">
@@ -342,10 +415,14 @@ function Services() {
   );
 }
 
+const GALLERY_CATS = ["Wszystkie", "Mieszkania", "Biura", "Balkony", "Wspólnoty", "Tereny zielone"];
+
 function Gallery() {
   const [filter, setFilter] = useState<string>("Wszystkie");
-  const cats = ["Wszystkie", "Mieszkania", "Biura", "Balkony", "Wspólnoty", "Tereny zielone"];
-  const items = GALLERY.filter((g) => filter === "Wszystkie" || g.cat === filter);
+  const items = useMemo(
+    () => GALLERY.filter((g) => filter === "Wszystkie" || g.cat === filter),
+    [filter],
+  );
 
   return (
     <section className="container-x py-20 md:py-28">
@@ -357,13 +434,14 @@ function Gallery() {
           </h2>
         </div>
         <div className="flex flex-wrap gap-2">
-          {cats.map((c) => (
+          {GALLERY_CATS.map((c) => (
             <button
               key={c}
               type="button"
               onClick={() => setFilter(c)}
+              aria-pressed={filter === c}
               className={
-                "rounded-full px-4 py-2 text-xs font-semibold transition-colors " +
+                "rounded-full px-4 py-2 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 " +
                 (filter === c
                   ? "bg-navy text-cream"
                   : "border border-border bg-card text-navy-deep/70 hover:text-navy-deep")
@@ -376,28 +454,34 @@ function Gallery() {
       </div>
 
       <div className="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5 [&>*]:break-inside-avoid">
-        {items.map((g, i) => (
-          <figure
-            key={i}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
-          >
-            <img
-              src={g.src}
-              alt={g.alt}
-              loading="lazy"
-              className={
-                "w-full object-cover transition-transform duration-500 group-hover:scale-105 " +
-                ((g as { h?: string }).h === "tall" ? "aspect-[3/4]" : "aspect-[4/3]")
-              }
-            />
-            <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-navy-deep/85 to-transparent p-4 text-xs font-semibold text-cream">
-              <span>{g.cat}</span>
-              <span className="rounded-full bg-gold/90 px-2.5 py-0.5 text-[10px] text-navy-deep">
-                Realizacja
-              </span>
-            </figcaption>
-          </figure>
-        ))}
+        {items.map((g, i) => {
+          const isTall = (g as { h?: string }).h === "tall";
+          return (
+            <figure
+              key={i}
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+            >
+              <img
+                src={g.src}
+                alt={g.alt}
+                width={isTall ? 900 : 1200}
+                height={isTall ? 1200 : 900}
+                loading="lazy"
+                decoding="async"
+                className={
+                  "w-full object-cover transition-transform duration-500 group-hover:scale-105 " +
+                  (isTall ? "aspect-[3/4]" : "aspect-[4/3]")
+                }
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-navy-deep/85 to-transparent p-4 text-xs font-semibold text-cream">
+                <span>{g.cat}</span>
+                <span className="rounded-full bg-gold/90 px-2.5 py-0.5 text-[10px] text-navy-deep">
+                  Realizacja
+                </span>
+              </figcaption>
+            </figure>
+          );
+        })}
       </div>
     </section>
   );
@@ -453,7 +537,7 @@ function Testimonials() {
               type="button"
               aria-label="Poprzednia opinia"
               onClick={() => setI((p) => (p - 1 + total) % total)}
-              className="grid h-12 w-12 place-items-center rounded-full border border-border bg-card text-navy-deep hover:border-gold"
+              className="grid h-12 w-12 place-items-center rounded-full border border-border bg-card text-navy-deep hover:border-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -461,7 +545,7 @@ function Testimonials() {
               type="button"
               aria-label="Następna opinia"
               onClick={() => setI((p) => (p + 1) % total)}
-              className="grid h-12 w-12 place-items-center rounded-full bg-navy text-cream hover:bg-navy-soft"
+              className="grid h-12 w-12 place-items-center rounded-full bg-navy text-cream hover:bg-navy-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -492,10 +576,11 @@ function Testimonials() {
   );
 }
 
+const BLOG_COVERS: Record<string, string> = {
+  "gallery-1": g1, "gallery-2": g2, "gallery-3": g3, "gallery-4": g4, "gallery-6": g6,
+};
+
 function BlogPreview() {
-  const covers: Record<string, string> = {
-    "gallery-1": g1, "gallery-2": g2, "gallery-3": g3, "gallery-4": g4, "gallery-6": g6,
-  };
   return (
     <section className="bg-secondary/40">
       <div className="container-x py-20 md:py-28">
@@ -523,9 +608,12 @@ function BlogPreview() {
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-premium"
             >
               <img
-                src={covers[p.cover] ?? g1}
+                src={BLOG_COVERS[p.cover] ?? g1}
                 alt={p.title}
+                width={800}
+                height={500}
                 loading="lazy"
+                decoding="async"
                 className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="flex flex-1 flex-col p-6">

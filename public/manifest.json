@@ -1,0 +1,45 @@
+{
+  "name": "LumiClean — Profesjonalne sprzątanie w Krakowie",
+  "short_name": "LumiClean",
+  "description": "Profesjonalna firma sprzątająca w Krakowie i okolicach. Sprzątanie mieszkań, domów, biur, wspólnot, po remoncie, mycie okien.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#0b1a3b",
+  "lang": "pl-PL",
+  "dir": "ltr",
+  "categories": ["business", "lifestyle"],
+  "icons": [
+    {
+      "src": "/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
