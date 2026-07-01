@@ -17,24 +17,26 @@ import blogWipe from "@/assets/blog-wipe.jpg";
 import blogFloor from "@/assets/blog-floor.jpg";
 import blogLinens from "@/assets/blog-linens.jpg";
 
-import baBathAfter from "@/assets/ba-bathroom-after.jpg";
-import baStairsBefore from "@/assets/ba-stairs-before.jpg";
-import baStairsAfter from "@/assets/ba-stairs-after.jpg";
-import baKitchenBefore from "@/assets/ba-kitchen-before.jpg";
-import baKitchenAfter from "@/assets/ba-kitchen-after.jpg";
-import baRenoBefore from "@/assets/ba-renovation-before.jpg";
-import baRenoAfter from "@/assets/ba-renovation-after.jpg";
-
-// Replacement set — sourced to match the brief precisely (residential window
-// grime/clarity, balcony neglect/clean, full messy-room/clean-living-room),
-// rather than the office-tower / luxury-terrace stock photos used originally.
-import mieszkanieBefore from "@/assets/mieszkanie-before-v3.jpg";
-import mieszkanieAfter from "@/assets/mieszkanie-clean-living.jpg";
-import oknaBefore from "@/assets/okna-przed-mycie.jpg";
 import oknaAfter from "@/assets/okna-po-czyste.jpg";
-import balkonBefore from "@/assets/balkon-przed-golebie.jpg";
 import balkonAfter from "@/assets/balkon-po-siatka.jpg";
-import bathroomBefore from "@/assets/bathroom-before-v2.jpg";
+
+// Before/After pairs — cropped from client reference grid
+import ba2MieszkaniaPrzed from "@/assets/ba2-mieszkania-przed.jpg";
+import ba2MieszkaniaAfter from "@/assets/ba2-mieszkania-po.jpg";
+import ba2OknaPrzed from "@/assets/ba2-okna-przed.jpg";
+import ba2OknaAfter from "@/assets/ba2-okna-po.jpg";
+import ba2BalkonyPrzed from "@/assets/ba2-balkony-przed.jpg";
+import ba2BalkonyAfter from "@/assets/ba2-balkony-po.jpg";
+import ba2RemontPrzed from "@/assets/ba2-remont-przed.jpg";
+import ba2RemontAfter from "@/assets/ba2-remont-po.jpg";
+import ba2WspolnotyPrzed from "@/assets/ba2-wspolnoty-przed.jpg";
+import ba2WspolnotyAfter from "@/assets/ba2-wspolnoty-po.jpg";
+import ba2BiuraPrzed from "@/assets/ba2-biura-przed.jpg";
+import ba2BiuraAfter from "@/assets/ba2-biura-po.jpg";
+import ba2AdminPrzed from "@/assets/ba2-administracja-przed.jpg";
+import ba2AdminAfter from "@/assets/ba2-administracja-po.jpg";
+import ba2TerenyPrzed from "@/assets/ba2-tereny-przed.jpg";
+import ba2TerenyAfter from "@/assets/ba2-tereny-po.jpg";
 
 export const SERVICE_IMAGES: Record<string, string> = {
   "sprzatanie-mieszkan": svcMieszkaniaHero,
@@ -92,52 +94,59 @@ export type BeforeAfterCase = {
 
 export const BEFORE_AFTER: BeforeAfterCase[] = [
   {
-    id: "apartment",
-    category: "Mieszkania",
-    label: "Zabałaganione mieszkanie po latach zaniedbań",
-    before: mieszkanieBefore,
-    after: mieszkanieAfter,
+    id: "mieszkania",
+    category: "Sprzątanie mieszkań",
+    label: "Mieszkanie po generalnym sprzątaniu — efekt widoczny na pierwszy rzut oka",
+    before: ba2MieszkaniaPrzed,
+    after: ba2MieszkaniaAfter,
   },
   {
-    id: "windows",
+    id: "okna",
     category: "Mycie okien",
-    label: "Zabrudzone okna odzyskują przejrzystość",
-    before: oknaBefore,
-    after: oknaAfter,
+    label: "Okna bez smug i zacieków — mycie od wewnątrz i zewnątrz",
+    before: ba2OknaPrzed,
+    after: ba2OknaAfter,
   },
   {
-    id: "balcony",
+    id: "balkony",
     category: "Balkony po gołębiach",
-    label: "Balkon po profesjonalnym czyszczeniu i dezynfekcji",
-    before: balkonBefore,
-    after: balkonAfter,
+    label: "Balkon pokryty odchodami — pełna dezynfekcja i czyszczenie",
+    before: ba2BalkonyPrzed,
+    after: ba2BalkonyAfter,
   },
   {
-    id: "bathroom",
-    category: "Łazienki",
-    label: "Łazienka po latach zaniedbań",
-    before: bathroomBefore,
-    after: baBathAfter,
+    id: "remont",
+    category: "Sprzątanie po remoncie",
+    label: "Mieszkanie gotowe do wprowadzenia po sprzątaniu poremontowym",
+    before: ba2RemontPrzed,
+    after: ba2RemontAfter,
   },
   {
-    id: "kitchen",
-    category: "Kuchnie",
-    label: "Tłusta kuchnia przywrócona do życia",
-    before: baKitchenBefore,
-    after: baKitchenAfter,
+    id: "wspolnoty",
+    category: "Wspólnoty mieszkaniowe",
+    label: "Klatka schodowa wspólnoty — regularne utrzymanie czystości",
+    before: ba2WspolnotyPrzed,
+    after: ba2WspolnotyAfter,
   },
   {
-    id: "renovation",
-    category: "Po remoncie",
-    label: "Sprzątanie po remoncie pod klucz",
-    before: baRenoBefore,
-    after: baRenoAfter,
+    id: "biura",
+    category: "Sprzątanie biur",
+    label: "Biuro po kompleksowym sprzątaniu — gotowe na przyjęcie pracowników",
+    before: ba2BiuraPrzed,
+    after: ba2BiuraAfter,
   },
   {
-    id: "stairs",
-    category: "Klatki schodowe",
-    label: "Klatka schodowa wspólnoty",
-    before: baStairsBefore,
-    after: baStairsAfter,
+    id: "administracja",
+    category: "Administracja",
+    label: "Budynek administracyjny — codzienny serwis sprzątania",
+    before: ba2AdminPrzed,
+    after: ba2AdminAfter,
+  },
+  {
+    id: "tereny",
+    category: "Tereny zielone",
+    label: "Teren zielony wspólnoty — zadbany przez cały sezon",
+    before: ba2TerenyPrzed,
+    after: ba2TerenyAfter,
   },
 ];
