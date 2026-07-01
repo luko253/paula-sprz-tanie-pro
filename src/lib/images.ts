@@ -6,6 +6,12 @@ import svcGreen from "@/assets/svc-green.jpg";
 import svcStairs from "@/assets/svc-stairs.jpg";
 import svcConstruction from "@/assets/svc-construction.jpg";
 import svcIndustrial from "@/assets/svc-industrial.jpg";
+import svcBiurHero from "@/assets/svc-biur-hero.jpg";
+import svcDomowHero from "@/assets/svc-domow-hero.jpg";
+import svcMieszkaniaHero from "@/assets/svc-mieszkania-hero.jpg";
+import svcTerenyHero from "@/assets/svc-tereny-hero.jpg";
+import svcWspolnotyHero from "@/assets/svc-wspolnoty-hero.jpg";
+import buildingExteriorModern from "@/assets/building-exterior-modern.jpg";
 import blogSupplies from "@/assets/blog-supplies.jpg";
 import blogWipe from "@/assets/blog-wipe.jpg";
 import blogFloor from "@/assets/blog-floor.jpg";
@@ -24,23 +30,24 @@ import baRenoAfter from "@/assets/ba-renovation-after.jpg";
 // rather than the office-tower / luxury-terrace stock photos used originally.
 import mieszkanieBefore from "@/assets/mieszkanie-before-v3.jpg";
 import mieszkanieAfter from "@/assets/mieszkanie-clean-living.jpg";
-import oknaBefore from "@/assets/okna-before-v3.jpg";
-import oknaAfter from "@/assets/okna-after-v2.jpg";
-import balkonBefore from "@/assets/balkon-before-v3.jpg";
-import balkonAfter from "@/assets/balkon-after-v2.jpg";
+import oknaBefore from "@/assets/okna-przed-mycie.jpg";
+import oknaAfter from "@/assets/okna-po-czyste.jpg";
+import balkonBefore from "@/assets/balkon-przed-golebie.jpg";
+import balkonAfter from "@/assets/balkon-po-siatka.jpg";
 import bathroomBefore from "@/assets/bathroom-before-v2.jpg";
 
 export const SERVICE_IMAGES: Record<string, string> = {
-  "sprzatanie-mieszkan": mieszkanieAfter,
-  "sprzatanie-domow": svcApartments,
-  "sprzatanie-biur": svcOffices,
-  "sprzatanie-wspolnot-mieszkaniowych": svcCommunity,
+  "sprzatanie-mieszkan": svcMieszkaniaHero,
+  "sprzatanie-domow": svcDomowHero,
+  "sprzatanie-biur": svcBiurHero,
+  "sprzatanie-wspolnot-mieszkaniowych": svcWspolnotyHero,
+  "sprzatanie-administracji": buildingExteriorModern,
   "sprzatanie-po-remoncie": svcRenovation,
   "sprzatanie-po-budowie": svcConstruction,
   "mycie-okien": oknaAfter,
   "sprzatanie-balkonow-po-golebiach": balkonAfter,
   "sprzatanie-klatek-schodowych": svcStairs,
-  "sprzatanie-terenow-zielonych": svcGreen,
+  "sprzatanie-terenow-zielonych": svcTerenyHero,
   "sprzatanie-przemyslowe": svcIndustrial,
 };
 
