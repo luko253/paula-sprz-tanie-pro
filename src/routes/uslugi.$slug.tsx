@@ -76,8 +76,8 @@ export const Route = createFileRoute("/uslugi/$slug")({
     const title = s ? `${s.title} â€” KrakĂłw | LumiClean` : "UsĹ‚uga";
     const desc = s
       ? [s.short, details?.highlight, "ObsĹ‚uga Krakowa i okolic z bezpĹ‚atnÄ… wycenÄ…."]
-          .filter(Boolean)
-          .join(" ")
+        .filter(Boolean)
+        .join(" ")
       : "UsĹ‚uga sprzÄ…tajÄ…ca w Krakowie";
     const image = s ? getServiceImage(s.slug) : undefined;
     return {
@@ -94,56 +94,56 @@ export const Route = createFileRoute("/uslugi/$slug")({
       links: [{ rel: "canonical", href: `/uslugi/${s?.slug ?? ""}` }],
       scripts: s
         ? [
-            {
-              type: "application/ld+json",
-              children: JSON.stringify({
-                "@context": "https://schema.org",
-                "@graph": [
-                  {
-                    "@type": "Service",
-                    name: s.title,
-                    description: s.intro,
-                    provider: {
-                      "@type": "LocalBusiness",
-                      name: "LumiClean",
-                      url: "https://lumiclean.pl",
+          {
+            type: "application/ld+json",
+            children: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Service",
+                  name: s.title,
+                  description: s.intro,
+                  provider: {
+                    "@type": "LocalBusiness",
+                    name: "LumiClean",
+                    url: "https://lumiclean.pl",
+                  },
+                  areaServed: { "@type": "City", name: "KrakĂłw" },
+                  serviceType: "CleaningService",
+                },
+                {
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://lumiclean.pl/" },
+                    { "@type": "ListItem", position: 2, name: "Usługi", item: "https://lumiclean.pl/uslugi" },
+                    { "@type": "ListItem", position: 3, name: s.title, item: `https://lumiclean.pl/uslugi/${s.slug}` },
+                  ],
+                },
+                ...(SERVICE_DETAILS[s.slug]
+                  ? [
+                    {
+                      "@type": "FAQPage",
+                      mainEntity: SERVICE_DETAILS[s.slug].faq.map((f) => ({
+                        "@type": "Question",
+                        name: f.q,
+                        acceptedAnswer: { "@type": "Answer", text: f.a },
+                      })),
                     },
-                    areaServed: { "@type": "City", name: "KrakĂłw" },
-                    serviceType: "CleaningService",
-                  },
-                  {
-                    "@type": "BreadcrumbList",
-                    itemListElement: [
-                      { "@type": "ListItem", position: 1, name: "Strona gĹ‚Ăłwna", item: "https://lumiclean.pl/" },
-                      { "@type": "ListItem", position: 2, name: "UsĹ‚ugi", item: "https://lumiclean.pl/uslugi" },
-                      { "@type": "ListItem", position: 3, name: s.title, item: `https://lumiclean.pl/uslugi/${s.slug}` },
-                    ],
-                  },
-                  ...(SERVICE_DETAILS[s.slug]
-                    ? [
-                        {
-                          "@type": "FAQPage",
-                          mainEntity: SERVICE_DETAILS[s.slug].faq.map((f) => ({
-                            "@type": "Question",
-                            name: f.q,
-                            acceptedAnswer: { "@type": "Answer", text: f.a },
-                          })),
-                        },
-                      ]
-                    : []),
-                ],
-              }),
-            },
-          ]
+                  ]
+                  : []),
+              ],
+            }),
+          },
+        ]
         : [],
     };
   },
   notFoundComponent: () => (
     <SiteLayout>
-      <PageHero eyebrow="404" title="Nie znaleziono usĹ‚ugi" subtitle="SprawdĹş listÄ™ wszystkich usĹ‚ug." />
+      <PageHero eyebrow="404" title="Nie znaleziono usługi" subtitle="Sprawdź listę wszystkich usług." />
       <div className="container-x py-12">
         <Link to="/uslugi" className="text-gold underline">
-          Wszystkie usĹ‚ugi
+          Wszystkie usługi
         </Link>
       </div>
     </SiteLayout>
@@ -181,13 +181,13 @@ function ServicePage() {
         <ol className="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
           <li>
             <Link to="/" className="hover:text-navy-deep">
-              Strona gĹ‚Ăłwna
+              Strona główna
             </Link>
           </li>
           <li>/</li>
           <li>
             <Link to="/uslugi" className="hover:text-navy-deep">
-              UsĹ‚ugi
+              Usługi
             </Link>
           </li>
           <li>/</li>
